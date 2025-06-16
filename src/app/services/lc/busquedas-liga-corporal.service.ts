@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { delay, map, switchMap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
-import { Usuario } from '../models/usuario.model';
-import { Observable, of } from 'rxjs';
-import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
-import { LigaCorporal,  } from '../models/liga-corporal.model';
-import { RegistroPesoLc } from '../models/registro-peso-lc.model';
+
 
 const base_url = environment.base_url;
 
