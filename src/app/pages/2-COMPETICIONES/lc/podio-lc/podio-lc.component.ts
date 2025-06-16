@@ -98,4 +98,14 @@ this.tablaClasificatoriaLcService.obtenerPodioPaginado(this.liga._id, this.pagin
       this.cargarPodio();
     }
   }
+
+
+  // para la pipe y llamar mejor a la img cuando imgusuario/imgpordefecto/ sin particpantecon img por defecto 
+  obtenerTipo(img: string): string {
+  if (!img) return 'usuarios';
+
+  const esFicticia = img.startsWith('lcp') || img.startsWith('va');
+  return esFicticia ? 'lc/podio-lc' : 'usuarios';
+}
+
 }

@@ -25,27 +25,4 @@ export class ImagenPerfilPipe implements PipeTransform {
 
   }
 
-//   transform(img: string, tipo: 'usuarios'): string {
-//     if (!img) {
-//         return `${base_url}/upload/usuarios/no-image`;
-//     } else if (img.includes('https')) {
-//         return img;
-//     } else {
-//         return `${base_url}/upload/${tipo}/${img}`;
-//     }
-// }
-
-//   transform( img: string, tipo: 'usuarios'): string {
-// // return 'hola mundo' + img + '' + tipo;
-//     if ( !img ) {
-//       return `${ base_url }/img-perfil-usuario/obtener/${tipo}/no-img`;
-//   } else if ( img.includes('https') ) {
-//       return img;
-//   } else if ( img ) {
-//       return `${ base_url }/img-perfil-usuario/obtener/${ tipo }/${ img }`;
-//   } else {
-//       return `${ base_url }/img-perfil-usuario/obtener/${tipo}/no-img`;
-//   }
-
-
 }
