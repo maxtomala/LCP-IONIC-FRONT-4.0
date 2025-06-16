@@ -1,0 +1,467 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Liga Corporal Profesional</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title class="ion-text-center">
+        <strong>Mis grupos</strong>
+      </ion-card-title>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col
+            size="6"
+            *ngFor="let liga of ligaCorporalprofesional; let i = index"
+            [hidden]="i >= 2"
+          >
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(liga.nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ liga.nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6" *ngIf="ligaCorporalprofesional.length > 2">
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(ligaCorporalprofesional[2].nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ ligaCorporalprofesional[2].nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Swiper Container -->
+  <swiper-container
+    [pagination]="true"
+    [navigation]="true"
+    [spaceBetween]="10"
+    class="swiper-container"
+  >
+    <swiper-slide>
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-card-title class="ion-text-center">
+            <strong>Participantes</strong>
+          </ion-card-title>
+          <br />
+
+          <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+            10
+          </ion-card-subtitle>
+
+          <!-- <strong>10</strong> -->
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <swiper-slide>
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-card-title class="ion-text-center">
+            <strong>Liga creada</strong>
+          </ion-card-title>
+          <br />
+          <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+            15/09/2023
+          </ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-card-title class="ion-text-center">
+            <strong>Objetivo</strong>
+          </ion-card-title>
+          <br />
+          <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+            Perder peso
+          </ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide>
+      <ion-card>
+        <ion-card-content class="ion-text-center">
+          <ion-card-title class="ion-text-center">
+            <strong>Admin de la liga</strong>
+          </ion-card-title>
+          <br />
+          <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+            Juan Pérez
+          </ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- formulario de enviar peso  -->
+  <form [formGroup]="registroPesoLpForm" (ngSubmit)="guardarPeso()">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title class="ion-text-center">
+          <strong>Introduce tu peso <br />semanal</strong>
+        </ion-card-title>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <!-- Imagen -->
+            <ion-col size="4" class="ion-text-center">
+              <ion-img
+                src="/assets/imagen/báscula.jpg"
+                style="width: 80px; height: 80px"
+              ></ion-img>
+            </ion-col>
+
+            <!-- Formulario -->
+            <ion-col size="8">
+              <ion-item>
+                <ion-input
+                  type="number"
+                  placeholder="KG"
+                  formControlName="peso"
+                  style="text-align: right; font-size: 1.5rem"
+                ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Botón -->
+          <ion-row>
+            <ion-col>
+              <ion-button
+                type="submit"
+                expand="block"
+                [disabled]="!botonHabilitado"
+              >
+                <ion-icon name="send" slot="start"></ion-icon>
+                Enviar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </form>
+
+    <!-- Verificador semanal  -->
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title class="ion-text-center">
+          <strong>Verificador semanal</strong>
+        </ion-card-title>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <!-- Imagen -->
+            <ion-col size="4" class="ion-text-center">
+              <ion-img
+                src="/assets/verificador/veri-4.jpg"
+                style="width: 100; height: 100"
+              ></ion-img>
+            </ion-col>
+
+            <!-- Formulario -->
+            <ion-col size="8">
+                <ion-text class="ion-text-center">
+      <h1 style="font-size: 1.2em; margin-top: 16px;">
+        Haz una captura de la báscula que muestre su peso.
+      </h1>
+    </ion-text>
+            </ion-col>
+          </ion-row>
+
+          <!-- Botón -->
+          <ion-row>
+            <ion-col>
+              <ion-button
+                type="submit"
+                expand="block"
+                (click)="abrirModal(usuario)"
+              >
+                <ion-icon name="camera" slot="start"></ion-icon>
+            Subir foto
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+
+
+  <!-- Gráfica lineal -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title>
+        <strong>Evolución del peso corporal</strong>
+      </ion-card-title>
+      <br />
+
+      <h2>Gráfica lineal: Registro cronológico de peso</h2>
+      <br />
+
+      <!-- Selector -->
+      <ion-segment [(ngModel)]="tipoGrafica" scrollable>
+        <ion-segment-button value="diario">
+          <ion-label>Diario</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="semanal">
+          <ion-label>Semanal</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mensual">
+          <ion-label>Mensual</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="anual">
+          <ion-label>Anual</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Mostrar componente según selección -->
+      <div [ngSwitch]="tipoGrafica" class="ion-padding-top">
+        <app-grafico-diario-lcp *ngSwitchCase="'diario'"></app-grafico-diario-lcp>
+        <app-grafico-semanal-lcp
+          *ngSwitchCase="'semanal'"
+        ></app-grafico-semanal-lcp>
+        <app-grafico-mensual-lcp
+          *ngSwitchCase="'mensual'"
+        ></app-grafico-mensual-lcp>
+        <app-grafico-anual-lcp *ngSwitchCase="'anual'"></app-grafico-anual-lcp>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- podio semanal  -->
+  <ion-card class="podio">
+    <ion-card-content>
+      <ion-card-title class="ion-text-center">
+        <strong>Podio Semanal</strong>
+      </ion-card-title>
+      <br />
+
+      <div class="podio-container">
+        <div class="podio-lugar primer-lugar">
+          <ion-img
+            src="/assets/perfil/2.jpg"
+            class="img-avatar"
+            style="margin-left: 15px"
+          ></ion-img>
+          <div class="tarima oro" style="margin-left: 10px"
+></div>
+          <div class="posicion" >&nbsp;&nbsp;&nbsp;1</div>
+          <p> &nbsp;&nbsp;&nbsp;Posición actual</p>
+        </div>
+
+        <div class="podio-lugar segundo-lugar">
+          <ion-img
+            src="/assets/perfil/6.jpg"
+            class="img-avatar"
+            style="margin-left: 5px"
+          ></ion-img>
+          <div class="tarima plata"></div>
+          <div class="posicion">2</div>
+          <p>Posición actual</p>
+        </div>
+
+        <div class="podio-lugar tercer-lugar" style="margin-left: 30px">
+          <ion-img src="/assets/perfil/7.jpg" class="img-avatar"></ion-img>
+          <div class="tarima bronce"></div>
+          <div class="posicion">3</div>
+          <p>Posición actual</p>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- tabla clasificatoria  -->
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+
+      <ion-row class="ion-align-items-center">
+        <ion-col size="4" class="ion-text-center">
+          <img
+            src="/assets/perfil/2.jpg"
+            alt="Foto"
+            class="img-clasificacion"
+          />
+        </ion-col>
+        <ion-col size="8" class="ion-text-center">
+          <h1 style="margin: 0;">
+            <strong style="color: black;">
+              CLASIFICACIÓN DE LA LIGA CORPORAL PROFESIONAL
+            </strong>
+          </h1>
+          <h2 style="margin-top: 8px;">
+            Temporada 2024 Invierno <i class="bi bi-trophy-fill"></i>
+          </h2>
+        </ion-col>
+      </ion-row>
+      <!-- Scroll horizontal -->
+      <div
+        style="
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px 0;
+        "
+      >
+        <table style="width: 100%; border-collapse: collapse">
+          <thead>
+            <tr>
+              <th style="padding: 10px; text-align: left">#</th>
+              <th style="padding: 10px; text-align: left">Nombre</th>
+              <th style="padding: 10px; text-align: left">Puntos</th>
+              <th style="padding: 10px; text-align: left">PG</th>
+              <th style="padding: 10px; text-align: left">PP</th>
+              <th style="padding: 10px; text-align: left">PE</th>
+              <th style="padding: 10px; text-align: left">Peso anterior</th>
+              <th style="padding: 10px; text-align: left">Peso actual</th>
+              <th style="padding: 10px; text-align: left">Logro semanal</th>
+              <th style="padding: 10px; text-align: left">
+                Afectado por quinipeso
+              </th>
+              <th style="padding: 10px; text-align: left">Verificador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let participante of tablaClasificatoria; let i = index">
+              <td style="padding: 10px">{{ i + 1 }}</td>
+              <td style="padding: 10px">
+                <!-- [src]="participante.img | imagen : 'usuarios'" -->
+                <ion-img
+                  src="assets/images/users/1.jpg"
+                  class="img-avatar"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                  "
+                ></ion-img>
+                {{ participante.nombre }}
+              </td>
+              <td style="padding: 10px">{{ participante.puntosTotales }}</td>
+              <td style="padding: 10px">{{ participante.partidosGanados }}</td>
+              <td style="padding: 10px">{{ participante.partidosPerdidos }}</td>
+              <td style="padding: 10px">
+                {{ participante.partidosEmpatados }}
+              </td>
+              <td style="padding: 10px">{{ participante.pesoAnterior }}</td>
+              <td style="padding: 10px">{{ participante.pesoActual }}</td>
+              <td style="padding: 10px">{{ participante.pesoSemanal }}</td>
+              <td style="padding: 10px">
+                {{ participante.afectadoPorQuiniela }}
+              </td>
+              <td style="padding: 10px">
+                <!-- [src]="participante.imgVerificadorLcp | imagen : 'usuarios'" -->
+                <ion-img
+                  src="assets/images/users/1.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <!-- btn flotante  -->
+  <!-- btn flotante  -->
+<ion-fab
+  slot="fixed"
+  vertical="bottom"
+  horizontal="end"
+  style="margin-bottom: 100px"
+>
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+
+    <!-- Apostar Quinipeso -->
+    <div class="fab-item" (click)="router.navigate(['/pages/quinipeso-lcp'])">
+      <div class="fab-label">Apostar Quinipeso</div>
+      <ion-fab-button>
+        <ion-icon name="cash-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <!-- Participantes -->
+    <div class="fab-item" (click)="router.navigate(['/pages/participantes-lcp'])">
+      <div class="fab-label">Participantes</div>
+      <ion-fab-button>
+        <ion-icon name="people-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <!-- Configurar LCP -->
+    <div class="fab-item" (click)="router.navigate(['/pages/configuracion-lcp'], { queryParams: { seccion: 'editar' } })">
+      <div class="fab-label">Editar Lcp</div>
+      <ion-fab-button>
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <!-- Crear una LCP -->
+    <div class="fab-item" (click)="router.navigate(['/pages/configuracion-lcp'], { queryParams: { seccion: 'crear' } })">
+      <div class="fab-label">Crear una LCP</div>
+      <ion-fab-button>
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <!-- Unirme a LCP -->
+    <div class="fab-item" (click)="router.navigate(['/pages/unirme-lcp'])">
+      <div class="fab-label">Unirme a LCP</div>
+      <ion-fab-button>
+        <ion-icon name="log-in-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+    <!-- Invitar a un amigo -->
+    <div class="fab-item" (click)="router.navigate(['/pages/configuracion-lcp'], { queryParams: { seccion: 'editar' } })">
+      <div class="fab-label">Invitar a un amigo</div>
+      <ion-fab-button>
+        <ion-icon name="person-add-outline"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+  </ion-fab-list>
+</ion-fab>
+
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

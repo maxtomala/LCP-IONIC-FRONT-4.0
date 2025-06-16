@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>eliminar-imagen-frontal</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <!-- Cuerpo de la tarjeta -->
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center" style="text-decoration: underline">
+        <strong>Galería de Imágenes</strong>
+      </h2>
+
+      <ion-grid>
+        <ion-row>
+          <!-- Iterar sobre las imágenes -->
+          <ion-col size="4" *ngFor="let image of sliderImagesFrontal">
+            <div class="image-container ion-text-center">
+              <ion-img [src]="image" alt="Imagen"></ion-img>
+
+              <!-- Botones -->
+              <ion-row
+                class="ion-justify-content-center ion-align-items-center ion-margin-top"
+              >
+                <ion-col size="auto">
+                  <ion-button
+                    color="danger"
+                    (click)="borrarImagen('frontal', uid, obtenerNombreArchivoDesdeUrl(image))"
+                  >
+                    Eliminar
+                  </ion-button>
+                </ion-col>
+                <ion-col size="auto">
+                  <ion-button color="medium" (click)="cancelarEliminar()">
+                    Cancelar
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

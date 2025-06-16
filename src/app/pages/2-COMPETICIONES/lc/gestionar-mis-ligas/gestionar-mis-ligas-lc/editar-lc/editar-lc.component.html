@@ -1,0 +1,167 @@
+<ion-card class="liga-card-elegante" *ngFor="let ligasCorporal of ligaCorporal">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="color: white">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        "
+      >
+        <ion-icon
+          name="people-outline"
+          style="font-size: 35px; color: white"
+        ></ion-icon>
+        <span>{{ ligasCorporal.nombre || "Grupo" }}</span>
+      </div>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <!-- Columna Izquierda -->
+        <ion-col size="7" size-md="4">
+          <ion-label class="input-label">🏷️ Nombre</ion-label>
+          <ion-input
+            [(ngModel)]="ligasCorporal.nombre"
+            placeholder="Escribe el nombre"
+            class="liga-input"
+          ></ion-input>
+
+          <ion-label class="input-label">🎯 Objetivo</ion-label>
+          <ion-select
+            [(ngModel)]="ligasCorporal.objetivo"
+            interface="popover"
+            class="liga-input"
+          >
+            <ion-select-option
+              *ngFor="let opcion of opcionesObjetivo"
+              [value]="opcion"
+            >
+              {{ opcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <!-- Columna Derecha -->
+        <!-- Columna Derecha -->
+        <ion-col size="5" size-md="8" class="ion-text-center">
+          <input
+  type="file"
+  accept="image/*"
+  hidden
+  #fileInput
+  (change)="onFileSelected($event, ligasCorporal)"
+/>
+          <img
+            [src]="
+              ligasCorporal.imgGrupalLc | imagenGrupalLc : ligasCorporal._id
+            "
+            class="liga-avatar-large"
+            alt="imagen grupal"
+              style="cursor: pointer;"
+  (click)="fileInput.click()"
+          />
+
+          
+          <div class="liga-fecha ion-margin-top">
+            <ion-icon name="calendar-outline"></ion-icon>
+            {{ ligasCorporal.fechaCreacion | date : "dd/MM/yyyy" }}
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <!-- Enlace de Invitación -->
+      <ion-label class="input-label ion-margin-top"
+        >🔗 Enlace de Invitación</ion-label
+      >
+      <ion-input
+        #inputElement
+        readonly
+        [value]="ligasCorporal.enlaceInvitacion"
+        (click)="selectText($event)"
+        class="liga-input"
+      ></ion-input>
+
+      <!-- Botones de acción -->
+      <ion-row class="ion-justify-content-around ion-padding-top">
+        <ion-col size="2" class="ion-text-center">
+          <ion-button
+            (click)="generarEnlace(ligasCorporal)"
+            fill="clear"
+            size="small"
+          >
+            <ion-icon name="link-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2" class="ion-text-center">
+          <ion-button
+            (click)="copyTextToClipboard(inputElement)"
+            fill="clear"
+            size="small"
+          >
+            <ion-icon name="copy-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2" class="ion-text-center">
+          <ion-button
+            fill="clear"
+            size="small"
+            id="share-button-{{ ligasCorporal._id }}"
+          >
+            <ion-icon name="share-social-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2" class="ion-text-center">
+          <ion-button
+            (click)="actualizarLiga(ligasCorporal)"
+            fill="clear"
+            size="small"
+          >
+            <ion-icon name="save-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+        <ion-col size="2" class="ion-text-center">
+          <ion-button
+            (click)="eliminarLiga(ligasCorporal)"
+            fill="clear"
+            color="danger"
+            size="small"
+          >
+            <ion-icon name="trash-outline" size="large"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <!-- Popover compartir -->
+      <ion-popover
+        trigger="share-button-{{ ligasCorporal._id }}"
+        triggerAction="click"
+        side="bottom"
+      >
+        <ng-template>
+          <ion-list>
+            <ion-item button href="https://twitter.com">
+              <ion-icon name="logo-twitter" slot="start"></ion-icon> Twitter
+            </ion-item>
+            <ion-item button href="https://www.whatsapp.com/">
+              <ion-icon name="logo-whatsapp" slot="start"></ion-icon> WhatsApp
+            </ion-item>
+            <ion-item button href="https://web.telegram.org/a/">
+              <ion-icon name="paper-plane" slot="start"></ion-icon> Telegram
+            </ion-item>
+            <ion-item button href="https://www.instagram.com/">
+              <ion-icon name="logo-instagram" slot="start"></ion-icon> Instagram
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

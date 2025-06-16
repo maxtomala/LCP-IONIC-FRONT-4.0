@@ -1,0 +1,44 @@
+<ion-card>
+  <ion-card-content>
+    <ion-card-title class="ion-text-center">
+      <strong>Camino a tu Peso Ideal </strong>
+    </ion-card-title>
+
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <!-- Texto a la izquierda -->
+        <ion-col
+          size="4"
+          class="ion-text-center"
+          *ngIf="metaConseguida; else progresoPendiente"
+        >
+          <h1 style="margin: 0; font-size: 1.5rem; color: #10dc60">
+            🎉 ¡100%!
+          </h1>
+          <p style="margin: 0; font-weight: bold">
+            ¡Objetivo alcanzado!<br />
+            ¡Estamos muy orgullosos de ti! 💪
+          </p>
+        </ion-col>
+
+        <ng-template #progresoPendiente>
+          <ion-col size="4" class="ion-text-center">
+            <h1 style="margin: 0; font-size: 1.5rem; color: #3880ff">
+              <strong>{{ porcentajeCompletado | number : "1.0-1" }}%</strong>
+            </h1>
+            <p style="margin: 0">
+              Porcentaje restante<br />
+              para alcanzar<br />
+              tu objetivo.
+            </p>
+          </ion-col>
+        </ng-template>
+
+        <!-- Gráfico a la derecha -->
+        <ion-col size="8">
+          <canvas #myPieChart style="width: 100%; height: 250px"></canvas>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

@@ -1,0 +1,83 @@
+
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2><strong>REGISTRO DE MARCAS PERSONALES</strong></h2>
+
+    <div
+      style="
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-top: 16px;
+      "
+    >
+      <table style="border-collapse: collapse; min-width: 800px;">
+       <thead>
+  <tr>
+    <th style="padding: 10px; text-align: center;">
+      <div>Ejercicio</div>
+      <div style="font-size: 32px;">🏋️‍♂️</div>
+    </th>
+    <th style="padding: 10px; text-align: center;">
+      <div>1er Lugar</div>
+      <div style="font-size: 32px;">🥇</div>
+    </th>
+    <th style="padding: 10px; text-align: center;">
+      <div>2do Lugar</div>
+      <div style="font-size: 32px;">🥈</div>
+    </th>
+    <th style="padding: 10px; text-align: center;">
+      <div>3er Lugar</div>
+      <div style="font-size: 32px;">🥉</div>
+    </th>
+    <th style="padding: 10px; text-align: center;">
+      <div>Último Registro</div>
+      <div style="font-size: 28px;">🕒</div>
+    </th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr *ngFor="let ejercicio of ejercicios" >
+    <td >
+ <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+        <ion-icon
+          [name]="ejercicio.icono"
+          style="font-size: 40px; margin-bottom: 5px;"
+        ></ion-icon>
+        <strong>{{ ejercicio.nombre }}</strong>
+      </div>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      {{ ejercicio.primerLugar }} kg<br />
+      {{ ejercicio.rep1 }} rep<br />
+      {{ ejercicio.series1 }} sets
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      {{ ejercicio.segundoLugar }} kg<br />
+      {{ ejercicio.rep2 }} rep<br />
+      {{ ejercicio.series2 }} sets
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      {{ ejercicio.tercerLugar }} kg<br />
+      {{ ejercicio.rep3 }} rep<br />
+      {{ ejercicio.series3 }} sets
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      {{ ejercicio.ultimoRegistro.kg }} kg<br />
+      {{ ejercicio.ultimoRegistro.reps }} rep<br />
+      {{ ejercicio.ultimoRegistro.series }} sets<br />
+      {{ ejercicio.ultimoRegistro.fecha | date: 'dd/MM/yyyy' }}<br />
+      {{ ejercicio.ultimoRegistro.hora }}
+    </td>
+  </tr>
+</tbody>
+
+
+
+
+
+      </table>
+    </div>
+  </ion-card-content>
+</ion-card>

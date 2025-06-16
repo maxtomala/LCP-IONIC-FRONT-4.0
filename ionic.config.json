@@ -1,0 +1,11 @@
+{
+<<<<<<< HEAD
+  "name": "boceto-oficial2",
+=======
+  "name": "lcp.5.0",
+>>>>>>> a2f79f3 (se soluciona error version)
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

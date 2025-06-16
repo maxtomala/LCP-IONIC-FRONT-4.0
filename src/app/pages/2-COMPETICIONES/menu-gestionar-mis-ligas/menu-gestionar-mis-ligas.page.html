@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gestionar mis ligas</ion-title>
+  </ion-toolbar> </ion-header
+><!-- cabezera  -->
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="equal-height-row">
+      <ion-col size="6">
+        <ion-card
+          [routerLink]="['/pages/gestionar-mis-ligas-lp']"
+          style="cursor: pointer; text-align: center"
+        >
+          <img
+            alt="LP"
+            src="assets/menu-de-competicion/2.svg"
+            style="margin: 0 auto; display: block"
+          />
+          <ion-card-header>
+            <ion-card-title style="font-size: small; text-align: center">
+              LIGA PERSONAL
+            </ion-card-title>
+            <ion-card-subtitle style="text-align: center"></ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card
+          [routerLink]="['/pages/gestionar-mis-ligas-lc']"
+          style="cursor: pointer; text-align: center"
+        >
+          <img
+            alt="LC"
+            src="assets/menu-de-competicion/3.svg"
+            style="margin: 0 auto; display: block"
+          />
+          <ion-card-header>
+            <ion-card-title style="font-size: small; text-align: center">
+              LIGA CORPORAL
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row class="equal-height-row">
+      <ion-col size="6">
+        <ion-card
+          [routerLink]="['/pages/gestionar-mis-ligas-lcp']"
+          style="cursor: pointer; text-align: center"
+        >
+          <img
+            alt="LCP"
+            src="assets/menu-de-competicion/1.svg"
+            style="margin: 0 auto; display: block"
+          />
+          <ion-card-header>
+            <ion-card-title style="font-size: small; text-align: center">
+              LIGA CORPORAL PROFESIONAL
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card
+          [routerLink]="['/pages/configuracion-torneo']"
+          style="cursor: pointer; text-align: center"
+        >
+          <img
+            alt="Torneos"
+            src="assets/menu-de-competicion/4.svg"
+            style="margin: 0 auto; display: block"
+          />
+          <ion-card-header>
+            <ion-card-title style="font-size: small; text-align: center">
+              TORNEOS
+            </ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

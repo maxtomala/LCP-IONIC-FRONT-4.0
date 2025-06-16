@@ -1,0 +1,119 @@
+<ion-card class="ion-padding ion-text-center">
+  <div class="icon-container">
+    <span class="emoji">🪙</span>
+  </div>
+
+  <h3>Total de Créditos:1 {{ creditos }}</h3>
+  <h6>Válido durante 5 días.</h6>
+
+  <h6 class="ion-margin-top">
+    <strong>
+      Este crédito te otorga el poder de restar 1 punto a algún compañero
+      que actualmente esté por arriba de la tabla clasificatoria.
+    </strong>
+  </h6>
+
+  <ion-button
+    expand="block"
+    color="primary"
+    class="ion-margin-top"
+    (click)="actualizarTabla(); obtenerTablaClasificatoria(); mostrarTablaParticipantes()"
+  >
+    <ion-icon slot="start" name="caret-forward-outline"></ion-icon>
+    Usar créditos
+  </ion-button>
+</ion-card>
+
+<ion-card *ngIf="mostrarParticipantes" class="ion-padding">
+  <ion-card-header class="ion-text-center">
+    <ion-card-title>
+      <strong>SELECCIONA A UN PARTICIPANTE</strong>
+    </ion-card-title>
+    <ion-button
+      size="small"
+      color="primary"
+      class="ion-margin-top"
+      (click)="actualizarTabla(); mostrarTablaParticipantes()"
+    >
+      <ion-icon slot="start" name="refresh-outline"></ion-icon>
+      Actualizar tabla
+    </ion-button>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-text-center">
+        <ion-col size="3"><strong>Nº</strong></ion-col>
+        <ion-col size="6"><strong>Nombre</strong></ion-col>
+        <ion-col size="3"><strong>Puntos</strong></ion-col>
+      </ion-row>
+
+      <ion-row
+        *ngFor="let participante of tablaClasificatoria; let i = index"
+        (click)="seleccionarParticipante(participante)"
+        style="border-top: 1px solid #ccc; padding-top: 8px; padding-bottom: 8px; cursor: pointer;"
+      >
+        <ion-col size="3" class="ion-text-center">
+          <strong>{{ i + 1 }}</strong>
+        </ion-col>
+
+        <ion-col size="6" class="ion-text-center">
+          <!-- [src]="participante.img | imagen : 'usuarios'" -->
+          <ion-avatar style="margin: 0 auto;">
+            <img
+            src="assets/images/users/1.jpg"
+              alt="imagen"
+              style="object-fit: cover;"
+            />
+          </ion-avatar>
+          <div><strong>{{ participante.nombre }}</strong></div>
+        </ion-col>
+
+        <ion-col size="3" class="ion-text-center">
+          <strong>{{ participante.puntosTotales }}</strong>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+<ion-card *ngIf="participanteSeleccionado">
+  <ion-card-content class="ion-text-center">
+    <h1 color="danger"><strong>¡Atención!</strong></h1>
+
+    <div class="ion-padding">
+      <!-- [src]="participanteSeleccionado.img | imagen : 'usuarios'" -->
+      <img
+        src="assets/images/users/1.jpg"
+        alt="imagen"
+        style="
+          width: 35%;
+          height: 35%;
+          border-radius: 50%;
+          object-fit: cover;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      />
+    </div>
+
+    <h2>
+      <strong>
+        ¿Estás seguro de que quieres restar 1 punto a tu compañero?
+      </strong>
+    </h2>
+
+    <form (ngSubmit)="restarPuntosConCredito()">
+      <ion-button expand="block" color="danger" type="submit">
+        <ion-icon name="warning-outline" slot="start"></ion-icon>
+        Confirmar acción
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
+
+<br>
+<br>
+<br>
+<br>
+<br>

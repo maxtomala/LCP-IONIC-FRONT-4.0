@@ -1,0 +1,91 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Últimos 5 Pesos</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+
+    <div style="overflow-x: auto">
+      <table
+        *ngIf="!loading && ultimosPesos.length > 0"
+        class="tabla-peso"
+        style="border-collapse: collapse"
+      >
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>Fecha</th>
+            <th>Peso {{(unidadElegida)}}</th>
+            <th>Dif {{(unidadElegida)}}</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of ultimosPesos; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.fechaCreacion | date : "dd/MM/yyyy" }}</td>
+
+            <td>
+              <ng-container
+                *ngIf="i === ultimosPesos.length - 1; else mostrarPeso"
+              >
+                <ion-input
+                  type="number"
+                  [(ngModel)]="ultimosPesos[i].pesoKg"
+                  style="width: 80px"
+                  min="0"
+                ></ion-input>
+              </ng-container>
+              <ng-template #mostrarPeso>
+                {{ item.pesoKg }}
+              </ng-template>
+            </td>
+
+            <td>
+              {{ item.difKg !== null ? item.difKg : "-" }}
+              <span
+                [style.color]="
+                  item.tendencia === 'Subió'
+                    ? 'green'
+                    : item.tendencia === 'Bajó'
+                    ? 'red'
+                    : 'gray'
+                "
+              >
+                {{ getTendenciaFlecha(item.tendencia) }}
+              </span>
+            </td>
+
+            <td>
+              <!-- Mostrar botones solo si es el último registro -->
+              <ng-container *ngIf="i === ultimosPesos.length - 1">
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  (click)="actualizarPeso()"
+                  aria-label="Editar"
+                >
+                  <ion-icon name="create-outline"></ion-icon>
+                </ion-button>
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  color="danger"
+                  (click)="eliminarPeso()"
+                  aria-label="Eliminar"
+                >
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p *ngIf="!loading && ultimosPesos.length === 0">
+      No hay registros para mostrar.
+    </p>
+  </ion-card-content>
+</ion-card>

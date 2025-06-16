@@ -1,0 +1,125 @@
+
+
+<!-- mis-publicaciones.component.html -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Reposteaste</ion-card-subtitle>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <ion-card-title style="font-size: 1rem; margin: 0">
+        donarfonzo
+      </ion-card-title>
+      <span
+        style="font-size: 0.85rem; color: var(--ion-color-medium); margin: 0"
+      >
+        - 15 jun. 17
+      </span>
+      <ion-button
+        fill="clear"
+        size="small"
+        id="popover-button"
+        style="margin-left: auto"
+      >
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item button (click)="eliminarPost()">Eliminar post</ion-item>
+              <ion-item button (click)="dejarDeSeguir()"
+                >Dejar de seguir</ion-item
+              >
+              <ion-item button (click)="bloquear()">Bloquear</ion-item>
+              <ion-item button (click)="denunciarPost()"
+                >Denunciar post</ion-item
+              >
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </div>
+  </ion-card-header>
+  <ion-card-content>
+    En Securitas Direct, dicen que son capaces de detectar al ladrón antes de
+    que entre. <br />
+    Habrá que contratarlos para el día de las elecciones.
+    <ion-row>
+      <ion-col size="3">💬 12</ion-col>
+      <ion-col size="3">🔁 284</ion-col>
+      <ion-col size="3">❤️ 393</ion-col>
+      <ion-col size="3">
+        <ion-icon
+          name="share-social-outline"
+          style="font-size: 20px; vertical-align: middle"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-subtitle>Reposteaste</ion-card-subtitle>
+    <div style="display: flex; align-items: center; gap: 8px">
+      <ion-card-title style="font-size: 1rem; margin: 0">
+        donarfonzo
+      </ion-card-title>
+      <span
+        style="font-size: 0.85rem; color: var(--ion-color-medium); margin: 0"
+      >
+        - 15 jun. 17
+      </span>
+      <ion-button
+        fill="clear"
+        size="small"
+        id="popover-button"
+        style="margin-left: auto"
+      >
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+      <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list>
+              <ion-item button (click)="eliminarPost()">Eliminar post</ion-item>
+              <ion-item button (click)="dejarDeSeguir()"
+                >Dejar de seguir</ion-item
+              >
+              <ion-item button (click)="bloquear()">Bloquear</ion-item>
+              <ion-item button (click)="denunciarPost()"
+                >Denunciar post</ion-item
+              >
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+    </div>
+  </ion-card-header>
+  <ion-card-content>
+    En Securitas Direct, dicen que son capaces de detectar al ladrón antes de
+    que entre. <br />
+    Habrá que contratarlos para el día de las elecciones.
+    <ion-row>
+      <ion-col size="3">💬 12</ion-col>
+      <ion-col size="3">🔁 284</ion-col>
+      <ion-col size="3">❤️ 393</ion-col>
+      <ion-col size="3">
+        <ion-icon
+          name="share-social-outline"
+          style="font-size: 20px; vertical-align: middle"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+

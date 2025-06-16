@@ -1,0 +1,167 @@
+  <ion-content [fullscreen]="true">
+
+  <!-- Imagen de portada -->
+  <div>
+    <img
+     [src]="usuario.imgPortada | imagen4 : 'usuarios'"
+      alt="Portada"
+      style="height: 180px; width: 100%; object-fit: cover"
+    />
+
+  </div>
+
+  <!-- Avatar, nombre, usuario y botón editar -->
+  <ion-grid>
+    <ion-row class="ion-align-items-center" style="margin-top: -30px">
+      <ion-col size="3" class="ion-text-center">
+        <ion-avatar   style="
+        width: 100px;
+        height: 100px;
+        bottom: -50px;
+        left: 16px;
+        border: 3px solid white;
+        background-color: white;
+        z-index: 10;
+      ">
+        <img [src]="usuario.img | imagenPerfil : 'usuarios'" alt="user" />
+
+        </ion-avatar>
+      </ion-col>
+
+      <ion-col class="ion-text-center">
+        <h4 > {{ usuario.nombre }} {{ usuario.apellido1 }}</h4>
+        <p >             <!-- cortar caracter  0-10  y ...  -->
+                      {{ usuario.email | slice : 0 : 20
+                      }}{{ usuario.email.length > 20 ? "..." : "" }}
+                    </p>
+      </ion-col>
+
+      <ion-col size="3">
+        <ion-button expand="block" size="small" fill="outline" [routerLink]="['/pages/perfil']">
+          Editar perfil
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- perfil -->
+  <ion-grid style="margin-left: 15px;">
+    <ion-text >
+      <p style="margin-bottom: 5px">
+        Fan de: Juegos de Tronos / PD: Se Acerca El Invierno
+      </p>
+      <p style="margin-bottom: 5px">
+        <ion-icon name="calendar-outline"></ion-icon> Se unió en octubre de 2011
+      </p>
+      <p style="margin-bottom: 0">
+        <strong>118&nbsp;</strong>
+        <a
+          [routerLink]="['/pages/usuarios-siguiendo']"
+          style="text-decoration: none; color: var(--ion-color-primary)"
+          >Siguiendo</a
+        >
+        &nbsp;&nbsp;<strong>80&nbsp;</strong>
+        <a
+          [routerLink]="['/pages/usuarios-seguidores']"
+          style="text-decoration: none; color: var(--ion-color-primary)"
+          >Seguidores</a
+        >
+      </p>
+    </ion-text>
+  </ion-grid>
+
+<ion-card style="margin-top: 8px; margin-bottom: 8px">
+    <ion-segment
+      (ionChange)="segmentChanged($event)"
+      scrollable
+      [value]="segmentValue"
+    >
+      <ion-segment-button value="mis-publicaciones">
+        <ion-label>Mis Publicaciones</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="siguiendo">
+        <ion-label>Siguiendo</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="respuestas">
+        <ion-label>Respuestas</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="fav">
+        <ion-label>fav</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card>
+
+  <!-- Aquí mostramos el componente que corresponda -->
+  <div [ngSwitch]="segmentValue" >
+    <app-mis-publicaciones *ngSwitchCase="'mis-publicaciones'"></app-mis-publicaciones>
+    <app-siguiendo *ngSwitchCase="'siguiendo'"></app-siguiendo>
+    <app-respuestas *ngSwitchCase="'respuestas'"></app-respuestas>
+    <app-fav *ngSwitchCase="'fav'"></app-fav>
+  </div>
+
+  <!-- FAB flotante -->
+  <ion-fab
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+    style="margin-bottom: 100px"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+  <ion-fab-list side="top"  >
+
+    <div class="fab-item" id="open-modal"  >
+      <div class="fab-label">Publicar</div>
+      <ion-fab-button  >
+        <ion-icon name="document"></ion-icon>
+      </ion-fab-button>
+    </div>
+
+  </ion-fab-list>
+
+  </ion-fab>
+
+
+
+
+
+  <!-- Modal con breakpoints y trigger -->
+  <ion-modal
+    trigger="open-modal"
+    [initialBreakpoint]="0.75"
+    [breakpoints]="[0.25, 0.5, 0.75]"
+    handleBehavior="cycle"
+
+  >
+    <ng-template>
+      <app-publicar-contenido  ></app-publicar-contenido>
+    </ng-template>
+  </ion-modal>
+
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

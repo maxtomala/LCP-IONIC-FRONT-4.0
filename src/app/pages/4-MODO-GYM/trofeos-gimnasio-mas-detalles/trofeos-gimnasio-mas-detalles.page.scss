@@ -1,0 +1,56 @@
+.imagen-pequena {
+  width: 100px; /* Ajusta el ancho de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin: 0 auto; /* Centra la imagen si es necesario */
+}
+
+.titulo-centrado {
+  text-align: center; /* Centra el texto horizontalmente */
+  font-size: 1.5rem; /* Puedes ajustar el tamaño del texto según sea necesario */
+}
+
+
+
+/* Estilo del título */
+.titulo-podio {
+  font-size: 1.5rem;
+  margin-bottom: 10px; /* Margen inferior para separación */
+}
+
+/* Estilo del podio */
+.podio {
+  display: flex;
+  justify-content: space-around; /* Espaciado entre los lugares */
+  align-items: flex-end; /* Alinea los elementos hacia el final (hacia abajo) */
+  height: 200px; /* Altura del podio */
+}
+
+/* Estilo de cada lugar */
+.lugar {
+  flex: 1; /* Cada lugar ocupa el mismo espacio */
+  text-align: center; /* Centra el texto */
+}
+
+/* Estilo de los perfiles */
+.perfil {
+  width: 80px; /* Ancho de las imágenes */
+  height: 80px; /* Alto de las imágenes */
+  border-radius: 50%; /* Bordes redondeados para que sean círculos */
+  margin-bottom: 5px; /* Margen inferior para separación del nombre */
+}
+
+/* Estilos específicos para cada lugar */
+.primer-lugar {
+  position: relative;
+  bottom: 20px; /* Eleva el primer lugar */
+}
+
+.segundo-lugar {
+  position: relative;
+  bottom: 10px; /* Eleva el segundo lugar un poco */
+}
+
+.tercer-lugar {
+  position: relative;
+  bottom: 0px; /* No se eleva el tercer lugar */
+}

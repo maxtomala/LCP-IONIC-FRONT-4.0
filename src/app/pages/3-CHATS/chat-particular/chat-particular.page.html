@@ -1,0 +1,84 @@
+<ion-content class="chat-content" color="light" fullscreen>
+  <ion-toolbar class="sub-menu">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>AA Jeff Laika</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="message message-other">
+    <div class="bubble">Que he llamado al taller</div>
+    <div class="time">14:01</div>
+  </div>
+
+  <div class="message message-me image-message">
+    <img src="https://i.imgur.com/HkD7Rbs.jpeg" alt="Foto del coche" />
+    <div class="time">14:05 ✓✓</div>
+  </div>
+
+  <div class="message message-me">
+    <div class="bubble">Recibido</div>
+    <div class="time">14:19 ✓✓</div>
+  </div>
+
+  <ion-text color="medium">
+    <p class="date-label">Martes</p>
+  </ion-text>
+
+  <div class="message message-me">
+    <div class="bubble">Pásame el codigo</div>
+    <div class="time">20:15 ✓✓</div>
+  </div>
+
+  <div class="message message-other">
+    <div class="bubble highlight">786790</div>
+    <div class="time">20:16</div>
+  </div>
+
+  <ion-text color="medium">
+    <p class="date-label">Jueves</p>
+  </ion-text>
+
+  <div class="message message-me">
+    <div class="bubble">Lavando platos</div>
+    <div class="time">16:00 ✓✓</div>
+  </div>
+
+  <ng-container *ngFor="let mensaje of mensajes">
+  <div class="message" [ngClass]="{ 'message-me': mensaje.tipo === 'me', 'message-other': mensaje.tipo === 'otro' }">
+    <div class="bubble">{{ mensaje.texto }}</div>
+  </div>
+</ng-container>
+
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-item lines="none">
+        <ion-icon name="happy-outline" slot="start"></ion-icon>
+        <ion-input
+          placeholder="Mensaje"
+          type="text"
+          [(ngModel)]="nuevoMensaje"
+          inputmode="text"
+          autocomplete="on"
+        ></ion-input>
+        <ion-buttons slot="end">
+          <ion-button (click)="adjuntarArchivo()">
+            <ion-icon name="attach-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="abrirCamara()">
+            <ion-icon name="camera-outline"></ion-icon>
+          </ion-button>
+          <ion-button color="primary" (click)="enviarMensaje()">
+            <ion-icon name="send-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

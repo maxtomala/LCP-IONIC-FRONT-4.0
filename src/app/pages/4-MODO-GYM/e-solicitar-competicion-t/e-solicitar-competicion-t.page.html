@@ -1,0 +1,125 @@
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  e-solicitar-competicion-torneo
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      solicitar un torneo de eliminatoria
+      </ion-card-content>
+  </ion-card>
+  <!-- Pregunta inicial sobre participación en una LCP -->
+  <form [formGroup]="lpcParticipacionForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>¿Deseas participar en un torneo de eliminatoria?</ion-label>
+      <ion-select
+        formControlName="participar"
+        (ionChange)="onParticiparChange($event)"
+      >
+        <ion-select-option value="si">Sí</ion-select-option>
+        <ion-select-option value="no">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Solo se muestra el formulario si la respuesta es 'Sí' -->
+    <div *ngIf="mostrarFormulario">
+      <!-- ¿Quieres una LCP? -->
+      <ion-item>
+        <ion-label>¿Qué tipo de torneo te gustaría?</ion-label>
+        <ion-select
+          formControlName="tipoLcp"
+          placeholder="Selecciona una opción"
+          required
+        >
+          <ion-select-option value="amistosa"
+            >Amistosa (miembros del gimnasio)</ion-select-option
+          >
+          <ion-select-option value="competitiva"
+            >Competitiva (ganar medalla para el gimnasio)</ion-select-option
+          >
+          <ion-select-option value="cualquiera">Cualquiera</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Objetivo de la competición -->
+      <ion-item>
+        <ion-label>¿Cuál es el objetivo de la competición?</ion-label>
+        <ion-select
+          formControlName="objetivo"
+          placeholder="Selecciona un objetivo"
+          required
+        >
+          <ion-select-option
+            *ngFor="let objetivo of opcionObjetivo"
+            [value]="objetivo"
+            >{{ objetivo }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+
+      <!-- Categoría de género -->
+      <ion-item>
+        <ion-label
+          >¿En qué categoría de género te gustaría participar?</ion-label
+        >
+        <ion-select
+          formControlName="categoriaGenero"
+          placeholder="Selecciona una opción"
+          required
+        >
+          <ion-select-option value="mixto">Mixto</ion-select-option>
+          <ion-select-option value="masculino">Masculino</ion-select-option>
+          <ion-select-option value="femenino">Femenino</ion-select-option>
+          <ion-select-option value="femenino">Cualquiera</ion-select-option>
+
+        </ion-select>
+      </ion-item>
+
+      <!-- Tipo de enfrentamiento -->
+      <ion-item>
+        <ion-label>¿Qué tipo de tamaño de torneo prefieres?</ion-label>
+        <ion-select
+          formControlName="tipoEnfrentamiento"
+          placeholder="Selecciona una opción"
+          required
+        >
+          <ion-select-option
+            *ngFor="let tipo of tamanoTorneo"
+            [value]="tipo"
+            >{{ tipo }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+
+
+
+
+      <!-- Disponibilidad para participar -->
+      <ion-item>
+        <ion-label>¿Cual e stu disponibilidad para participar?</ion-label>
+        <ion-select
+          formControlName="disponibilidad"
+          placeholder="Selecciona una opción"
+          required
+        >
+          <ion-select-option value="inmediata">Inmediata</ion-select-option>
+          <ion-select-option value="1semana">1 semana</ion-select-option>
+          <ion-select-option value="2semanas">2 semanas</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <!-- Botón para enviar el formulario -->
+    <ion-button
+      expand="full"
+      type="submit"
+      [disabled]="lpcParticipacionForm.invalid"
+      >Enviar a tu entrenador</ion-button
+    >
+  </form>
+<BR>
+  *Amistosa: una competición con miembros del mi gym Competitiva: una competición
+  para ayudar a conseguir un trofeo a tu gym cualquiera
+</ion-content>

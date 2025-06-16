@@ -1,0 +1,181 @@
+
+// boton flotante
+
+
+
+.fab-menu {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los botones hacia la izquierda */
+  width: 200px; /* Ajusta el ancho de los botones */
+}
+
+ion-button {
+  --background: #ff9800; /* Cambia el color de fondo de los botones */
+  --color: white; /* Color del texto y los iconos */
+  display: flex;
+  justify-content: flex-start; /* Alinea el contenido del botón a la izquierda */
+  width: 100%; /* Asegura que todos los botones tengan la misma anchura */
+  padding-left: 10px; /* Añade un poco de padding para separar del borde */
+
+}
+ion-button ion-icon {
+  font-size: 20px; /* Tamaño del icono */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+
+}
+
+
+
+
+// /  podio
+.podio {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.podio-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  position: relative;
+  padding-top: 50px;
+}
+
+.podio-lugar {
+  text-align: center;
+  position: relative;
+}
+
+.tarima {
+  width: 100%;
+  height: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: -10px;
+}
+
+.oro {
+  background-color: gold;
+}
+
+.plata {
+  background-color: silver;
+}
+
+.bronce {
+  background-color: #cd7f32; /* Bronze color */
+}
+
+.primer-lugar {
+  order: 1;
+  width: 150px;
+  height: 250px;
+  position: relative;
+  top: -50px;
+}
+
+.segundo-lugar {
+  order: 0;
+  width: 120px;
+  height: 200px;
+  position: relative;
+  top: -30px;
+}
+
+.tercer-lugar {
+  order: 2;
+  width: 120px;
+  height: 200px;
+  position: relative;
+  top: -30px;
+}
+
+.podio-lugar img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 5px;
+  display: block; /* Para centrar la imagen */
+  margin-left: auto; /* Para centrar horizontalmente */
+  margin-right: auto; /* Para centrar horizontalmente */
+}
+
+.podio-lugar .posicion {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.podio-lugar p {
+  margin: 5px 0 0;
+  font-size: 1rem;
+}
+
+
+// tabla de actividad
+
+.activity-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activity span {
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold; /* Negrita para el título */
+}
+
+.activity ion-icon,
+.activity i {
+  color: #3880ff; /* Color de los iconos */
+  margin-bottom: 5px; /* Espacio entre el icono y el input */
+}
+
+.time-input {
+  width: 70px; /* Ancho del input */
+  padding: 5px;
+  text-align: center; /* Centrar el texto */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 4px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño del texto */
+}
+
+/* Imagen de perfil */
+.profile-image {
+  width: 100px; /* Ancho de la imagen */
+  height: 100px; /* Alto de la imagen */
+  border-radius: 50%; /* Hacer la imagen redonda */
+  object-fit: cover; /* Asegurar que la imagen se ajuste dentro del contenedor */
+  margin-right: 15px; /* Espacio entre la imagen y el textarea */
+}
+
+/* Contenedor de observaciones */
+.observations-container {
+  display: flex;
+  align-items: center; /* Alinea la imagen y el textarea en el mismo nivel */
+  margin-top: 20px; /* Margen superior */
+}
+
+/* Input de observaciones */
+.observation-input {
+  width: 100%; /* Hacer que ocupe todo el ancho disponible */
+  height: 60px; /* Altura para permitir dos líneas de texto */
+  padding: 10px;
+  border: 1px solid #ccc; /* Borde gris */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 14px; /* Tamaño de la fuente */
+  resize: none; /* Evita que el textarea se redimensione */
+  box-shadow: none; /* Sin sombra */
+}
+

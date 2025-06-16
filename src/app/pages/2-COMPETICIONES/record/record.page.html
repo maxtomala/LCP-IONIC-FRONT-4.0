@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+        <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Record</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button
+        size="small"
+        fill="outline"
+        [routerLink]="['/pages/editar-record']"
+      >
+        Editar perfil
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-toolbar>
+      <ion-title size="large">record</ion-title>
+    </ion-toolbar>
+
+
+
+  <ion-card style="margin-top: 8px; margin-bottom: 8px">
+    <!-- Filtros -->
+    <ion-segment
+      (ionChange)="segmentChanged($event)"
+      scrollable
+      [value]="segmentValue"
+    >
+      <ion-segment-button value="todos-record">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="fav-record">
+        <ion-label>Fav</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="datos-registrado-record">
+        <ion-label>Solo datos registrados</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card>
+
+  <!-- Aquí mostramos el componente que corresponda -->
+  <div [ngSwitch]="segmentValue">
+    <app-todos-record *ngSwitchCase="'todos-record'"></app-todos-record>
+    <app-fav-record *ngSwitchCase="'fav-record'"></app-fav-record>
+    <app-datos-registrado-record *ngSwitchCase="'datos-registrado-record'"></app-datos-registrado-record>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>

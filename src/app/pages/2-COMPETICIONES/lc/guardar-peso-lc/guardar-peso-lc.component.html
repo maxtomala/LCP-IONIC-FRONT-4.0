@@ -1,0 +1,49 @@
+
+  <!-- formulario de enviar peso  -->
+  <form [formGroup]="registroPesoLcForm" (ngSubmit)="guardarPeso()">
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title class="ion-text-center">
+          <strong>Introduce tu peso <br />semanal</strong>
+        </ion-card-title>
+
+        <ion-grid>
+          <ion-row class="ion-align-items-center">
+            <!-- Imagen -->
+            <ion-col size="4" class="ion-text-center">
+              <ion-img
+                src="/assets/imagen/báscula.jpg"
+                style="width: 80px; height: 80px"
+              ></ion-img>
+            </ion-col>
+
+            <!-- Formulario -->
+            <ion-col size="8">
+              <ion-item>
+                <ion-input
+                  type="number"
+                placeholder="{{ unidadElegida }}"
+                  formControlName="peso"
+                  style="text-align: right; font-size: 1.5rem"
+                ></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Botón -->
+          <ion-row>
+            <ion-col>
+              <ion-button
+                type="submit"
+                expand="block"
+                [disabled]="!botonHabilitado"
+              >
+                <ion-icon name="send" slot="start"></ion-icon>
+                Enviar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </form>

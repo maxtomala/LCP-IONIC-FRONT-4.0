@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Imagen a la izquierda -->
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title class="ion-text-center">
+      <img
+        src="/assets/quinipeso/logo_quinipeso.png"
+        alt="Logo izquierdo"
+        style="height: 20px; margin-right: 5px; padding-top: 5px"
+      />
+      <strong>QUINIPESO</strong>
+      <img
+        src="/assets/quinipeso/logo_quinipeso.png"
+        alt="Logo derecho"
+        style="height: 20px; margin-left: 5px; padding-top: 5px"
+      />
+    </ion-title>
+
+    <ion-buttons slot="end"> </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="margin-top: 8px; margin-bottom: 8px">
+    <ion-segment
+      (ionChange)="segmentChanged($event)"
+      scrollable
+      [value]="segmentValue"
+    >
+      <ion-segment-button value="apuestas">
+        <ion-label>Apuestas</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="reclamar-premio">
+        <ion-label>Reclamar premio</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="usar-credito">
+        <ion-label>Usar credito</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="ganadores">
+        <ion-label>Ganadores</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="penalizados">
+        <ion-label>Penalizados</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="consultar-quinipeso">
+        <ion-label>Consultar quinipeso</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card>
+
+  <!-- Aquí mostramos el componente que corresponda -->
+  <div [ngSwitch]="segmentValue">
+    <app-apuestas-lcp *ngSwitchCase="'apuestas'"></app-apuestas-lcp>
+    <app-ganadores-lcp *ngSwitchCase="'ganadores'"></app-ganadores-lcp>
+    <app-penalizados-lcp *ngSwitchCase="'penalizados'"></app-penalizados-lcp>
+    <app-reclamar-apuestas
+      *ngSwitchCase="'reclamar-premio'"
+    ></app-reclamar-apuestas>
+    <app-usar-credito *ngSwitchCase="'usar-credito'"></app-usar-credito>
+    <app-consultar-quinipeso
+      *ngSwitchCase="'consultar-quinipeso'"
+    ></app-consultar-quinipeso>
+  </div>
+</ion-content>

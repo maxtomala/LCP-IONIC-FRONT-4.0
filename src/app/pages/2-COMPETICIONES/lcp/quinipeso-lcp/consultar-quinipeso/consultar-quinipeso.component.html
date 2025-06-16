@@ -1,0 +1,199 @@
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2 style="text-decoration: underline">
+      <strong>Mis grupos</strong>
+    </h2>
+
+    <div class="ion-margin-top">
+      <!-- <ion-button
+            *ngFor="let liga of ligaCorporal"
+            expand="block"
+            color="primary"
+            class="ion-margin-vertical"
+            (click)="accionBoton(liga.nombre)"
+          >
+            <ion-icon name="fitness" slot="start"></ion-icon>
+            {{ liga.nombre }}
+          </ion-button> -->
+
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia
+      </ion-button>
+
+      <!-- Botón 2: Gym -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Gym')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Gym
+      </ion-button>
+
+      <!-- Botón 3: Familia2 -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia2')"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia2
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-grid class="ion-text-center">
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="auto">
+        <ion-icon
+          name="arrow-back-circle"
+          size="large"
+          (click)="cambiarJornada(jornadaActual - 1)"
+          [class.ion-disabled]="jornadaActual === 1"
+          style="cursor: pointer"
+        ></ion-icon>
+      </ion-col>
+
+      <ion-col size="auto">
+        <h2>
+          <strong>Jornada {{ jornadaActual }}</strong>
+        </h2>
+      </ion-col>
+
+      <ion-col size="auto">
+        <ion-icon
+          name="arrow-forward-circle"
+          size="large"
+          (click)="cambiarJornada(jornadaActual + 1)"
+          style="cursor: pointer"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item>
+    <ion-label><strong>Seleccionar Participante:</strong></ion-label>
+    <ion-select
+      interface="popover"
+      (ionChange)="onParticipanteChange($event)"
+      placeholder="Selecciona participante"
+    >
+      <ion-select-option
+        *ngFor="let participante of participantes"
+        [value]="participante.id"
+      >
+        {{ participante.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-text color="danger" *ngIf="errorMessage" class="ion-padding">
+    {{ errorMessage }}
+  </ion-text>
+
+  <div *ngIf="resultadosQuiniela">
+    <div style="text-align: center">
+      <img
+        src="/assets/quinipeso/LA.png"
+        alt="báscula Image"
+        style="
+          width: 100%;
+          max-width: 200px;
+          height: auto;
+          margin-bottom: -30px;
+        "
+      />
+    </div>
+
+    <div style="margin-left: 10px">
+      <div class="mb-3">
+        <p class="mb-1">
+          <strong>Fecha de Inicio:</strong>
+          {{ resultadosQuiniela.fechaInicio | date }}
+        </p>
+        <p class="mb-1">
+          <strong>Fecha Final:</strong>
+          {{ resultadosQuiniela.fechaFinal | date }}
+        </p>
+      </div>
+
+      <ion-list>
+        <ion-item
+          *ngFor="let quiniela of resultadosQuiniela.quinielas"
+          lines="none"
+          class="enfrentamiento"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div class="participante" style="text-align: center">
+            <!-- [src]="quiniela.emparejamiento.participantes[0].img | imagen : 'usuarios'" alt="imagen" -->
+            <ion-avatar>
+              <img src="assets/images/users/1.jpg" />
+            </ion-avatar>
+            <div>{{ quiniela.emparejamiento.participantes[0].nombre }}</div>
+          </div>
+
+          <div class="opciones" style="display: flex; gap: 1rem">
+            <ion-label>
+              <input
+                type="radio"
+                [name]="'resultado_' + quiniela.emparejamiento.id"
+                [(ngModel)]="quiniela.resultado"
+                value="1"
+              />
+              1
+            </ion-label>
+            <ion-label>
+              <input
+                type="radio"
+                [name]="'resultado_' + quiniela.emparejamiento.id"
+                [(ngModel)]="quiniela.resultado"
+                value="x"
+              />
+              X
+            </ion-label>
+            <ion-label>
+              <input
+                type="radio"
+                [name]="'resultado_' + quiniela.emparejamiento.id"
+                [(ngModel)]="quiniela.resultado"
+                value="2"
+              />
+              2
+            </ion-label>
+          </div>
+
+          <div class="participante" style="text-align: center">
+            <ion-avatar>
+              <!-- [src]="quiniela.emparejamiento.participantes[1].img | imagen : 'usuarios'" alt="imagen" -->
+              <img src="assets/images/users/1.jpg" />
+            </ion-avatar>
+            <div>{{ quiniela.emparejamiento.participantes[1].nombre }}</div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-card>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

@@ -1,0 +1,114 @@
+
+
+
+// cuadro de eliminatorias
+
+.container {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .torneo-peso {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 10px;
+  }
+
+  .torneo-peso__round {
+    min-width: 220px; /* Reducido para mejor visualización en móviles */
+    padding: 5px 10px; /* Ajustado el padding */
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .torneo-peso__round-title {
+    font-weight: bold;
+    margin-bottom: 8px; /* Ajustado el margen inferior */
+    color: #fff;
+    background-color: #4caf50;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1.2em; /* Tamaño de fuente ajustado */
+  }
+
+  .torneo-peso__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .torneo-peso__item {
+    margin-bottom: 15px;
+  }
+
+  .torneo-peso__match {
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 8px; /* Reducido el padding */
+  }
+
+  .torneo-peso__table {
+    width: 100%;
+    text-align: center;
+  }
+
+  .torneo-peso__caption {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #007acc;
+  }
+
+  .torneo-peso__team {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+    background-color: #466dea81;
+    border-radius: 5px;
+  }
+
+  .torneo-peso__team--winner {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .torneo-peso__player {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinear a la izquierda */
+  }
+
+  .torneo-peso__avatar {
+    width: 28px; /* Tamaño del avatar ajustado */
+    height: 28px; /* Tamaño del avatar ajustado */
+    border-radius: 50%;
+    margin-right: 6px; /* Espacio entre la imagen y el nombre */
+  }
+
+  /* Media queries para dispositivos móviles */
+  @media (max-width: 768px) {
+    .torneo-peso__round {
+      min-width: 200px; /* Tamaño mínimo aún más pequeño */
+    }
+
+    .torneo-peso__round-title {
+      font-size: 1em; /* Ajustar el tamaño de la fuente para móviles */
+    }
+
+    .torneo-peso__match {
+      padding: 6px; /* Reducir padding para móviles */
+    }
+
+    .torneo-peso__item {
+      margin-bottom: 10px; /* Reducir margen en dispositivos móviles */
+    }
+
+    .torneo-peso__avatar {
+      width: 24px; /* Ajustar tamaño del avatar para móviles */
+      height: 24px; /* Ajustar tamaño del avatar para móviles */
+    }
+  }

@@ -1,0 +1,103 @@
+.avatar {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #3880ff;
+  margin-bottom: 8px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.enfrentamiento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #dedede;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+.participante {
+  text-align: center;
+  width: 30%;
+}
+
+.opciones {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+}
+
+.opciones label {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: 0.3s ease;
+  font-weight: 500;
+}
+
+.opciones label.selected {
+  background-color: #3880ff;
+  color: white;
+  border-color: #3880ff;
+}
+
+.bi {
+  color: #3880ff;
+}
+
+.bi.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+button.btn-primary {
+  --background: #3880ff;
+  --color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 16px;
+}
+
+
+
+
+// flecha de icono jornada y flecha de icono
+
+.jornada-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 1rem;
+}
+
+.jornada-nav i {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #3880ff;
+}
+
+.jornada-nav i.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.jornada-nav h2 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+}

@@ -1,0 +1,212 @@
+.mi-boton {
+  color: #3f51b5;
+}
+
+.liga-card-elegante {
+  margin: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.liga-card-elegante ion-card-header {
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  color: white;
+  padding: 16px;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+}
+
+.filtro-header-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.icono-filtro {
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.icono-filtro:hover {
+  transform: scale(1.2);
+  color: #c5cae9;
+}
+
+.titulo-filtro {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  text-align: center;
+}
+
+.liga-avatar-large {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.liga-fecha {
+  font-weight: bold;
+  color: #333;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.input-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 10px;
+  color: #444;
+}
+
+.liga-input {
+  --background: #f4f4f4;
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+ion-icon {
+  color: white;
+}
+.filtro-header .icono-filtro {
+  color: white;
+  font-size: 32px; /* Tamaño más grande */
+  cursor: pointer; /* Para que se vea como botón */
+}
+
+
+ion-button {
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+ion-divider {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+.spin-icon {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// tabla de unirme a una lcp( despues de la busquedad )
+.liga-card-elegante {
+  margin: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.liga-card-elegante ion-card-content {
+  padding: 16px;
+}
+
+.tabla-scroll-horizontal {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+
+.tabla-ligas {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px; /* Ajusta según columnas */
+}
+
+.tabla-ligas thead tr {
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  color: white;
+}
+
+.tabla-ligas th,
+.tabla-ligas td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.img-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  object-fit: cover;
+  display: inline-block;
+}
+
+.liga-avatar-large {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mi-boton {
+  --background: #3f51b5;
+  --color: white;
+  --padding-start: 8px;
+  --padding-end: 8px;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.mi-boton:hover {
+  --background: #5c6bc0;
+}
+
+.paginacion {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.titulo-filtro {
+  font-size: 24px;
+  font-weight: 700;
+  user-select: none;
+  color: #222;
+}
+
+ion-icon {
+  color: white;
+  font-size: 18px;
+}

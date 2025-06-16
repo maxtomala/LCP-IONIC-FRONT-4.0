@@ -1,0 +1,271 @@
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+
+e-buscador-lcp
+
+  <br />
+
+  <!-- filtrar buscador  -->
+    <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <h4 class="text-left">
+                <strong>Filtra tu Búsqueda</strong>
+                &nbsp;&nbsp;
+                <ion-button color="primary" (click)="limpiarFiltros()">
+                  <ion-icon name="close-circle"></ion-icon>
+                  Limpiar filtros
+                </ion-button>
+              </h4>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-label position="floating">Nombre LPC o del gimnasio</ion-label>
+              <ion-item class="custom-item">
+                <ion-input
+                  placeholder="Buscar nombre de las ligas corporales profesionales..."
+                  [(ngModel)]="nombre">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Objetivo and País -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Objetivo</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="objetivo" placeholder="--Selecciona el objetivo de la liga--">
+                  <ion-select-option *ngFor="let opcion of opcionObjetivo" [value]="opcion">
+                    {{ opcion }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-label>País</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="pais" placeholder="--Selecciona el país de tu liga--">
+                  <ion-select-option *ngFor="let pais of paisesUnionEuropeaEEUU" [value]="pais">
+                    {{ pais }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Género and Quiniela -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Género</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="genero" placeholder="--Selecciona el género de la liga--">
+                  <ion-select-option *ngFor="let opcion of opcionGenero" [value]="opcion">
+                    {{ opcion }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-label>Quiniela</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="quiniela" placeholder="--Selecciona una opción--">
+                  <ion-select-option *ngFor="let opcion of opcionQuiniela" [value]="opcion">
+                    {{ opcion }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Enfrentamientos and Grupo -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Enfrentamientos</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="tipoEnfrentamiento" placeholder="--Selecciona el tipo de enfrentamiento--">
+                  <ion-select-option *ngFor="let enfrentamiento of tipoEnfrentamiento" [value]="enfrentamiento">
+                    {{ enfrentamiento }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-label>Grupo</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="grupo" placeholder="--Selecciona el tipo de grupo--">
+                  <ion-select-option *ngFor="let tipoGrupo of grupo" [value]="tipoGrupo">
+                    {{ tipoGrupo }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Ciudad and Tipo -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-label>Ciudad ¿?¿?</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="ciudad" placeholder="--Selecciona la ciudad--">
+                  <ion-select-option value="Almería">Almería</ion-select-option>
+                  <ion-select-option value="Granada">Granada</ion-select-option>
+                  <ion-select-option value="Sevilla">Sevilla</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="6">
+              <ion-label>Tipo</ion-label>
+              <ion-item class="custom-item">
+                <ion-select [(ngModel)]="tipo" placeholder="--Selecciona el tipo--">
+                  <ion-select-option value="Individual">Individual</ion-select-option>
+                  <ion-select-option value="Colectiva">Colectiva</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Botón Buscar -->
+          <ion-row>
+            <ion-col size="12">
+              <ion-button expand="full" color="primary" (click)="buscar()">
+                <ion-icon slot="start" name="search"></ion-icon>
+                Buscar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+<!-- tabla de busquedad encontrada  -->
+ 
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <!-- Título de la Tabla -->
+        <h1>
+          <strong>
+            <i class="bi bi-trophy-fill"></i> LIGA CORPORAL PROFESIONAL
+            <i class="bi bi-trophy-fill"></i>
+          </strong>
+        </h1>
+        <!-- Subtítulo de la Tabla -->
+        <h2>Todas las LCP registradas en el buscador</h2>
+
+        <!-- Contenedor con scroll horizontal -->
+        <div
+          style="
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+          "
+        >
+          <table style="width: 100%; border-collapse: collapse">
+            <thead>
+              <tr>
+                <th style="padding: 10px; text-align: left">Fecha de Registro</th>
+                <th style="padding: 10px; text-align: left">Img Gym</th>
+                <th style="padding: 10px; text-align: left">Nombre Gym</th>
+                <th style="padding: 10px; text-align: left">Img Entrenador</th>
+                <th style="padding: 10px; text-align: left">Nombre Entrenador</th>
+                <th style="padding: 10px; text-align: left">Objetivo</th>
+                <th style="padding: 10px; text-align: left">País</th>
+                <th style="padding: 10px; text-align: left">Género</th>
+                <th style="padding: 10px; text-align: left">Quiniela</th>
+                <th style="padding: 10px; text-align: left">Grupo</th>
+                <th style="padding: 10px; text-align: left">Enfrentamiento</th>
+                <th style="padding: 10px; text-align: left">Nº Participantes</th>
+                <th style="padding: 10px; text-align: left">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Ejemplo 1 -->
+              <tr>
+                <td style="padding: 10px">01/01/2024</td>
+                <td style="padding: 10px">
+                  <ion-img
+                  src="/assets/gym/gym-4.png"
+                  class="img-avatar"
+                    style="width: 40px; height: 40px; border-radius: 50%"
+                  ></ion-img>
+                </td>
+                <td style="padding: 10px">FitLife Gym</td>
+                <td style="padding: 10px">
+                  <ion-img
+                    src="/assets/perfil/2.jpg"
+                    class="img-avatar"
+                    style="width: 40px; height: 40px; border-radius: 50%"
+                  ></ion-img>
+                </td>
+                <td style="padding: 10px">Carlos Ramírez</td>
+                <td style="padding: 10px">Bajar de peso</td>
+                <td style="padding: 10px">España</td>
+                <td style="padding: 10px">Masculino</td>
+                <td style="padding: 10px">Sí</td>
+                <td style="padding: 10px">Abierto</td>
+                <td style="padding: 10px">Individual</td>
+                <td style="padding: 10px">12</td>
+                <td style="padding: 10px">
+                  <ion-button color="primary" size="small">Entrar</ion-button>
+                </td>
+              </tr>
+
+              <!-- Ejemplo 2 -->
+              <tr>
+                <td style="padding: 10px">15/02/2024</td>
+                <td style="padding: 10px">
+                  <ion-img
+                    src="/assets/gym/gym-3.png"
+                    class="img-avatar"
+                    style="width: 40px; height: 40px; border-radius: 50%"
+                  ></ion-img>
+                </td>
+                <td style="padding: 10px">PowerHouse Gym</td>
+                <td style="padding: 10px">
+                  <ion-img
+                  src="/assets/perfil/6.jpg"
+                  class="img-avatar"
+                    style="width: 40px; height: 40px; border-radius: 50%"
+                  ></ion-img>
+                </td>
+                <td style="padding: 10px">Ana Rodríguez</td>
+                <td style="padding: 10px">Subir de peso</td>
+                <td style="padding: 10px">México</td>
+                <td style="padding: 10px">Femenino</td>
+                <td style="padding: 10px">No</td>
+                <td style="padding: 10px">Cerrado</td>
+                <td style="padding: 10px">Colectivo</td>
+                <td style="padding: 10px">18</td>
+                <td style="padding: 10px">
+                  <ion-button color="primary" size="small">Entrar</ion-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+
+
+
+
+
+</ion-content>

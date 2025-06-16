@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+     <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Ajustes de la cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+
+    <!-- Ajuste de cuenta -->
+    <ion-item button [routerLink]="['/pages/ajustes-cuenta']">
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+      <ion-label>Ajuste de cuenta</ion-label>
+    </ion-item>
+
+    <!-- Notificaciones -->
+    <ion-item button [routerLink]="['/pages/notificacion']">
+      <ion-icon slot="start" name="notifications-outline"></ion-icon>
+      <ion-label>Notificaciones</ion-label>
+    </ion-item>
+
+        <!-- Notificaciones -->
+    <ion-item button [routerLink]="['/pages/menu-configuracion']">
+      <ion-icon slot="start" name="notifications-outline"></ion-icon>
+      <ion-label>Configuración de mis ligas</ion-label>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>

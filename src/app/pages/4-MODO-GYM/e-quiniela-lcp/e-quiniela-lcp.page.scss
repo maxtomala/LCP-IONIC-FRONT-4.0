@@ -1,0 +1,111 @@
+
+ion-card {
+  margin: 16px; // Margen alrededor de la tarjeta
+}
+
+.enfrentamiento {
+  display: flex; // Flexbox para alinear los participantes
+  justify-content: space-between; // Espacio entre los participantes
+  align-items: center; // Alinear verticalmente los elementos
+  margin: 10px 0; // Espaciado entre los enfrentamientos
+  padding: 10px; // Espaciado interno
+
+  .participante {
+    text-align: center; // Centrar el texto
+
+    img {
+      width: 60px; // Ancho de la imagen del participante
+      height: auto; // Mantener la proporción
+      margin-bottom: 5px; // Espacio debajo de la imagen
+    }
+  }
+
+  .opciones {
+    display: flex; // Usar flexbox para las opciones
+    justify-content: center; // Centrar las opciones
+    align-items: center; // Alinear verticalmente las opciones
+    margin: 0 20px; // Margen a los lados
+
+    label {
+      display: flex; // Usar flexbox para etiquetas
+      align-items: center; // Alinear elementos
+      margin: 0 10px; // Espaciado entre etiquetas
+      cursor: pointer; // Cambiar el cursor al pasar sobre la etiqueta
+
+      input {
+        margin-right: 5px; // Espacio entre el input y la etiqueta
+      }
+
+      &.selected {
+        font-weight: bold; // Estilo para opciones seleccionadas
+        color: #007bff; // Color para opción seleccionada
+      }
+    }
+  }
+}
+
+.text-center {
+  text-align: center; // Centrar texto
+}
+
+.card-body {
+  padding: 16px; // Espaciado interno de la tarjeta
+}
+
+.btn-primary {
+  background-color: #007bff; // Color de fondo del botón
+  border: none; // Sin borde
+  color: white; // Color del texto
+  padding: 10px 20px; // Espaciado interno del botón
+  border-radius: 4px; // Bordes redondeados
+
+  &:hover {
+    background-color: #0056b3; // Color de fondo al pasar el ratón
+  }
+}
+
+// Estilos para la sección de fechas
+.fecha-container {
+  display: flex; // Usar flexbox para las fechas
+  justify-content: space-between; // Espacio entre fechas
+  margin-bottom: 15px; // Margen inferior
+}
+
+
+.nombre-participante {
+  font-size: 0.7rem; /* Ajusta el tamaño según lo que necesites */
+  color: #333; /* Puedes cambiar el color si lo deseas */
+  text-align: center; /* Centrar el texto si es necesario */
+}
+
+
+
+// reclama tu premio
+
+.prize-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin: 0 auto; /* Centrar la imagen */
+}
+
+.jornada-container {
+  display: flex; /* Usar flexbox para la alineación */
+  align-items: center; /* Alinear verticalmente en el centro */
+  justify-content: center; /* Centrar horizontalmente */
+  margin-top: 10px; /* Espacio superior entre la imagen y la jornada */
+}
+
+.jornada-label {
+  margin-right: 8px; /* Espacio a la derecha del label */
+}
+
+.jornada-select {
+  min-width: 100px; /* Ancho mínimo del select */
+  width: auto; /* Para permitir que el tamaño se ajuste automáticamente */
+}
+
+
+.icon-reclamar {
+  font-size: 1rem; /* Tamaño del icono */
+}

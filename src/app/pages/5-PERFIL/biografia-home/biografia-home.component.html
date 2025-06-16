@@ -1,0 +1,122 @@
+<ion-card>
+  <!-- Imagen de portada -->
+
+  <div style="position: relative">
+    <div>
+  <!-- Si hay imagen temporal, la mostramos -->
+  <img *ngIf="imagenTemp2; else imagenNormal2" [src]="imagenTemp2" alt="preview" />
+  <ng-template #imagenNormal2>
+    <img
+      [src]="usuario.imgPortada | imagen4 : 'usuarios'"
+      alt="Portada"
+      style="height: 180px; width: 100%; object-fit: cover"
+    />
+    </ng-template>
+
+
+    </div>
+
+
+    <!-- Botón de editar portada -->
+    <ion-button
+      class="portada"
+      size="small"
+      fill="clear"
+      color="light"
+      style="position: absolute; top: 8px; right: 8px"
+      (click)="inputFile2.click()"
+      >
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-button>
+          <input
+        type="file"
+        hidden
+        accept="image/*"
+        (change)="cambiarImagenPortada($event)"
+        #inputFile2
+      />
+
+
+
+    <div style="position: absolute; bottom: -50px; left: 16px; z-index: 10">
+      <!-- Avatar del usuario -->
+      <ion-avatar
+        style="
+          width: 100px;
+          height: 100px;
+          border: 3px solid white;
+          background-color: white;
+          overflow: hidden;
+        "
+      >
+        <!-- Si hay imagen temporal, la mostramos -->
+        <img
+          *ngIf="imagenTemp; else imagenNormal"
+          [src]="imagenTemp"
+          alt="preview"
+        />
+        <ng-template #imagenNormal>
+          <img [src]="usuario.img | imagenPerfil : 'usuarios'" alt="user" />
+        </ng-template>
+      </ion-avatar>
+
+      <!-- Botón flotante para cambiar imagen -->
+      <ion-button
+        fill="solid"
+        size="small"
+        color="light"
+        style="
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          transform: translate(25%, 25%);
+          border-radius: 50%;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        "
+        (click)="inputFile.click()"
+      >
+        <ion-icon name="camera-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <!-- Input oculto para subir archivo -->
+      <input
+        type="file"
+        hidden
+        accept="image/*"
+        (change)="cambiarImagen($event)"
+        #inputFile
+      />
+
+      <!-- Botón para confirmar subida, solo si hay imagen temporal -->
+    </div>
+  </div>
+
+  <!-- Formulario de biografía -->
+<ion-card-content style="margin-top: 60px">
+  <form [formGroup]="perfilPaso1" (ngSubmit)="guardarCambios()">
+    <ion-item lines="none">
+      <ion-label position="stacked">Biografía</ion-label>
+      <ion-textarea
+        formControlName="biografia"
+        placeholder="Escribe algo sobre ti..."
+        autoGrow="true"
+        maxlength="280"
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="perfilPaso1.get('biografia').invalid && (perfilPaso1.get('biografia').touched || perfilPaso1.get('biografia').dirty)">
+      <p *ngIf="perfilPaso1.get('biografia').errors?.['required']">La biografía es obligatoria.</p>
+      <p *ngIf="perfilPaso1.get('biografia').errors?.['minlength']">La biografía debe tener al menos 10 caracteres.</p>
+      <p *ngIf="perfilPaso1.get('biografia').errors?.['maxlength']">La biografía no puede tener más de 280 caracteres.</p>
+    </ion-text>
+
+    <ion-button expand="block" color="primary" type="submit">
+      <ion-icon slot="start" name="save"></ion-icon>
+      Guardar cambios
+    </ion-button>
+  </form>
+</ion-card-content>
+
+
+
+</ion-card>

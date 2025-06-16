@@ -1,0 +1,63 @@
+<ion-content [fullscreen]="true">
+  <br />
+  <!-- <ion-toolbar>
+    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> -->
+<ion-toolbar>
+  <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <ion-buttons slot="end">
+    <ion-button id="popover-button">
+      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+    <ng-template>
+      <ion-content>
+        <!-- <ion-list> -->
+          <ion-item button (click)="irParticipantes()">
+            Crear grupos
+          </ion-item>
+          <!-- Puedes agregar más opciones aquí -->
+        <!-- </ion-list> -->
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+</ion-toolbar>
+
+
+
+  <ion-card style="margin-top: 8px; margin-bottom: 8px">
+    <!-- Filtros -->
+    <ion-segment
+      (ionChange)="segmentChanged($event)"
+      scrollable
+      [value]="segmentValue"
+    >
+      <ion-segment-button value="todos">
+        <ion-label>Todos</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="no-leidos">
+        <ion-label>No leídos 2</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="grupos">
+        <ion-label>Grupos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-card>
+
+  <!-- Aquí mostramos el componente que corresponda -->
+  <div [ngSwitch]="segmentValue">
+    <app-todos *ngSwitchCase="'todos'"></app-todos>
+    <app-no-leidos *ngSwitchCase="'no-leidos'"></app-no-leidos>
+    <app-grupos *ngSwitchCase="'grupos'"></app-grupos>
+  </div>
+</ion-content>
+ 

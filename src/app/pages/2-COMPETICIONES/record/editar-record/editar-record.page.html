@@ -1,0 +1,213 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="volver()">
+      <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+      Volver
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Editar record</ion-title>
+</ion-toolbar>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-title class="ion-text-center"
+      >Selecciona el ejercicio...</ion-card-title
+    >
+    <div
+      style="
+        display: flex;
+        overflow-x: auto;
+        gap: 16px;
+        padding: 16px 0;
+        scroll-snap-type: x mandatory;
+      "
+    >
+      <div
+        *ngFor="let ejercicio of ejercicios1"
+        style="
+          flex: 0 0 auto;
+          scroll-snap-align: center;
+          text-align: center;
+          width: 80px;
+        "
+      >
+        <ion-button (click)="seleccionarEjercicio(ejercicio)">
+          <ion-icon
+            [name]="ejercicio.icono"
+            style="font-size: 20px; color: white"
+            [name]="ejercicio.icono"
+          ></ion-icon>
+        </ion-button>
+        <div style="margin-top: 8px; font-weight: 500">
+          {{ ejercicio.nombre }}
+        </div>
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Último Registro</ion-card-title>
+      </ion-card-header>
+
+      <!-- Etiquetas en una fila -->
+      <ion-row class="ion-text-center">
+        <ion-col size="4">
+          <ion-label><strong>Peso (Kg)</strong></ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-label><strong>Repeticiones</strong></ion-label>
+        </ion-col>
+        <ion-col size="4">
+          <ion-label><strong>Series</strong></ion-label>
+        </ion-col>
+      </ion-row>
+
+      <!-- Inputs en la fila debajo -->
+      <ion-row>
+        <ion-col size="4">
+          <ion-input
+            [(ngModel)]="ejercicio3.ultimoRegistro.kg"
+            placeholder="Kg"
+            type="number"
+          ></ion-input>
+        </ion-col>
+        <ion-col size="4">
+          <ion-input
+            [(ngModel)]="ejercicio3.ultimoRegistro.reps"
+            placeholder="Reps"
+            type="number"
+          ></ion-input>
+        </ion-col>
+        <ion-col size="4">
+          <ion-input
+            [(ngModel)]="ejercicio3.ultimoRegistro.series"
+            placeholder="Sets"
+            type="number"
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <!-- Fecha y Hora -->
+      <ion-item lines="none">
+        <ion-label class="ion-text-center">
+          <strong>Fecha:</strong> {{ ejercicio3.ultimoRegistro.fecha | date:
+          'd/M/yyyy' }} <strong>Hora:</strong> {{ ejercicio3.ultimoRegistro.hora
+          }}
+        </ion-label>
+      </ion-item>
+
+      <!-- Botones -->
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6">
+          <ion-button expand="block" color="primary" (click)="guardarRegistro()"
+            >Guardar</ion-button
+          >
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" (click)="eliminarRegistro()"
+            >Eliminar</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+<ion-card *ngIf="selectedEjercicio">
+  <ion-card-content>
+    <ion-list>
+      <ion-item *ngFor="let ejercicio of ejercicios; let i = index">
+        <ion-label class="ion-text-wrap ion-text-center">
+          <h2>{{ ejercicio.nombre }}</h2>
+
+          <ion-grid>
+
+            <!-- LUGARES -->
+            <!-- Usamos un array para facilitar el mapeo -->
+            <ng-container *ngFor="let lugar of ['1er', '2do', '3er']; let j = index">
+              <ion-row>
+                <ion-col size="12">
+                  <strong>{{ lugar }} Lugar</strong>
+                </ion-col>
+              </ion-row>
+
+              <!-- Etiquetas -->
+              <ion-row class="ion-text-center ion-align-items-center">
+                <ion-col size="3">
+                  <ion-label>Kg</ion-label>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-label>Reps</ion-label>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-label>Sets</ion-label>
+                </ion-col>
+                <ion-col size="3" class="ion-text-right">
+                  <!-- Espacio reservado para botones -->
+                </ion-col>
+              </ion-row>
+
+              <!-- Inputs con botones -->
+              <ion-row class="ion-align-items-center">
+                <ion-col size="3">
+                  <ion-input
+                    [(ngModel)]="ejercicio[j === 0 ? 'primerLugar' : j === 1 ? 'segundoLugar' : 'tercerLugar']"
+                    type="number"
+                    placeholder="Kg"
+                  ></ion-input>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-input
+                    [(ngModel)]="ejercicio['rep' + (j + 1)]"
+                    type="number"
+                    placeholder="Reps"
+                  ></ion-input>
+                </ion-col>
+                <ion-col size="3">
+                  <ion-input
+                    [(ngModel)]="ejercicio['series' + (j + 1)]"
+                    type="number"
+                    placeholder="Sets"
+                  ></ion-input>
+                </ion-col>
+                <ion-col size="3" class="ion-text-right" >
+                  <div style="margin-top: -30px;" >
+                  <ion-button
+                    fill="clear"
+                    color="danger"
+                    (click)="eliminarLugar(i, j + 1)"
+
+                  >
+                    <ion-icon name="trash"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    fill="clear"
+                    color="success"
+                    (click)="guardarLugar(i, j + 1)"
+                  >
+                    <ion-icon name="save"></ion-icon>
+                  </ion-button>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ng-container>
+
+          </ion-grid>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</ion-content>

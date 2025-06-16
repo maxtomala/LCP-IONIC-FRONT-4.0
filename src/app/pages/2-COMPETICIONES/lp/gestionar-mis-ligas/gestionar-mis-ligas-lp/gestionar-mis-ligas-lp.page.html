@@ -1,0 +1,57 @@
+<!-- configuracion-lp.page.html -->
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Gestionar Lp</strong>
+    </ion-title>
+     <ion-buttons slot="end">
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="descargarPDF()"
+      >
+        Descargar pdf
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content >
+
+
+
+<ion-card style="margin-top: 8px; margin-bottom: 8px">
+  <ion-segment (ionChange)="segmentChanged($event)" scrollable [value]="segmentValue">
+    <ion-segment-button value="mis-registros">
+      <ion-label>Mis registros</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="editar">
+      <ion-label>Editar</ion-label>
+    </ion-segment-button>
+
+
+  </ion-segment>
+</ion-card>
+
+<!-- Aquí mostramos el componente que corresponda -->
+<div [ngSwitch]="segmentValue">
+  <app-mis-registros *ngSwitchCase="'mis-registros'"></app-mis-registros>
+  <app-editar-peso-lp *ngSwitchCase="'editar'"></app-editar-peso-lp>
+</div>
+
+
+
+
+
+
+
+

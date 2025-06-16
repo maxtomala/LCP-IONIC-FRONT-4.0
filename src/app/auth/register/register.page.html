@@ -1,0 +1,70 @@
+<ion-content [fullscreen]="true" style="--background: url('../assets/images/background/23.png') no-repeat center / cover;">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100vh;">
+      <ion-col size="12" size-md="6" size-lg="4">
+        <ion-card>
+          <ion-card-content>
+            <form [formGroup]="registerForm" (ngSubmit)="crearUsuario()" autocomplete="off" novalidate>
+              <ion-text class="ion-text-center" style="display: block; margin-bottom: 16px;">
+                <img src="../assets/images/logo/black40x40.svg" alt="Logo" />
+                <br />
+                <img src="../assets/images/logo/1.svg" alt="Logo" />
+              </ion-text>
+
+              <ion-text color="primary" style="font-size: 1.5rem; font-weight: bold;">Regístrate ahora</ion-text>
+              <p>Crea tu cuenta y disfruta</p>
+
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input type="text" formControlName="nombre"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Correo electrónico</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Confirmar contraseña</ion-label>
+                <ion-input type="password" formControlName="password2"></ion-input>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-checkbox slot="start" formControlName="terminos" id="checkbox-terminos"></ion-checkbox>
+                <ion-label for="checkbox-terminos">
+                  Estoy de acuerdo con todo <a href="/Terminos" target="_blank">Términos</a>
+                </ion-label>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-checkbox slot="start" formControlName="boletin" id="checkbox-boletin"></ion-checkbox>
+                <ion-label for="checkbox-boletin">
+                  Suscríbete al <a href="/Boletin" target="_blank">Boletín</a>
+                </ion-label>
+              </ion-item>
+
+              <ion-text color="danger" *ngIf="campoNoValido('nombre')">* El nombre es obligatorio</ion-text>
+              <ion-text color="danger" *ngIf="campoNoValido('email')">* El email es obligatorio y tiene que ser válido</ion-text>
+              <ion-text color="danger" *ngIf="contrasenasNoValidas()">* Las contraseñas deben de ser iguales</ion-text>
+              <ion-text color="danger" *ngIf="aceptaTerminos()">* Debe de aceptar los términos de uso</ion-text>
+
+              <ion-button expand="block" type="submit" class="ion-margin-top" [disabled]="registerForm.invalid">
+                Registrarse
+              </ion-button>
+
+              <p class="ion-text-center ion-margin-top">
+                ¿Ya tienes una cuenta?
+                <a routerLink="/auth/login" color="primary"><strong>Iniciar sesión</strong></a>
+              </p>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

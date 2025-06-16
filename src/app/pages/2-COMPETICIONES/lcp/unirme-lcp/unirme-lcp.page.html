@@ -1,0 +1,216 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Unirme-lcp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <!-- filtro de busqueda de lcp  -->
+<ion-card class="liga-card-elegante">
+  <ion-card-header class="filtro-header">
+    <div class="filtro-header-contenido">
+      <!-- Icono limpiar -->
+      <ion-icon
+        name="close-circle-outline"
+        class="icono-filtro"
+        (click)="limpiarFiltros()"
+
+      ></ion-icon>
+
+      <!-- Texto que minimiza -->
+      <div class="titulo-filtro" (click)="toggleMinimizar()">
+        Filtra tu Búsqueda
+      </div>
+
+      <!-- Icono buscar -->
+      <ion-icon
+        name="search-outline"
+        class="icono-filtro"
+        (click)="buscar()"
+      ></ion-icon>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content *ngIf="!minimizado">
+    <form [formGroup]="filterForm">
+      <br>
+
+<ion-item lines="none" class="liga-input">
+  <div style="display: flex; flex-direction: column; width: 100%;">
+    <ion-label class="input-label" style="margin-bottom: 4px;">
+      🔍 Nombre de la liga LPC
+    </ion-label>
+    <ion-input formControlName="nombre" placeholder="Buscar nombre LPC..."></ion-input>
+  </div>
+</ion-item>
+
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">🎯 Objetivo</ion-label>
+        <ion-select placeholder="Selecciona el objetivo" formControlName="objetivo">
+          <ion-select-option *ngFor="let opcion of opcionObjetivo" [value]="opcion">
+            {{ opcion }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">🌍 País</ion-label>
+        <ion-select placeholder="Selecciona el país" formControlName="pais">
+          <ion-select-option *ngFor="let pais of paisesUnionEuropeaEEUU" [value]="pais">
+            {{ pais }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">⚧️ Género</ion-label>
+        <ion-select placeholder="Selecciona el género" formControlName="genero">
+          <ion-select-option *ngFor="let opcion of opcionGenero" [value]="opcion">
+            {{ opcion }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">🎫 Quiniela</ion-label>
+        <ion-select placeholder="Selecciona una opción" formControlName="quiniela">
+          <ion-select-option *ngFor="let opcion of opcionQuiniela" [value]="opcion">
+            {{ opcion }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">🤼‍♂️ Enfrentamientos</ion-label>
+        <ion-select placeholder="Tipo de enfrentamiento" formControlName="tipoEnfrentamiento">
+          <ion-select-option *ngFor="let tipo of tipoEnfrentamiento" [value]="tipo">
+            {{ tipo }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item lines="none" class="liga-input">
+        <ion-label class="input-label">👥 Grupo</ion-label>
+        <ion-select placeholder="Tipo de grupo" formControlName="grupo">
+          <ion-select-option *ngFor="let g of grupo" [value]="g">
+            {{ g }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </form>
+  </ion-card-content>
+</ion-card>
+
+
+<!-- el cargando de la tabla de unirme a lcp  -->
+<ion-row *ngIf="cargando" class="ion-justify-content-center ion-align-items-center" style="height: 150px;">
+  <ion-col size="12" class="ion-text-center">
+    <ion-text color="primary">
+      <h4>Cargando</h4>
+    </ion-text>
+    <ion-icon name="refresh-circle" class="spin-icon" size="large"></ion-icon>
+    <p>Por favor espere</p>
+  </ion-col>
+</ion-row>
+
+
+
+
+
+<!-- tabla de unirme a una  lcp  -->
+<ion-card *ngIf="!cargando" class="liga-card-elegante">
+  <ion-card-content class="ion-text-center">
+
+    <ion-row class="ion-align-items-center">
+      <ion-col size="4" class="ion-text-center">
+        <img
+          src="/assets/perfil/2.jpg"
+          alt="Foto"
+          class="img-clasificacion liga-avatar-large"
+        />
+      </ion-col>
+      <ion-col size="8" class="ion-text-center">
+        <h1 class="titulo-filtro" style="margin: 0;">
+          <strong>TODAS LAS LIGAS CORPORALES PROFESIONALES</strong>
+        </h1>
+        <h2 style="margin-top: 8px;">
+          selecciona una y ¡Unete ahora! <i class="bi bi-trophy-fill"></i>
+        </h2>
+      </ion-col>
+    </ion-row>
+
+    <div class="tabla-scroll-horizontal">
+      <table class="tabla-ligas">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Objetivo</th>
+            <th>País</th>
+            <th>Género</th>
+            <th>Quiniela</th>
+            <th>Grupo</th>
+            <th>Enfrentamientos</th>
+            <th>Participantes</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let liga of ligaCorporalProfesional; let i = index">
+            <td>{{ i + 1 + paginaActual }}</td>
+            <td>
+              <ion-img src="assets/images/users/1.jpg" class="img-avatar"></ion-img>
+              {{ liga.nombre }}
+            </td>
+            <td>{{ liga.fechaCreacion | date:'dd/MM/yyyy' }}</td>
+            <td>{{ liga.objetivo }}</td>
+            <td>{{ liga.pais }}</td>
+            <td>{{ liga.genero }}</td>
+            <td>{{ liga.quiniela }}</td>
+            <td>{{ liga.grupo }}</td>
+            <td>{{ liga.tipoEnfrentamiento }}</td>
+            <td>{{ liga.numeroDeParticipantes }}/10</td>
+            <td>
+              <ion-button color="primary" size="small" (click)="unirsePorGrupo(liga._id)" class="mi-boton">
+                <ion-icon slot="start" name="people"></ion-icon>
+                Unirme
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!filterForm.get('nombre')?.value" class="paginacion">
+      <ion-button color="medium" (click)="cambiarPagina(-10)" [disabled]="paginaActual === 0">
+        Anteriores
+      </ion-button>
+      <ion-button color="medium" (click)="cambiarPagina(10)" [disabled]="paginaActual + paginaTamanio >= totalLigaCorporalProfesional">
+        Siguientes
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+</ion-content>

@@ -1,0 +1,212 @@
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<ion-content [fullscreen]="true">
+  entrando e-calendario-lcp
+
+  <!-- seleciona la lcp -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline">Liga Corporal profesional:</strong>
+      </h2>
+      <h3 class="ion-text-center">
+        <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div>
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+<!-- titulo calendario  -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h1>
+        <strong>
+          <ion-icon name="calendar-outline"></ion-icon> - Calendario Liga Corporal Profesional -
+          <!-- {{ year }}  -->2002
+          -
+          <ion-icon name="calendar-outline"></ion-icon>
+        </strong>
+      </h1>
+    </ion-card-content>
+  </ion-card>
+
+<!-- calendario
+<ion-card *ngIf="calendario">
+  <ion-card-content>
+    <ion-row>
+      <ion-col size="12">
+        <h4 class="ion-text-center card-title">
+          <strong>
+            <ion-icon name="calendar-outline"></ion-icon> Jornadas de
+            {{ ligaSeleccionada.nombre }}
+          </strong>
+        </h4>
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let jornada of calendario.jornadas" class="jornada-container">
+      <h3 class="ion-text-center">{{ jornada.jornada }}</h3>
+      <p class="small-text"><strong>Inicio:</strong> {{ jornada.fechaInicio }}</p>
+      <p class="small-text"><strong>Fin:</strong> {{ jornada.fechaFinal }}</p>
+
+      <ion-grid class="scrollable-table">
+        <ion-row class="table-header">
+          <ion-col size="3" class="ion-text-center"><strong>Imagen</strong></ion-col>
+          <ion-col size="3" class="ion-text-center"><strong>Resultados</strong></ion-col>
+          <ion-col size="3" class="ion-text-center"><strong>Resultados</strong></ion-col>
+          <ion-col size="3" class="ion-text-center"><strong>Imagen</strong></ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let emparejamiento of jornada.emparejamientos" class="table-row">
+          <ion-col size="2" class="ion-text-center">
+            <ion-img
+              [src]="emparejamiento.participantes[0].img"
+              alt="imagen"
+              class="small-avatar"
+            ></ion-img>
+            <div class="small-text">{{ emparejamiento.participantes[0].nombre }}</div>
+          </ion-col>
+
+          <ion-col size="4" class="ion-text-center btn-outline-secondary">
+            <strong>{{ emparejamiento.puntosParticipante1 }}</strong>
+            <div class="small-text">Puntos</div>
+          </ion-col>
+
+          <ion-col size="4" class="ion-text-center btn-outline-secondary">
+            <strong>{{ emparejamiento.puntosParticipante2 }}</strong>
+            <div class="small-text">Puntos</div>
+          </ion-col>
+
+          <ion-col size="2" class="ion-text-center">
+            <ion-img
+              [src]="emparejamiento.participantes[1].img"
+              alt="imagen"
+              class="small-avatar"
+            ></ion-img>
+            <div class="small-text">{{ emparejamiento.participantes[1].nombre }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card-content>
+  <br>
+<br>
+<br>
+<br>
+<br>
+</ion-card> -->
+
+
+
+
+<ion-card *ngIf="calendario">
+  <ion-card-content>
+    <!-- Encabezado de la tarjeta -->
+    <ion-row>
+      <ion-col size="12">
+        <h4 class="ion-text-center card-title">
+          <strong>
+            <ion-icon name="calendar-outline"></ion-icon> Jornadas de
+            {{ ligaSeleccionada.nombre }}
+          </strong>
+        </h4>
+      </ion-col>
+    </ion-row>
+
+    <!-- Contenido de cada jornada -->
+    <div *ngFor="let jornada of calendario.jornadas" class="jornada-container">
+      <h3 class="ion-text-center">{{ jornada.jornada }}</h3>
+      <p class="small-text"><strong>Inicio:</strong> {{ jornada.fechaInicio }}</p>
+      <p class="small-text"><strong>Fin:</strong> {{ jornada.fechaFinal }}</p>
+
+      <ion-grid>
+        <!-- Cabecera de la tabla -->
+        <ion-row class="table-header">
+          <ion-col size="4" class="ion-text-center"><strong>Jugador 1</strong></ion-col>
+          <ion-col size="4" class="ion-text-center"><strong>Resultados</strong></ion-col>
+          <ion-col size="4" class="ion-text-center"><strong>Jugador 2</strong></ion-col>
+        </ion-row>
+
+        <!-- Filas de datos de emparejamientos -->
+        <ion-row *ngFor="let emparejamiento of jornada.emparejamientos" class="table-row">
+          <!-- Jugador 1 -->
+          <ion-col size="4" class="ion-text-center">
+            <ion-img
+              [src]="emparejamiento.participantes[0].img"
+              alt="imagen"
+              class="small-avatar"
+            ></ion-img>
+            <div class="small-text">{{ emparejamiento.participantes[0].nombre }}</div>
+          </ion-col>
+
+          <!-- Resultados -->
+          <ion-col size="4" class="ion-text-center">
+            <strong>{{ emparejamiento.puntosParticipante1 }} - {{ emparejamiento.puntosParticipante2 }}</strong>
+            <div class="small-text">Puntos</div>
+          </ion-col>
+
+          <!-- Jugador 2 -->
+          <ion-col size="4" class="ion-text-center">
+            <ion-img
+              [src]="emparejamiento.participantes[1].img"
+              alt="imagen"
+              class="small-avatar"
+            ></ion-img>
+            <div class="small-text">{{ emparejamiento.participantes[1].nombre }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+</ion-content>

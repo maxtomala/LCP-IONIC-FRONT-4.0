@@ -1,0 +1,237 @@
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  <ion-content [fullscreen]="true">
+    <ion-content>
+      <ion-header class="ion-text-center">
+        <ion-toolbar>
+          <ion-title>Crear Liga Corporal Profesional</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <form [formGroup]="lpcForm" (ngSubmit)="crearligaCP()">
+
+
+ <!-- ¿Quieres una LCP? -->
+ <ion-item>
+  <ion-label>¿Qué tipo de LCP te gustaría?</ion-label>
+  <ion-select
+    formControlName="tipoLcp"
+    placeholder="Selecciona una opción"
+    required
+  >
+    <ion-select-option value="amistosa"
+      >Amistosa (miembros del gimnasio, incluye la posibilidad de q el entrenador participara en el)</ion-select-option
+    >
+    <ion-select-option value="competitiva"
+      >Competitiva (ganar trofeos para tu gimnasio, el entrenador no puede participar en el )</ion-select-option
+    >
+  </ion-select>
+</ion-item>
+
+
+        <!-- Campo para el nombre de la liga corporal -->
+        <ion-item>
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label>Nombre de la LCP</ion-label>
+          <ion-input type="text" formControlName="nombre" required></ion-input>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('nombre')" color="danger">
+          El nombre es requerido (min. 3, máx. 30 caracteres).
+        </ion-note>
+
+        <!-- Selector de país -->
+        <ion-item>
+          <ion-icon name="earth-outline" slot="start"></ion-icon>
+          <ion-label>País</ion-label>
+          <ion-select
+            formControlName="pais"
+            placeholder="Selecciona un país"
+            required
+          >
+            <ion-select-option
+              *ngFor="let pais of paisesUnionEuropeaEEUU"
+              [value]="pais"
+              >{{ pais }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('pais')" color="danger">
+          El país es requerido.
+        </ion-note>
+
+        <!-- Selector de género -->
+        <ion-item>
+          <ion-icon name="male-female-outline" slot="start"></ion-icon>
+          <ion-label>Género</ion-label>
+          <ion-select
+            formControlName="genero"
+            placeholder="Selecciona un género"
+            required
+          >
+            <ion-select-option
+              *ngFor="let genero of opcionGenero"
+              [value]="genero"
+              >{{ genero }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('genero')" color="danger">
+          El género es requerido.
+        </ion-note>
+
+        <!-- Selector de quiniela -->
+        <ion-item>
+          <ion-icon name="clipboard-outline" slot="start"></ion-icon>
+          <ion-label>Quiniela</ion-label>
+          <ion-select formControlName="quiniela" required>
+            <ion-select-option
+              *ngFor="let quiniela of opcionQuiniela"
+              [value]="quiniela"
+              >{{ quiniela }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('quiniela')" color="danger">
+          La quiniela es requerida.
+        </ion-note>
+
+        <!-- Selector de objetivo -->
+        <ion-item>
+          <ion-icon name="fitness-outline" slot="start"></ion-icon>
+          <ion-label>Objetivo</ion-label>
+          <ion-select
+            formControlName="objetivo"
+            placeholder="Selecciona un objetivo"
+            required
+          >
+            <ion-select-option
+              *ngFor="let objetivo of opcionObjetivo"
+              [value]="objetivo"
+              >{{ objetivo }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('objetivo')" color="danger">
+          El objetivo es requerido.
+        </ion-note>
+
+        <!-- Selector de tipo de enfrentamiento -->
+        <ion-item>
+          <ion-icon name="list-outline" slot="start"></ion-icon>
+          <ion-label>Tipo de enfrentamiento</ion-label>
+          <ion-select
+            formControlName="tipoEnfrentamiento"
+            placeholder="Selecciona el tipo"
+            required
+          >
+            <ion-select-option
+              *ngFor="let tipo of tipoEnfrentamiento"
+              [value]="tipo"
+              >{{ tipo }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+        <ion-note *ngIf="campoNoValido('tipoEnfrentamiento')" color="danger">
+          El tipo de enfrentamiento es requerido.
+        </ion-note>
+
+        <!-- Selector de día para enviar peso -->
+        <ion-item>
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+          <ion-label>Día para enviar peso</ion-label>
+          <ion-select name="dia" placeholder="Selecciona un día" required>
+            <ion-select-option *ngFor="let dia of diasSemana" [value]="dia">
+              {{ dia }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Participación: Sí o No -->
+        <ion-item>
+          <ion-icon name="help-outline" slot="start"></ion-icon>
+          <ion-label>El entrenador ¿Desea participar?</ion-label>
+          <ion-select name="participar" required>
+            <ion-select-option value="si">Sí</ion-select-option>
+            <ion-select-option value="no">No</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Participación: individual o grupal -->
+        <ion-item>
+          <ion-icon name="help-outline" slot="start"></ion-icon>
+          <ion-label>
+            ¿Desea crear una competicion individual o colectiva?</ion-label
+          >
+          <ion-select name="participar" required>
+            <ion-select-option value="si">individual</ion-select-option>
+            <ion-select-option value="no">colectivo</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Botón para enviar el formulario -->
+        <ion-button expand="full" type="submit" [disabled]="lpcForm.invalid"
+          >Crear Lcp</ion-button
+        >
+      </form>
+
+      <!-- Notas informativas -->
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <p>*Nota:</p>
+            <p>
+              1º Los días de la semana deben ser seguidos (ej. lunes, martes o
+              jueves, viernes) para dar tiempo a los usuarios de subir peso.
+            </p>
+            <p>
+              2º El entrenador podrá visualizar la subida de peso de cada
+              usuario antes de que se registre en la base de datos, revisándolo.
+            </p>
+            <p>
+              3º Si un usuario quiere crear una e-LC, un mensaje de pop-up debe
+              solicitar: "Debes pedir a tu entrenador que cree una LC. ¿Enviar
+              mensaje?"
+            </p>
+            <p>
+              4º cuando el entrenador si desea participar con sus alumnos, no
+              podra invitar a otros entrenadores.
+            </p>
+            <p>
+              5º cuando el entrenador no desea participar en lcp, si podra
+              enviarle enlances a otros entrenadores. para que participen los
+              alumnos del entrenador.
+            </p>
+            <p>
+              6º Se puede ganar medalla y trofeos virtuales, cuando el
+              entrenador no participa, ya q ellos son entrenadores,verdugos y
+              jurado y de sus alumnos. con respecto a otros gym
+            </p>
+
+            7º se podria poner participar de forma individual o equipo? equipo:
+            el gym con el q te enfrentes deberia de tener el mismo participante
+            de 4vs4 alumnos individual: no se necesita tener los mismo nº de
+            alumno cada gym ¿pero se merece algun premio?
+            <p>
+            8ºtipo de lcp: competitiva: enfrentase con otros gimnasio: el entrenador no  podra participar
+            amistosa: enfrentarse con usuarios de tu mismo gimnasio, y el entrenador podria  participar
+          </p>
+
+
+          <BR>
+            *Amistosa: una competición con miembros del mi gym Competitiva: una competición
+            para ayudar a conseguir una medalla a tu gym cualquiera
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-content>
+</ion-content>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

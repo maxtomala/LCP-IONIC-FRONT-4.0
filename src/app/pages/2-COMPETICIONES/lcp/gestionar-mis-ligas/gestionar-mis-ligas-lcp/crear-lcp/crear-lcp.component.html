@@ -1,0 +1,100 @@
+<ion-card class="liga-card-elegante">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center" style="color: white;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <span>Grupo 1</span>
+      </div>
+    </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+
+      <!-- Fila principal: Nombre, Objetivo, Imagen, Fecha -->
+      <ion-row>
+        <!-- Columna Izquierda -->
+        <ion-col size="7" size-md="4">
+          <ion-label class="input-label">🏷️ Nombre</ion-label>
+          <ion-input placeholder="Nombre de la liga" class="liga-input"></ion-input>
+
+          <ion-label class="input-label">🎯 Objetivo</ion-label>
+          <ion-select interface="popover" class="liga-input" placeholder="Opciones">
+            <ion-select-option *ngFor="let opcion of opcionesObjetivo" [value]="opcion">
+              {{ opcion }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <!-- Columna Derecha -->
+        <ion-col size="5" size-md="8" class="ion-text-center">
+          <img src="assets/images/users/1.jpg" class="liga-avatar-large" alt="avatar" />
+          <div class="liga-fecha ion-margin-top">
+            24/6/2025
+            <!-- {{ ligasCorporal.fechaCreacion | date: 'dd/MM/yyyy' }} -->
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <!-- Fila: País + Género -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="input-label">🌍 País</ion-label>
+          <ion-select interface="popover" class="liga-input" placeholder="Selecciona país">
+            <ion-select-option *ngFor="let pais of paises" [value]="pais">
+              {{ pais }}
+            </ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label class="input-label">⚧️ Género</ion-label>
+          <ion-select interface="popover" class="liga-input" placeholder="Selecciona género">
+            <ion-select-option value="femenino">Femenino</ion-select-option>
+            <ion-select-option value="masculino">Masculino</ion-select-option>
+            <ion-select-option value="mixto">Mixto</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <!-- Fila: Tipo de Liga + Modalidad -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-label class="input-label">🎮 Tipo de Liga</ion-label>
+          <ion-select interface="popover" class="liga-input" placeholder="Selecciona tipo">
+            <ion-select-option value="quiniela">Quiniela</ion-select-option>
+            <ion-select-option value="enfrentamiento">Enfrentamiento</ion-select-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-label class="input-label">⚙️ Modalidad</ion-label>
+          <ion-select interface="popover" class="liga-input" placeholder="Selecciona modalidad">
+            <ion-select-option value="activar">Activar</ion-select-option>
+            <ion-select-option value="desactivar">Desactivar</ion-select-option>
+            <ion-select-option value="ida_vuelta">Ida y Vuelta</ion-select-option>
+            <ion-select-option value="solo_ida">Ida</ion-select-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+
+      <!-- Fila: Botón -->
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <ion-button
+            class="mi-boton-personalizado"
+            expand="block"
+            (click)="crearLigaCorporal()"
+            size="large"
+            color="light"
+          >
+            <ion-icon name="create-outline"></ion-icon>
+            Crear liga corporal
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+<br /><br /><br /><br /><br />

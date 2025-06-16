@@ -1,0 +1,29 @@
+.table-responsive {
+  overflow-x: auto; /* Permite el desplazamiento horizontal */
+  -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en dispositivos móviles */
+}
+
+.table {
+  width: 100%; /* Asegura que la tabla use el 100% del contenedor */
+  border-collapse: collapse; /* Colapsa bordes */
+}
+
+.table th,
+.table td {
+  padding: 8px; /* Reduce el espaciado interno de celdas */
+  text-align: left; /* Alinear texto a la izquierda */
+  font-size: 0.9em; /* Tamaño de fuente más pequeño */
+}
+
+.img-avatar {
+  width: 40px; /* Ancho de la imagen más pequeño */
+  height: 40px; /* Alto de la imagen más pequeño */
+  border-radius: 50%; /* Redondear imagen */
+}
+
+@media (max-width: 768px) {
+  .table th, .table td {
+    padding: 6px; /* Menos padding en pantallas pequeñas */
+    font-size: 0.8em; /* Tamaño de fuente aún más pequeño en pantallas pequeñas */
+  }
+}

@@ -1,0 +1,130 @@
+<!-- lp.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Liga Personal</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <app-guardar-peso-lp (pesoGuardado)="refrescarComponentes()"></app-guardar-peso-lp>
+  <app-perfil-salud #perfilSalud></app-perfil-salud>
+
+  <!-- grafica donut  -->
+  <app-grafica-donut #graficaDonut></app-grafica-donut>
+
+  <!-- Gráfica lineal -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title>
+        <strong>Evolución del peso corporal</strong>
+      </ion-card-title>
+      <br />
+
+      <h3>Gráfica lineal: Registro cronológico de peso</h3>
+      <br />
+
+      <!-- Selector -->
+      <ion-segment [(ngModel)]="tipoGrafica" scrollable>
+        <ion-segment-button value="diario">
+          <ion-label>Diario</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="semanal">
+          <ion-label>Semanal</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mensual">
+          <ion-label>Mensual</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="anual">
+          <ion-label>Anual</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Mostrar componente según selección -->
+      <div [ngSwitch]="tipoGrafica" class="ion-padding-top">
+        <app-grafico-diario-lp *ngSwitchCase="'diario'"  #graficoDiario></app-grafico-diario-lp>
+        <app-grafico-semanal-lp
+          *ngSwitchCase="'semanal'"
+        ></app-grafico-semanal-lp>
+        <app-grafico-mensual-lp
+          *ngSwitchCase="'mensual'"
+        ></app-grafico-mensual-lp>
+        <app-grafico-anual-lp *ngSwitchCase="'anual'"></app-grafico-anual-lp>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- carrusel frontal  -->
+  <app-carrusel-frontal-lp
+    *ngIf="mostrarCarruselFrontal"
+  ></app-carrusel-frontal-lp>
+  <!-- carrusel lateral  -->
+  <app-carrusel-lateral-lp
+    *ngIf="mostrarCarruselLateral"
+  ></app-carrusel-lateral-lp>
+
+  <!-- btn flotante  -->
+  <ion-fab
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+    style="margin-bottom: 100px"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <div
+        class="fab-item"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lp'], { queryParams: { seccion: 'mis-registro' } })"
+      >
+        <div class="fab-label">Mis registros</div>
+        <ion-fab-button>
+          <ion-icon name="color-palette"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <div
+        class="fab-item"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lp'], { queryParams: { seccion: 'editar' } })"
+      >
+        <div class="fab-label">Editar peso</div>
+        <ion-fab-button>
+          <ion-icon name="color-palette"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <div
+        class="fab-item"
+        (click)="router.navigate(['/auth/formulario-inicial'])"
+      >
+        <div class="fab-label">Cambiar objetivos</div>
+        <ion-fab-button>
+          <ion-icon name="globe"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </ion-fab-list>
+  </ion-fab>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

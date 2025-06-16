@@ -1,0 +1,87 @@
+/* Estilo general de la tarjeta de socio */
+.membership-card {
+  background-color: #f8f9fa; /* Color suave de fondo */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Imagen de perfil circular */
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* Circular */
+  object-fit: cover;
+}
+
+/* Nombre del miembro */
+.member-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333; /* Color del texto */
+  margin-bottom: 5px;
+}
+
+/* Información del miembro con íconos */
+.member-info {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.member-info ion-icon,
+.member-info i {
+  margin-right: 8px; /* Separación entre ícono y texto */
+  font-size: 16px; /* Tamaño del ícono */
+  color: #3880ff; /* Color de los íconos */
+}
+
+/* Líneas divisorias dentro de la tarjeta */
+.divider {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
+}
+
+/* Estilo de las filas de información (género, altura, país, etc.) */
+.info-label {
+  font-weight: bold;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.info-label i,
+.info-label ion-icon {
+  margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+.info-value {
+  color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+.search-container {
+  display: flex;                    /* Usar flexbox para alinear los elementos */
+  align-items: center;             /* Centrar verticalmente */
+}
+
+.search-icon {
+  font-size: 20px;                 /* Ajustar el tamaño del icono */
+  margin-right: 10px;              /* Espacio entre el icono y el input */
+}
+
+.search-input {
+  flex: 1;                         /* Tomar el espacio restante */
+  --padding-start: 0;             /* Ajustar el padding inicial para que esté más cerca del icono */
+}

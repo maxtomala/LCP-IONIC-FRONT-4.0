@@ -1,0 +1,112 @@
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2 style="text-decoration: underline">
+      <strong>Mis grupos</strong>
+    </h2>
+
+    <div class="ion-margin-top">
+      <!-- <ion-button
+            *ngFor="let liga of ligaCorporal"
+            expand="block"
+            color="primary"
+            class="ion-margin-vertical"
+            (click)="accionBoton(liga.nombre)"
+          >
+            <ion-icon name="fitness" slot="start"></ion-icon>
+            {{ liga.nombre }}
+          </ion-button> -->
+
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia
+      </ion-button>
+
+      <!-- Botón 2: Gym -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Gym')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Gym
+      </ion-button>
+
+      <!-- Botón 3: Familia2 -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia2')"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia2
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="ligaSeleccionada">
+  <ion-card-content class="ion-text-center">
+    <ng-container *ngIf="penalizadosPorJornada; else sinPenalizados">
+      <ng-container *ngFor="let jornada of jornadas">
+        <h1>Jornada {{ jornada }}</h1>
+
+        <ng-container *ngIf="penalizadosPorJornada[jornada]; else sinInfoJornada">
+          <ng-container *ngIf="penalizadosPorJornada[jornada].penalizados?.length > 0; else sinPenalizadosJornada">
+            <h4><strong><b>Penalizados:</b></strong></h4>
+
+            <ion-list>
+              <ion-item *ngFor="let penalizado of penalizadosPorJornada[jornada].penalizados">
+                <!-- Avatar del penalizado -->
+                <!-- [src]="penalizado.img | imagen : 'usuarios'" -->
+                <ion-avatar slot="start">
+                  <img
+                  src="assets/images/users/1.jpg"
+                  />
+                </ion-avatar>
+
+                <!-- Nombre del penalizado y penalizador -->
+                <ion-label class="ion-text-left">
+                  <p><strong>{{ penalizado.nombre }}</strong></p>
+                  <p style="font-size: 0.9rem; color: gray;">Penalizado por:</p>
+                  <p style="font-weight: bold;">{{ penalizado.penalizadoPorNombre }}</p>
+                </ion-label>
+
+                <!-- Avatar del que lo penalizó -->
+                <!-- [src]="penalizado.penalizadoPorImg | imagen : 'usuarios'" -->
+                <ion-avatar slot="end">
+                  <img
+                  src="assets/images/users/1.jpg"
+                   />
+                </ion-avatar>
+              </ion-item>
+            </ion-list>
+          </ng-container>
+
+          <ng-template #sinPenalizadosJornada>
+            <p>No hay penalizados en esta jornada.</p>
+          </ng-template>
+        </ng-container>
+
+        <ng-template #sinInfoJornada>
+          <p>No hay información disponible para esta jornada.</p>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #sinPenalizados>
+      <p>No hay información de penalizaciones disponible.</p>
+    </ng-template>
+  </ion-card-content>
+</ion-card>
+
+<br>
+<br>
+<br>
+<br>
+<br>

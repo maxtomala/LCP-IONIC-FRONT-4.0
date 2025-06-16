@@ -1,0 +1,267 @@
+<!-- lc.page.html  -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Participantes-lc</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title class="ion-text-center">
+        <strong>Mis grupos</strong>
+      </ion-card-title>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col
+            size="6"
+            *ngFor="let liga of ligaCorporalprofesional; let i = index"
+            [hidden]="i >= 2"
+          >
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(liga.nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ liga.nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6" *ngIf="ligaCorporalprofesional.length > 2">
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(ligaCorporalprofesional[2].nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ ligaCorporalprofesional[2].nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- buscador  -->
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-icon
+          name="search-outline"
+          slot="start"
+          style="font-size: 24px"
+        ></ion-icon>
+        <ion-input
+          placeholder="Buscar usuarios y países de los participantes..."
+          (ionInput)="buscar(txtTermino.value)"
+          #txtTermino
+          type="text"
+        ></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- el cargando  -->
+
+  <ion-card *ngIf="cargando2">
+    <ion-card-content class="ion-text-center">
+      <ion-spinner
+        name="crescent"
+        color="primary"
+        style="zoom: 1.5"
+      ></ion-spinner>
+      <ion-text color="medium">
+        <h2>Cargando</h2>
+        <p>Por favor espere</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- tabla  de participantes-->
+    <ion-card *ngIf="!cargando2">
+      <ion-card-header>
+        <ion-card-title
+          class="ion-text-center"
+          style="text-decoration: underline"
+        >
+          <strong>Participantes de la Liga Corporal</strong>
+        </ion-card-title>
+        <ion-card-subtitle>
+          Usuarios registrados en la Liga Corporal: {{ usuariosTemp.length }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <!-- Columna 1 -->
+            <ion-col size="12" size-md="6">
+              <ng-container
+                *ngFor="let participante of participantes; let i = index"
+              >
+                <ng-container *ngIf="i % 2 === 0">
+                  <!-- carta  -->
+
+                  <ion-card class="profile-card">
+                    <ion-img
+                      [src]="participante.img"
+                      class="profile-banner"
+                    ></ion-img>
+                    <ion-card-content>
+                      <div class="profile-info">
+                        <img
+                          [src]="participante.img"
+                          class="profile-avatar"
+                          alt="Avatar"
+                        />
+
+                        <h2 class="profile-name">{{ participante.nombre }}</h2>
+                        <p class="profile-subtitle">
+                          {{ participante.pais }} • {{ participante.genero }}
+                        </p>
+
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="calendar-outline"></ion-icon>
+                              <small
+                                >{{ participante.fechaNacimiento | date:
+                                'dd-MM-yyyy' }}</small
+                              >
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="barbell-outline"></ion-icon>
+                              <small>{{ participante.deporte }}</small>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="logo-instagram"></ion-icon>
+                              <small>{{ participante.instagram }}</small>
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="body-outline"></ion-icon>
+                              <small>{{ participante.altura }} m</small>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="logo-instagram"></ion-icon>
+                              <small>{{ participante.objetivo }}</small>
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="body-outline"></ion-icon>
+                              <small>vacio</small>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+
+                        <div class="quote-box">
+                          <ion-icon name="chatbubbles-outline"></ion-icon>
+                          <em>"{{ participante.fraseCelebre }}"</em>
+                        </div>
+                      </div>
+                    </ion-card-content>
+                  </ion-card>
+                </ng-container>
+              </ng-container>
+            </ion-col>
+
+            <!-- Columna 2 -->
+            <ion-col size="12" size-md="6">
+              <ng-container
+                *ngFor="let participante of participantes; let i = index"
+              >
+                <ng-container *ngIf="i % 2 !== 0">
+                  <!-- carta  -->
+
+                  <ion-card class="profile-card">
+                    <ion-img
+                      [src]="participante.img"
+                      class="profile-banner"
+                    ></ion-img>
+                    <ion-card-content>
+                      <div class="profile-info">
+                        <img
+                          [src]="participante.img"
+                          class="profile-avatar"
+                          alt="Avatar"
+                        />
+
+                        <h2 class="profile-name">{{ participante.nombre }}</h2>
+                        <p class="profile-subtitle">
+                          {{ participante.pais }} • {{ participante.genero }}
+                        </p>
+                        <ion-grid>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="calendar-outline"></ion-icon>
+                              <small
+                                >{{ participante.fechaNacimiento | date:
+                                'dd-MM-yyyy' }}</small
+                              >
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="barbell-outline"></ion-icon>
+                              <small>{{ participante.deporte }}</small>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="logo-instagram"></ion-icon>
+                              <small>{{ participante.instagram }}</small>
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="body-outline"></ion-icon>
+                              <small>{{ participante.altura }} m</small>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row>
+                            <ion-col size="6">
+                              <ion-icon name="logo-instagram"></ion-icon>
+                              <small>{{ participante.objetivo }}</small>
+                            </ion-col>
+                            <ion-col size="6">
+                              <ion-icon name="body-outline"></ion-icon>
+                              <small>vacio</small>
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+
+                        <div class="quote-box">
+                          <ion-icon name="chatbubbles-outline"></ion-icon>
+                          <em>"{{ participante.fraseCelebre }}"</em>
+                        </div>
+                      </div>
+                    </ion-card-content>
+                  </ion-card>
+                </ng-container>
+              </ng-container>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+
+</ion-content>

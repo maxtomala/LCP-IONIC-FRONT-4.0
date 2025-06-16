@@ -1,0 +1,328 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Perfil</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!--  #content :me hace scroll automaticamente arrriba -->
+<ion-content #content>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="prevStep()"
+        *ngIf="step > 0"
+      >
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title> Formulario - paso {{ step + 1 }}/3 </ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="nextStep()"
+        *ngIf="step < 2"
+      >
+        <!-- [disabled]="step !== 0 && perfilForm.invalid" -->
+        <!-- aydua q complte el form y la validacion s cumpla, importante -->
+        Siguiente
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button
+        type="submit"
+        size="small"
+        fill="outline"
+        color="success"
+        *ngIf="step === 2"
+        [disabled]="perfilPaso2.invalid"
+        [routerLink]="['/pages/perfil']"
+            [class.blink]="botonBrillando"
+
+      >
+        Finalizar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+<ion-progress-bar
+  [value]="(step + 1) / 3"
+  color="primary"
+  type="determinate"
+  class="ion-margin-top"
+></ion-progress-bar>
+  <!-- PASO 0 Apellidos y Género... -->
+  <div *ngIf="step === 0 && perfilPaso0">
+    <ion-card>
+      <ion-toolbar>
+        <ion-title>Ajustes del perfil</ion-title>
+      </ion-toolbar>
+
+      <form [formGroup]="perfilPaso0" (ngSubmit)="guardarPaso0()">
+        <ion-list lines="full">
+          <!-- Apellido 1 -->
+          <ion-item>
+            <ion-label position="stacked">Apellido 1</ion-label>
+            <ion-input
+              type="text"
+              placeholder="Apellido 1"
+              formControlName="apellido1"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido0('apellido1')">
+            <p class="ion-padding-start">*El Apellido1 es obligatorio</p>
+            <p class="ion-padding-start">
+              *Debe tener entre 2 y 25 caracteres.
+            </p>
+          </ion-text>
+
+          <!-- Apellido 2 -->
+          <ion-item>
+            <ion-label position="stacked">Apellido 2</ion-label>
+            <ion-input
+              type="text"
+              placeholder="Apellido 2"
+              formControlName="apellido2"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido0('apellido2')">
+            <p class="ion-padding-start">*El Apellido2 es obligatorio</p>
+            <p class="ion-padding-start">
+              *Debe tener entre 2 y 25 caracteres.
+            </p>
+          </ion-text>
+
+          <!-- Género -->
+<ion-item>
+  <ion-label position="stacked">Género</ion-label>
+  <ion-select formControlName="genero" placeholder="Selecciona tu género">
+    <ion-select-option *ngFor="let genero of opcionGenero" [value]="genero">
+      {{ genero }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
+          <ion-text color="danger" *ngIf="campoNoValido0('genero')">
+            <p class="ion-padding-start">*El Género es obligatorio</p>
+          </ion-text>
+
+          <!-- Fecha de nacimiento -->
+          <ion-item>
+            <ion-label position="stacked">Fecha de nacimiento</ion-label>
+            <ion-datetime
+              presentation="date"
+              formControlName="fechaNacimiento"
+              placeholder="Selecciona fecha"
+            ></ion-datetime>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido0('fechaNacimiento')">
+            <p class="ion-padding-start">
+              *La fecha de nacimiento es obligatoria
+            </p>
+          </ion-text>
+
+          <!-- Código postal -->
+          <ion-item>
+            <ion-label position="stacked">Código postal</ion-label>
+            <ion-input
+              type="number"
+              placeholder="Código postal"
+              formControlName="codigoPostal"
+            ></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <!-- Botón -->
+        <div class="ion-text-center ion-padding">
+          <ion-button
+            expand="block"
+            type="submit"
+            color="primary"
+            [disabled]="perfilPaso0.invalid"
+            (click)="scrollToTop()"
+          >
+            <ion-icon name="save" slot="start"></ion-icon>
+            Guardar cambios
+          </ion-button>
+        </div>
+      </form>
+    </ion-card>
+  </div>
+
+  <!-- PASO 1: Peso ideal, Altura (m) -->
+  <div *ngIf="step === 1 && perfilPaso1">
+    <ion-card>
+      <ion-toolbar>
+        <ion-title>Ajustes del perfil</ion-title>
+      </ion-toolbar>
+
+      <form [formGroup]="perfilPaso1" (ngSubmit)="guardarPaso1()">
+        <ion-list lines="full">
+          <!-- Peso ideal -->
+          <ion-item>
+            <ion-label position="stacked">Peso ideal ({{ unidadElegida }})</ion-label>
+            <ion-input
+              type="number"
+              placeholder="Ej. 70"
+              formControlName="pesoIdeal"
+            ></ion-input>
+
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido1('pesoIdeal')">
+            <p class="ion-padding-start">*El peso ideal es obligatorio</p>
+            <p class="ion-padding-start">*Debe ser entre 15 y 150 kg</p>
+          </ion-text>
+
+          <!-- Altura -->
+          <ion-item>
+            <ion-label position="stacked">Altura (m)</ion-label>
+            <ion-input
+              type="number"
+              placeholder="Ej. 1.75"
+              formControlName="altura"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido1('altura')">
+            <p class="ion-padding-start">*La altura es obligatoria</p>
+            <p class="ion-padding-start">*Debe ser un número válido</p>
+          </ion-text>
+
+          <!-- Objetivo personal -->
+          <ion-item>
+  <ion-label position="stacked">Objetivo</ion-label>
+  <ion-select
+    formControlName="objetivo"
+    placeholder="Selecciona tu objetivo"
+  >
+    <ion-select-option *ngFor="let opcion of opcionObjetivo" [value]="opcion">
+      {{ opcion }}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+
+          <ion-text color="danger" *ngIf="campoNoValido1('objetivo')">
+            <p class="ion-padding-start">
+              *El objetivo personal es obligatorio
+            </p>
+          </ion-text>
+
+          <!-- País -->
+          <ion-item>
+            <ion-label position="stacked">País</ion-label>
+            <ion-select formControlName="pais" placeholder="Selecciona tu país">
+              <ion-select-option
+                *ngFor="let pais of paisesUnionEuropeaEEUU"
+                [value]="pais"
+              >
+                {{ pais }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido1('pais')">
+            <p class="ion-padding-start">*El país es obligatorio</p>
+          </ion-text>
+        </ion-list>
+
+        <!-- Botón -->
+        <div class="ion-text-center ion-padding">
+          <ion-button
+            expand="block"
+            type="submit"
+            color="primary"
+            [disabled]="perfilPaso1.invalid"
+          >
+            <ion-icon name="save" slot="start"></ion-icon>
+            Guardar cambios
+          </ion-button>
+        </div>
+      </form>
+    </ion-card>
+  </div>
+
+  <!-- PASO 3: Extras -->
+<!-- PASO 2: Redes y extras -->
+<div *ngIf="step === 2 && perfilPaso2">
+  <ion-card>
+    <ion-toolbar>
+      <ion-title>Ajustes del perfil</ion-title>
+    </ion-toolbar>
+
+    <form [formGroup]="perfilPaso2" (ngSubmit)="guardarPaso2()">
+      <ion-list lines="full">
+        <!-- Instagram -->
+        <ion-item>
+          <ion-label position="stacked">Instagram</ion-label>
+          <ion-input
+            type="text"
+            placeholder="@usuario"
+            formControlName="instagram"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Deporte favorito -->
+        <ion-item>
+          <ion-label position="stacked">Deporte favorito</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Ej. Fútbol"
+            formControlName="deporte"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Profesión -->
+        <ion-item>
+          <ion-label position="stacked">Profesión</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Profesión"
+            formControlName="profesion"
+          ></ion-input>
+        </ion-item>
+
+        <!-- Frase célebre -->
+        <ion-item>
+          <ion-label position="stacked">Frase célebre</ion-label>
+          <ion-input
+            type="text"
+            placeholder="Máximo 120 caracteres"
+            formControlName="fraseCelebre"
+          ></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="campoNoValido2('fraseCelebre')">
+          <p class="ion-padding-start">*Máximo 120 caracteres</p>
+        </ion-text>
+      </ion-list>
+
+      <!-- Botón -->
+      <div class="ion-text-center ion-padding">
+        <ion-button
+          expand="block"
+          type="submit"
+          color="primary"
+          [disabled]="perfilPaso2.invalid || botonBloqueado"
+        >
+          <ion-icon name="save" slot="start"></ion-icon>
+          Guardar cambios
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+</div>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

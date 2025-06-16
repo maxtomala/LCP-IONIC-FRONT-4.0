@@ -1,0 +1,59 @@
+<!-- shared/sidebar-right/sidebar-right.component.html -->
+
+<ion-menu side="end" contentId="main-content" menuId="right-menu">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú Derecho</ion-title>
+      <ion-buttons slot="end">
+        <ion-menu-toggle autoHide="false">
+          <ion-button (click)="menuCtrl.close('right-menu')" fill="clear">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-menu-toggle>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list  >
+      <ion-item>
+        <ion-avatar slot="start">
+          <!-- <img [src]="usuario?.imagenUrl" alt="user" /> -->
+          <img src="assets/perfil/2.jpg" alt="Profile Picture" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ usuario?.nombre }}</h2>
+          <!-- <p class="ion-text-wrap">
+            {{ usuario?.email | slice : 0 : 20
+            }}{{ usuario?.email?.length > 20 ? "..." : "" }}
+          </p> -->
+          <h2>Fran</h2>
+          <p>Fran_tintaazul_gmail.com</p>
+        </ion-label>
+      </ion-item>
+
+      <ion-item button [routerLink]="['/pages/perfil']">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label>Mi perfil</ion-label>
+      </ion-item>
+
+      <ion-item button [routerLink]="['/pages/menu-configuracion']">
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-label>Configuración de mis ligas</ion-label>
+      </ion-item>
+      <ion-item
+        button
+        [routerLink]="['/gestionarMisLigas/configuracionDeLaCuenta']"
+      >
+        <ion-icon name="cog-outline" slot="start"></ion-icon>
+        <ion-label>Configuración de la cuenta</ion-label>
+      </ion-item>
+      <ion-item lines="full"></ion-item>
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

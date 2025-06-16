@@ -1,0 +1,107 @@
+<br />
+<br />
+<br />
+<br />
+<ion-content [fullscreen]="true">
+e-quiniela-usar-creditos-lcp
+
+<!-- seleciona la lcp -->
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2 class="ion-text-center">
+      <strong style="text-decoration: underline">Liga Corporal profesional:</strong>
+    </h2>
+    <h3 class="ion-text-center">
+      <strong> Activaclub Almería</strong>
+    </h3>
+
+    <!-- Contenedor con scroll horizontal -->
+    <div>
+      <!-- Botón 1: Familia -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        GRUPO1
+      </ion-button>
+
+      <!-- Botón 2: Gym -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Gym')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        GRUPO2
+      </ion-button>
+
+      <!-- Botón 3: Familia2 -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia2')"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        GRUPO3
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<!-- tabla selecionar jugador para penalizar  -->
+
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <!-- Título de la Tabla -->
+      <h1>
+        <strong>
+          <i class="bi bi-trophy-fill"></i> Seleccione al jugador que desea penalizar
+          <i class="bi bi-trophy-fill"></i>
+        </strong>
+      </h1>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div style="display: flex; overflow-x: auto; padding: 10px 0;">
+        <table style="width: 100%; border-collapse: collapse; text-align: center">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>País</th>
+              <th>Seleccionar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let jugador of jugadores; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>
+                <ion-img
+                  [src]="jugador.img"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td>{{ jugador.nombre }}</td>
+              <td>{{ jugador.pais }}</td>
+              <td>
+                <ion-checkbox
+                  (ionChange)="confirmarPenalizacion(jugador)"
+                  color="danger"
+                ></ion-checkbox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

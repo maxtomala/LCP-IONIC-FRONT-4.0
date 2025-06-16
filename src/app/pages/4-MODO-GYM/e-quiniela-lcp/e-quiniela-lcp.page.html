@@ -1,0 +1,340 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  entrando e-quiniela-lcp
+
+  <!-- seleciona la lcp -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline"
+          >Liga Corporal profesional:</strong
+        >
+      </h2>
+      <h3 class="ion-text-center">
+        <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div>
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Swiper Container -->
+  <swiper-container
+    slides-per-view="1"
+    speed="500"
+    loop="true"
+    css-mode="true"
+    pagination="true"
+    navigation="true"
+  >
+    <!-- Paso 1 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-img
+            src="/assets/quinipeso/logo_quinipeso.png"
+            style="max-width: auto; height: 200px"
+          ></ion-img>
+
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 2 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>EL QUINIPESO</ion-card-title>
+          <br />
+          <p>
+            ¡Únete a las emocionantes apuestas gratuitas del quinipeso de la
+            Liga Corporal Profesional! Demuestra tus habilidades predictivas y
+            podrás ganar créditos al participar en nuestro quinipeso semanal.
+            <strong
+              >Envíanos tus pronósticos para los enfrentamientos de cada
+              jornada.</strong
+            >
+          </p>
+
+          <p>¡Mucha suerte!</p>
+
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+     <!-- Paso 3 -->
+     <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>¡Emoción en la quiniela semanal!</ion-card-title>
+          <br />
+          <p>
+            Si logras acertar todos los resultados de la jornada, te espera una recompensa especial:
+            ¡1 crédito que podrás utilizar estratégicamente! Este crédito te otorga el poder de restar 1 punto a algún compañero que
+            actualmente ocupe el codiciado primer lugar en la tabla clasificatoria.
+
+             Mantén la tensión hasta el último minuto y
+            sé el arquitecto de tu camino hacia la cima.
+          </p>
+
+          <p>¡Mucha suerte!</p>
+
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-card *ngIf="plantillas && plantillas.length">
+    <ion-card-content>
+      <div class="p-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <img
+            src="/assets/quinipeso/LA.png"
+            alt="báscula Image"
+            class="img-fluid"
+            style="width: 100%; max-width: auto; height: 100px"
+          />
+
+          <div class="mb-3">
+            <p class="mb-1">
+              <strong>Fecha de Inicio:</strong>
+              {{ plantillas[0]?.emparejamiento?.fechaInicio | date }}
+            </p>
+            <p class="mb-1">
+              <strong>Fecha Final:</strong>
+              {{ plantillas[0]?.emparejamiento?.fechaFinal | date }}
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="jornada-container d-flex align-items-center justify-content-center mb-3"
+          class="ion-text-center"
+        >
+          <h2 class="m-0 mx-2">
+            <ion-icon
+              name="arrow-back-circle-outline"
+              (click)="cambiarJornada(jornadaActual - 1)"
+              [class.disabled]="jornadaActual === 1"
+              class="jornada-icon"
+            ></ion-icon
+            ><strong
+              >&nbsp;Jornada {{ jornadaActual }} &nbsp;<ion-icon
+                name="arrow-forward-circle-outline"
+                (click)="cambiarJornada(jornadaActual + 1)"
+                class="jornada-icon"
+              ></ion-icon
+            ></strong>
+          </h2>
+        </div>
+
+        <form (ngSubmit)="guardarResultados()">
+          <div *ngFor="let quiniela of plantillas" class="enfrentamiento">
+            <div class="participante">
+              <img
+                [src]="quiniela.emparejamiento.participantes[0].img "
+                alt="imagen"
+                class="avatar cursor"
+              />
+              <br />
+              <div class="nombre-participante">
+                {{ quiniela.emparejamiento.participantes[0].nombre }}
+              </div>
+            </div>
+            <div class="opciones">
+              <label [class.selected]="quiniela.resultado === '1'">
+                <input
+                  type="radio"
+                  name="resultado_{{ quiniela.emparejamiento.id }}"
+                  [(ngModel)]="quiniela.resultado"
+                  [value]="'1'"
+                />
+                1
+              </label>
+              <label [class.selected]="quiniela.resultado === 'x'">
+                <input
+                  type="radio"
+                  name="resultado_{{ quiniela.emparejamiento.id }}"
+                  [(ngModel)]="quiniela.resultado"
+                  [value]="'x'"
+                />
+                X
+              </label>
+              <label [class.selected]="quiniela.resultado === '2'">
+                <input
+                  type="radio"
+                  name="resultado_{{ quiniela.emparejamiento.id }}"
+                  [(ngModel)]="quiniela.resultado"
+                  [value]="'2'"
+                />
+                2
+              </label>
+            </div>
+            <div class="participante">
+              <img
+                [src]="quiniela.emparejamiento.participantes[1].img "
+                alt="imagen"
+                class="avatar cursor"
+              />
+              <br />
+              <div class="nombre-participante">
+                {{ quiniela.emparejamiento.participantes[0].nombre }}
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">
+              Guardar Resultados
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div *ngIf="!plantillas || !plantillas.length" class="p-3">
+        <p>
+          No se encontraron plantillas de quinielas para la liga y jornada
+          especificadas.
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- RECLAMA TU PREMIO:  -->
+  <ion-card class="custom-card">
+    <ion-card-content class="ion-text-center">
+      <h2>
+        <strong>RECLAMA TU PREMIO:</strong>
+      </h2>
+
+      <!-- Imagen centrada -->
+      <ion-img
+      src="/assets/quinipeso/2.png"
+      alt="Premio Image"
+        class="prize-image"
+        style="height: 150px;width: 100px; "
+
+      ></ion-img>
+
+      <br />
+
+      <!-- Contenedor para la jornada y el selector -->
+      <div class="jornada-container">
+        <label for="jornada-select" class="jornada-label">Jornada:</label>
+        <ion-select
+          id="jornada-select"
+          [(ngModel)]="jornadaActualReclamarCreditos"
+          class="jornada-select"
+        >
+          <ion-select-option *ngFor="let jornada of jornadas" [value]="jornada">
+            {{ jornada }}
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+      <br />
+
+      <ion-button
+        class="btnReclamarPremio"
+        color="primary"
+        (click)="reclamarQuinielasPorCreditos()"
+        expand="full"
+      >
+        <ion-icon
+          name="caret-forward-circle"
+          slot="start"
+          class="icon-reclamar"
+        ></ion-icon>
+        RECLAMAR PREMIO
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+  <!-- Total de Créditos: -->
+<!-- Total de Créditos: -->
+<ion-card class="custom-card">
+  <ion-card-content class="ion-text-center">
+    <h2>
+      <strong>Total de Créditos:</strong>
+    </h2>
+    <h3 class="credits-subtitle" style="font-size: 60px; display: flex; align-items: center; justify-content: center;">
+      1
+      <ion-img
+        src="/assets/quinipeso/CREDITO.jpg"
+        alt="Premio Image"
+        style="height: 50px;width: 50px; "
+      ></ion-img>
+    </h3>
+
+    <br />
+    <p>Válido durante 5 días</p>
+    <br />
+
+    <ion-button
+      class="btnReclamarPremio"
+      color="primary"
+      [routerLink]="['/pages/e-quiniela-usar-creditos-lcp']"
+      expand="full"
+    >
+      <ion-icon
+        name="caret-forward-circle"
+        slot="start"
+        class="icon-reclamar"
+      ></ion-icon>
+      Usar Créditos
+    </ion-button>
+  </ion-card-content>
+</ion-card>
+
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

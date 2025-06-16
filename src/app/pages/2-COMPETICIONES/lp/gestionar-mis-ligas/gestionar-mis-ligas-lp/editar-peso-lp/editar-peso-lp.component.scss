@@ -1,0 +1,29 @@
+.tabla-peso {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center; /* centra el texto horizontalmente */
+}
+
+.tabla-peso th,
+.tabla-peso td {
+  padding: 4px 8px;
+  font-size: 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+  text-align: center; /* centra el texto en cada celda */
+}
+
+.tabla-peso th {
+  background-color: #f4f4f4;
+}
+
+.tabla-peso tr:hover {
+  background-color: #f9f9f9;
+}
+
+ion-input {
+  --padding-start: 0px;
+  --padding-end: 0px;
+  text-align: center; /* centra el contenido dentro del input */
+  margin: 0 auto; /* centra el input horizontalmente */
+}

@@ -1,0 +1,158 @@
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+pagina: e-aceptar-peso-lcp
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline">Liga corporal profesional:</strong>
+      </h2>
+      <h3 class="ion-text-center">
+       <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div
+        style="
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px 0;
+        "
+      >
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+
+
+    <ion-card-content>
+      <h2 class="ion-text-center" > <strong>Lista de Participantes</strong></h2>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Objetivo</th>
+              <th>Resultado Alumno</th>
+              <th>Editar Peso</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><ion-img src="assets/perfil/2.jpg" class="img-avatar"></ion-img></td>
+              <td>Juan Pérez</td>
+              <td>Subir de peso</td>
+              <td>+2 kg</td>
+              <td><ion-input placeholder="kg"></ion-input></td>
+              <td>Enviado</td>
+              <td>26/09/2024</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><ion-img src="assets/perfil/6.jpg" class="img-avatar"></ion-img></td>
+              <td>Ana Gómez</td>
+              <td>Bajar de peso</td>
+              <td>-1.5 kg</td>
+              <td><ion-input placeholder="kg"></ion-input></td>
+              <td><ion-button color="primary" size="small">Enviar</ion-button></td>
+              <td>25/09/2024</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><ion-img src="assets/perfil/7.jpg" class="img-avatar"></ion-img></td>
+              <td>Carlos Fernández</td>
+              <td>Subir de peso</td>
+              <td>+1 kg</td>
+              <td><ion-input placeholder="kg"></ion-input></td>
+              <td>Enviado</td>
+              <td>24/09/2024</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><ion-img src="assets/perfil/d5.jpg" class="img-avatar"></ion-img></td>
+              <td>Laura Martínez</td>
+              <td>Bajar de peso</td>
+              <td>-2 kg</td>
+              <td><ion-input placeholder="kg"></ion-input></td>
+              <td><ion-button color="primary" size="small">Enviar</ion-button></td>
+              <td>23/09/2024</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><ion-img src="assets/perfil/d6.png" class="img-avatar"></ion-img></td>
+              <td>Javier López</td>
+              <td>Subir de peso</td>
+              <td>+3 kg</td>
+              <td><ion-input placeholder="kg"></ion-input></td>
+              <td>Enviado</td>
+              <td>22/09/2024</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Botón "Aceptar Todo" centrado -->
+      <div style="text-align: center; margin-top: 20px;">
+        <ion-button color="success">Aceptar Todo</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>

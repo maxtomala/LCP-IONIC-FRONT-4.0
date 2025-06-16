@@ -1,0 +1,89 @@
+<ion-card class="liga-card-elegante">
+  <form [formGroup]="ligaForm" (ngSubmit)="crearLiga()">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center" style="color: white">
+        <div
+          style="display: flex; align-items: center; justify-content: center; gap: 8px;"
+        >
+          <ion-icon
+            name="people-outline"
+            style="font-size: 35px; color: white"
+          ></ion-icon>
+          <span>Grupo 1</span>
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <!-- Izquierda: Nombre + Objetivo -->
+          <ion-col size="7" size-md="4">
+            <ion-label class="input-label">🏷️ Nombre</ion-label>
+            <ion-input
+              placeholder="Nombre de la liga"
+              class="liga-input"
+              formControlName="nombre"
+            ></ion-input>
+            <ion-text color="danger" *ngIf="campoNoValido0(ligaForm, 'nombre')">
+              <p class="ion-padding-start">El nombre es obligatorio.</p>
+            </ion-text>
+
+            <ion-label class="input-label">🎯 Objetivo</ion-label>
+            <ion-select
+              interface="popover"
+              class="liga-input"
+              placeholder="Selecciona objetivo"
+              formControlName="objetivo"
+            >
+              <ion-select-option
+                *ngFor="let opcion of opcionesObjetivo"
+                [value]="opcion"
+              >
+                {{ opcion }}
+              </ion-select-option>
+            </ion-select>
+            <ion-text color="danger" *ngIf="campoNoValido0(ligaForm, 'objetivo')">
+              <p class="ion-padding-start">El objetivo es obligatorio.</p>
+            </ion-text>
+          </ion-col>
+
+          <!-- Derecha: Imagen + Fecha -->
+          <ion-col size="5" size-md="8" class="ion-text-center">
+            <img
+              src="assets/images/users/1.jpg"
+              class="liga-avatar-large"
+              alt="avatar"
+            />
+            <div class="liga-fecha ion-margin-top">
+              <ion-icon name="calendar-outline"></ion-icon>
+              24/06/2025
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <!-- Botón para crear liga corporal -->
+      <ion-col size="auto" class="ion-text-center">
+        <div>
+          <ion-button
+            class="mi-boton-personalizado"
+            expand="block"
+            type="submit"
+            size="large"
+            color="light"
+          >
+            <ion-icon name="create-outline"></ion-icon>
+            Crear liga corporal
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-card-content>
+  </form>
+</ion-card>
+
+<br />
+<br />
+<br />
+<br />
+<br />

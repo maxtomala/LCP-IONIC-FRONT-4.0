@@ -1,0 +1,50 @@
+/* Centrado de título */
+.ion-text-center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+/* Estilo de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+table thead {
+  background-color: #f1f1f1;
+}
+
+table th,
+table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+/* Imagen del alumno */
+.player-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Botón "Enviar" al final */
+ion-button.expand-block {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Responsive: Ajustes para pantallas pequeñas */
+@media (max-width: 600px) {
+  table th, table td {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+}

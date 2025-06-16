@@ -1,0 +1,105 @@
+  <ion-card >
+    <ion-toolbar>
+      <ion-title>Tarjeta de socio</ion-title>
+    </ion-toolbar>
+
+    <!-- Tarjeta de Socio en Ionic -->
+    <ion-card class="ion-text-center cardparticipante">
+      <!-- Parte Frontal -->
+      <div class="face front">
+        <div class="image-container">
+          <img [src]="imageUrl" alt="Imagen del socio" />
+        </div>
+        <h3 style="bottom: 20px;">Liga Corporal Profesional</h3>
+      </div>
+
+      <!-- Parte Posterior -->
+      <div class="face back" >
+        <ion-text color="light">
+          <h1 class="box-title m-0">
+            {{ usuario.nombre }} {{ usuario.apellido1 }}
+          </h1>
+        </ion-text>
+
+        <div class="ion-padding">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="4" class="ion-text-center">
+                <img
+                  *ngIf="!imgTemp"
+                  [src]="usuario.imagenUrl"
+                  class="img-avatar"
+                />
+                <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar" />
+                Peso actual
+                <ion-col size="6">
+                    <ion-button color="success" fill="outline" size="small">
+                      {{ usuario.pesoIdeal }} kg
+                    </ion-button>
+                  </ion-col>
+              </ion-col>
+
+              <ion-col size="8">
+                <ion-row class="custom-info">
+                  <ion-col size="6">
+                    <ion-icon name="male-female"></ion-icon><br>
+                    {{ usuario.genero }}
+                  </ion-col>
+                  <ion-col size="6" >
+                    <ion-icon name="globe" ></ion-icon><br>
+                    {{ usuario.pais }}
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="custom-info">
+                  <ion-col size="6">
+                    <ion-icon name="calendar"></ion-icon><br>
+                    {{ usuario.fechaNacimiento | date : "dd/MM/yyyy" }}
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-icon name="expand"></ion-icon><br>
+                    {{ usuario.altura }} m
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="custom-info">
+                  <ion-col size="6">
+                    <ion-icon name="fitness"></ion-icon><br>
+                    {{ usuario.deporte }}
+                  </ion-col>
+                  <ion-col size="6">
+                    <ion-icon name="logo-instagram"></ion-icon><br>
+                    {{ usuario.instagram }}
+                  </ion-col>
+                </ion-row>
+
+                <ion-row class="custom-info">
+                  <ion-col size="6">
+                    <ion-icon name="fitness"></ion-icon><br>
+                    {{ usuario.objetivo }}
+                  </ion-col>
+                  <!-- <ion-col size="6">
+                    <ion-button color="success" fill="outline" size="small">
+                      {{ usuario.pesoIdeal }} kg
+                    </ion-button>
+                  </ion-col> -->
+                </ion-row>
+              </ion-col>
+            </ion-row>
+<div style="font-size: 13px; font-weight: bold;">
+  Nº SOCIO: 1.000.023
+</div>
+
+            <ion-row class="ion-padding-top">
+              <ion-col>
+                <ion-text color="light">
+                  <h5 class="box-title2">Frase célebre:</h5>
+                  <p>"{{ usuario.fraseCelebre }}"</p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </div>
+    </ion-card>
+  </ion-card>

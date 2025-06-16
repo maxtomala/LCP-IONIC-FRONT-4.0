@@ -1,0 +1,5 @@
+// el submeu del fav aparece muy a la izq
+ion-fab-list {
+  transform: translateX(-75%); /* Centra horizontalmente respecto al fab principal */
+}
+

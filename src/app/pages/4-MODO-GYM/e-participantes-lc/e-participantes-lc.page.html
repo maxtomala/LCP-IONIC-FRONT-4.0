@@ -1,0 +1,115 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<ion-content [fullscreen]="true">
+e-participantes-lc
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline">Liga Corporal:</strong>
+      </h2>
+      <h3 class="ion-text-center">
+       <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div
+        style="
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px 0;
+        "
+      >
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content>
+      <div class="search-container">
+        <ion-icon name="search" class="search-icon"></ion-icon>
+        <ion-input placeholder="Buscar Participantes.." class="search-input"></ion-input>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <ion-card>
+    <img src="/assets/participantes/p-1.png" alt="Descripción de la imagen" />
+    <ion-button
+    color="primary"
+  >
+    seguir
+  </ion-button>
+
+  </ion-card>
+
+  <ion-card>
+    <img src="/assets/participantes/p-2.png" alt="Descripción de la imagen" />
+    <ion-button
+    color="primary"
+  >
+    seguir
+  </ion-button>
+
+  </ion-card>
+  <ion-card>
+    <img src="/assets/participantes/p-3.png" alt="Descripción de la imagen" />
+    <ion-button
+    color="primary"
+  >
+    seguir
+  </ion-button>
+
+  </ion-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ion-content>

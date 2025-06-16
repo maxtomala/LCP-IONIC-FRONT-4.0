@@ -1,0 +1,141 @@
+
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  e-cambiar-entrenador
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Cambiar de Entrenador</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+<!-- Tabla de Cambiar Entrenador -->
+<ion-card>
+
+
+  <br />
+
+  <!-- Contenido de la tabla -->
+  <ion-card-content>
+    <div class="profile-container">
+      <!-- Imagen del gimnasio (a la izquierda) -->
+      <div class="gym-logo">
+        <img src="/assets/gym/gym-3.png" alt="Logo del gimnasio" />
+      </div>
+
+      <!-- Nombre del Gimnasio (a la derecha) -->
+      <div class="profile-info">
+        <ion-card-title>Viva Gym</ion-card-title>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Foto</th>
+            <th>Entrenador</th>
+            <th>Estado</th>
+            <th>Nº Alumnos</th>
+            <th>LVL LCP</th>
+            <th>Especialidad</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Entrenador 1 -->
+          <tr>
+            <td>1</td>
+            <td>
+              <img
+                src="/assets/perfil/6.jpg"
+                alt="Entrenador 1"
+                class="player-photo"
+              />
+            </td>
+            <td>Alejandro Marck</td>
+            <td>Disponible</td>
+            <td>9/20</td>
+            <td>20</td>
+            <td>Fitness</td>
+            <td>
+              <ion-button color="primary" size="small">Solicitar</ion-button>
+            </td>
+          </tr>
+          <!-- Entrenador 2 -->
+          <tr>
+            <td>2</td>
+            <td>
+              <img
+                src="/assets/perfil/7.jpg"
+                alt="Entrenador 2"
+                class="player-photo"
+              />
+            </td>
+            <td>Sofia Lleibu</td>
+            <td>Ocupado</td>
+            <td>15/20</td>
+            <td>30</td>
+            <td>Nutrición</td>
+            <td>
+              <ion-button color="primary" size="small">Solicitar</ion-button>
+            </td>
+          </tr>
+          <!-- Entrenador 3 -->
+          <tr>
+            <td>3</td>
+            <td>
+              <img
+                src="/assets/perfil/2.jpg"
+                alt="Entrenador 3"
+                class="player-photo"
+              />
+            </td>
+            <td>Mateo Lazaro</td>
+            <td>Disponible</td>
+            <td>10/20</td>
+            <td>25</td>
+            <td>Yoga</td>
+            <td>
+              <ion-button color="primary" size="small">Solicitar</ion-button>
+            </td>
+          </tr>
+          <!-- Entrenador 4 -->
+          <tr>
+            <td>4</td>
+            <td>
+              <img
+                src="/assets/perfil/d5.jpg"
+                alt="Entrenador 4"
+                class="player-photo"
+              />
+            </td>
+            <td>Lucia Perez</td>
+            <td>Disponible</td>
+            <td>18/20</td>
+            <td>35</td>
+            <td>Rehabilitación</td>
+            <td>
+              <ion-button color="primary" size="small">Solicitar</ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-card-content>
+
+  <ion-card-content>
+    <ion-button expand="block" color="secondary">Enviar</ion-button>
+  </ion-card-content>
+</ion-card>
+
+*posiblemente ocultar la columna lvl torneo
+
+
+
+</ion-content>

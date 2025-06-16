@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Siguiendo</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+
+<ion-card >
+<ion-list>
+  <ion-item *ngFor="let user of usuarios" lines="none">
+    <ion-avatar slot="start">
+      <img [src]="user.imagen" alt="avatar" />
+    </ion-avatar>
+
+    <ion-label>
+      <h2>{{ user.nombre }}</h2>
+      <p style="margin: 0; color: var(--ion-color-medium)">{{ user.correo }}</p>
+      <p style="margin-top: 8px;">{{ user.descripcion }}</p>
+    </ion-label>
+
+    <ion-button
+      slot="end"
+      fill="outline"
+      size="small"
+      color="primary"
+    >
+      Siguiendo
+    </ion-button>
+  </ion-item>
+</ion-list>
+
+</ion-card>
+</ion-content>

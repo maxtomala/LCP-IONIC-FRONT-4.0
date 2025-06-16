@@ -1,0 +1,106 @@
+/* Contenedor principal del card */
+.liga-card-elegante ion-card-header {
+  background: linear-gradient(135deg, #3f51b5, #5c6bc0);
+  color: white;
+  padding: 20px;
+}
+
+.liga-card-elegante {
+  margin: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+
+
+ion-card {
+  --background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 20px;
+}
+
+/* Centrar el contenido y poner color si quieres */
+ion-card-content {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilo para el título */
+ion-card-content h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+/* Contenedor del scroll horizontal */
+div {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 0;
+  -webkit-overflow-scrolling: touch; /* para smooth scroll en iOS */
+}
+
+/* Tabla completa */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* para que no se achique demasiado */
+}
+
+/* Estilos para cabecera */
+thead tr {
+  background-color: #f2f2f2;
+}
+
+thead th {
+  padding: 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #444;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Filas de la tabla */
+tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+/* Celdas */
+tbody td {
+  padding: 10px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* Para centrar la columna del icono de eliminar */
+tbody td ion-icon {
+  cursor: pointer;
+  font-size: 22px;
+  color: #d9534f; /* rojo para eliminar */
+  transition: color 0.3s ease;
+}
+
+tbody td ion-icon:hover {
+  color: #c9302c;
+}
+
+/* Imagen redonda */
+tbody img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Responsive: para pantallas pequeñas */
+@media (max-width: 600px) {
+  table {
+    min-width: 500px;
+  }
+}

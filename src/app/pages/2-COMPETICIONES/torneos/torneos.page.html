@@ -1,0 +1,495 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Torneos</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 style="text-decoration: underline">
+        <strong>Mis grupos</strong>
+      </h2>
+
+      <div class="ion-margin-top">
+        <!-- <ion-button
+            *ngFor="let liga of ligaCorporal"
+            expand="block"
+            color="primary"
+            class="ion-margin-vertical"
+            (click)="accionBoton(liga.nombre)"
+          >
+            <ion-icon name="fitness" slot="start"></ion-icon>
+            {{ liga.nombre }}
+          </ion-button> -->
+
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Familia
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Gym
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Familia2
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- tabla de torneo-->
+  <ion-card>
+    <h1 class="ion-text-center">Torneo de elimninatorias</h1>
+
+    <div class="torneo-peso torneo-peso--scrollable">
+      <!-- Ronda de Cuartos de Final -->
+      <div class="torneo-peso__round">
+        <h3 class="torneo-peso__round-title">Cuartos de Final</h3>
+        <ul class="torneo-peso__list">
+          <!-- Partido 1 -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 1"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Juan Pérez</span>
+                    </td>
+                    <td>4</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/6.jpg"
+                        alt="User 2"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Maria Gómez</span>
+                    </td>
+                    <td>1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <!-- Partido 2 -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/d5.jpg"
+                        alt="User 3"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Carlos Díaz</span>
+                    </td>
+                    <td>2</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 4"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Sara Lopez</span>
+                    </td>
+                    <td>0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <!-- Partido 3 -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/d6.png"
+                        alt="User 5"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Pedro Martínez</span>
+                    </td>
+                    <td>3</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 6"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Lucia Herrera</span>
+                    </td>
+                    <td>1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <!-- Partido 4 -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 7"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Andrés Castro</span>
+                    </td>
+                    <td>4</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/6.jpg"
+                        alt="User 8"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Eva Martínez</span>
+                    </td>
+                    <td>2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ronda de Semifinales -->
+      <div class="torneo-peso__round">
+        <h3 class="torneo-peso__round-title">Semifinales</h3>
+        <ul class="torneo-peso__list">
+          <!-- Partido 1 de Semifinal -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 1"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Juan Pérez</span>
+                    </td>
+                    <td>3</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/6.jpg"
+                        alt="User 3"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Carlos Díaz</span>
+                    </td>
+                    <td>2</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+
+          <!-- Partido 2 de Semifinal -->
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 5"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Pedro Martínez</span>
+                    </td>
+                    <td>2</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/d5.jpg"
+                        alt="User 7"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Andrés Castro</span>
+                    </td>
+                    <td>1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ronda de Final -->
+      <div class="torneo-peso__round">
+        <h3 class="torneo-peso__round-title">Final</h3>
+        <ul class="torneo-peso__list">
+          <li class="torneo-peso__item">
+            <div class="torneo-peso__match" tabindex="0">
+              <table class="torneo-peso__table">
+                <tbody>
+                  <tr class="torneo-peso__team torneo-peso__team--winner">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/2.jpg"
+                        alt="User 1"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Juan Pérez</span>
+                    </td>
+                    <td>4</td>
+                  </tr>
+                  <tr class="torneo-peso__team">
+                    <td class="torneo-peso__player">
+                      <img
+                        src="assets/perfil/6.jpg"
+                        alt="User 5"
+                        class="torneo-peso__avatar"
+                      />
+                      <span>Pedro Martínez</span>
+                    </td>
+                    <td>3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ion-card>
+
+  <!-- Swiper Container -->
+  <swiper-container
+    slides-per-view="1"
+    speed="500"
+    loop="true"
+    css-mode="true"
+    pagination="true"
+    navigation="true"
+  >
+    <!-- Paso 1 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>Pais</ion-card-title>
+          <br />
+          <p>España.</p>
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 2 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>participantes</ion-card-title>
+          <br />
+          <p>32</p>
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 3 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>torneo creado</ion-card-title>
+          <br />
+          <p>20/12/2024</p>
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 4 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>admin. </ion-card-title>
+          <br />
+          <p>Alex collado</p>
+          <br />
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- introducir peso corporal-->
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <!-- Fila de la imagen y el formulario en la misma línea -->
+        <ion-row class="ion-align-items-center">
+          <!-- Columna de la imagen (izquierda) -->
+          <ion-col
+            size="3"
+            class="ion-text-center ion-align-self-center"
+            style="display: flex; justify-content: center"
+          >
+            <ion-img
+              src="/assets/imagen/báscula.jpg"
+              style="width: 100%; max-width: 80px; height: auto"
+            ></ion-img>
+          </ion-col>
+
+          <!-- Columna del formulario (derecha) -->
+          <ion-col size="9">
+            <ion-item>
+              <ion-label class="ion-text-wrap">
+                <h2 class="ion-text-center">
+                  <strong>Introduce tu peso semanal</strong>&nbsp;
+                  <ion-icon
+                    name="information-circle-outline"
+                    slot="end"
+                    title="*El botón estará activo los Lunes y Martes para guardar el peso semanal."
+                  ></ion-icon>
+                </h2>
+              </ion-label>
+            </ion-item>
+
+            <!-- Formulario de peso -->
+            <form (ngSubmit)="guardarPeso()" [formGroup]="registroPesoLpForm">
+              <ion-item>
+                <ion-input
+                  type="number"
+                  placeholder="KG"
+                  formControlName="peso"
+                  class="ion-text-right peso-input"
+                ></ion-input>
+              </ion-item>
+            </form>
+          </ion-col>
+        </ion-row>
+
+        <!-- Botón de aceptar que ocupa todo el ancho -->
+        <div class="submit-container" style="margin-top: 20px">
+          <ion-button expand="block" color="primary">
+            <ion-icon name="send" slot="start"></ion-icon>
+            Enviar a entrenador
+          </ion-button>
+        </div>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <!-- Encabezado de Comentarios -->
+      <div class="comments-header">
+        <h2 class="comments-title">Comentarios</h2>
+        <div class="comments-count">6</div>
+        <ion-button fill="clear" slot="end" class="comments-dropdown">
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </div>
+
+      <!-- Contenedor del Comentario -->
+      <div class="comment-container">
+        <div class="comment-header">
+          <img
+            src="assets/perfil/2.jpg"
+            alt="User Profile"
+            class="comment-avatar"
+          />
+          <div class="comment-info">
+            <h3 class="comment-author">Juan Pérez</h3>
+            <span class="comment-date">26 de octubre, 2024</span>
+          </div>
+        </div>
+        <p class="comment-text">
+          ¡Este torneo ha sido increíble! Me encantó cada partido y la emoción
+          fue palpable.
+        </p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+    style="margin-bottom: 100px"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <div class="fab-item">
+        <div class="fab-label">Editar perfil</div>
+        <ion-fab-button>
+          <ion-icon name="color-palette"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <div class="fab-item">
+        <div class="fab-label">Cambiar objetivos</div>
+        <ion-fab-button>
+          <ion-icon name="globe"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </ion-fab-list>
+  </ion-fab>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

@@ -1,0 +1,191 @@
+<<<<<<< HEAD
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+=======
+>>>>>>> a2f79f3 (se soluciona error version)
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+//  @import "@ionic/angular/css/palettes/dark.always.css";
+// @import "@ionic/angular/css/palettes/dark.class.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+// @import "./assets/css/colors/red.css";
+// @import "./assets/css/colors/purple-dark.css";
+
+// ion-toolbar.topbar {
+//   --background: var(--ion-color-primary);
+//   color: var(--ion-color-primary-contrast);
+// }
+
+// global.scss
+
+#content{
+  margin-top: 50px; //Añade un espacio de 56 píxeles arriba del contenido. Esto suele reservar espacio para un header fijo.
+  margin-bottom: 50px; //Añade un espacio de 356 píxeles debajo del contenido. Esto suele reservar espacio para un footer muy alto o fijo.
+
+}
+
+/* Ajusta el padding-bottom al alto real del footer */
+// #main-content {
+//   padding-top: 56px; /* Ajusta según el alto real de tu footer */
+// }
+
+<<<<<<< HEAD
+// alert de guardado correctamente 
+=======
+// alert de guardado correctamente
+>>>>>>> a2f79f3 (se soluciona error version)
+.toast-custom-success {
+  --background: #ffffff;         /* Fondo blanco */
+  --color: #2dd36f;              /* Texto verde (color 'success') */
+  border: 2px solid #2dd36f;     /* Borde verde */
+  border-radius: 8px;
+  text-align: center;
+}
+
+
+// ion-header {
+//   min-height: 56px;
+// }
+// ion-content {
+//   margin-top: 53px! important;
+
+//   ion-toolbar {
+//     margin-top: 53px;
+//   }
+// }
+
+// .bg-theme {
+//   background: #f62d51 !important; /* O el color de tu tema */
+//   color: #fff;
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+//  boton flotante
+ion-fab-list {
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  transform: translateX(-145px); //desplaza el submenú hacia la izquierda
+}
+
+.fab-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  animation: fadeInUp 0.3s forwards;
+  transition: transform 0.2s ease;
+}
+
+.fab-item:hover {
+  transform: translateX(-4px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fab-label {
+  font-size: 14px;
+  background: #0054e9;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-right: 10px;
+  white-space: nowrap;
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 🔁 Cuando se hace hover sobre todo el ítem (botón + texto) */
+.fab-item:hover .fab-label {
+  background: white;       /* Cambia el fondo del texto a blanco */
+  color: black;            /* Cambia el color del texto a negro */
+  cursor: pointer;         /* Cambia el cursor a puntero para indicar interactividad */
+}
+
+/* 🎯 Aplica estilo al ícono dentro del botón al hacer hover en el ítem */
+.fab-item:hover ion-icon {
+  background: white;       /* (Este no tiene efecto en el ícono directamente, puedes quitarlo si no necesitas fondo) */
+  color: black;            /* Cambia el color del ícono a negro */
+}
+
+/* 🎨 Cambia el fondo del botón del ícono (ion-fab-button) cuando se pasa el mouse por el ítem */
+.fab-item:hover ion-fab-button {
+  background: white !important;        /* Fondo del botón blanco */
+  --background: white !important;      /* Asegura compatibilidad con Ionic */
+}
+
+
+.fab-item ion-fab-button {
+  margin: 0;
+  background: #0054e9 !important;
+  --background: #0054e9;
+  --color: white;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  box-shadow: none;
+  transition: transform 0.2s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.fab-item ion-fab-button:hover {
+  background: #002f91 !important;
+  --color: #ffeb3b;
+  transform: scale(1.15);
+}

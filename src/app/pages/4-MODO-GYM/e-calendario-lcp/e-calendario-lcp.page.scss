@@ -1,0 +1,37 @@
+
+
+
+
+// jornadas del calendario
+/* Tamaño de avatar reducido para dispositivos móviles */
+.small-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* Alineación y tamaño de texto */
+.small-text {
+  font-size: 0.85rem;
+}
+
+/* Contenedor de cada jornada */
+.jornada-container {
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Ajustes específicos para la tabla en móvil */
+.table-header,
+.table-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Separación entre elementos */
+.table-header ion-col,
+.table-row ion-col {
+  padding: 5px 0;
+}

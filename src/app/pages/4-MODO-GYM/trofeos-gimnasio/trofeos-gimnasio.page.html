@@ -1,0 +1,211 @@
+<br>
+<br>
+
+<ion-content [fullscreen]="true">
+  <!-- Encabezado con título centrado -->
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large" class="titulo-centrado">trofeos-gimnasio</ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Contenido Principal -->
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <!-- Fila para foto de perfil, nombre y barra de experiencia -->
+        <ion-row class="align-items-center">
+          <ion-col size="2">
+            <!-- Foto de perfil -->
+            <ion-avatar>
+              <img src="/assets/gym/gym-3.png" />
+            </ion-avatar>
+          </ion-col>
+
+          <ion-col size="3">
+            <!-- Nombre del gimnasio -->
+            <ion-label>
+              <h2>vivagym</h2>
+              <p>Trofeos:6
+
+              </p> <!-- Agregado aquí -->
+
+            </ion-label>
+          </ion-col>
+
+          <ion-col size="5">
+            <!-- Barra de experiencia -->
+            <ion-progress-bar value="0.7" color="success"></ion-progress-bar>
+          </ion-col>
+
+          <ion-col size="2" class="ion-text-center">
+            <!-- Nivel del usuario -->
+            <ion-label>
+              <h3>lvl: 30</h3>
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- Pestañas  -->
+  <ion-segment (ionChange)="segmentChanged($event)"  value="amistoso">
+    <ion-segment-button value="amistoso">
+      <ion-label>Amistoso
+      </ion-label>
+
+    </ion-segment-button>
+    <ion-segment-button value="competitivo">
+      <ion-label>Competitivo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Contenido Condicional Basado en la Pestaña Seleccionada -->
+  <div *ngIf="selectedSegment === 'amistoso'">
+    <ion-card style="text-align: center;">
+      <!-- Contenido de la pestaña "Amistoso" -->
+      <p> Registraste en una competicion para ganar un trofeo.</p>
+    </ion-card>
+  </div>
+
+  <div *ngIf="selectedSegment === 'competitivo'" class="card-transparente">
+
+    <ion-grid>
+      <ion-row>
+        <!-- Primera Card -->
+        <ion-col size="6">
+          <ion-card>
+            <ion-img src="/assets/trofeos/3.jpg"></ion-img>
+            <!-- Imagen del trofeo -->
+            <ion-card-content>
+              <ion-label class="contenido-pequeno">
+                <p><strong>Registro:</strong> 2310/2024</p>
+                <p><strong>Nº Participantes:</strong> 10</p>
+                <p><strong>Admin del Torneo:</strong> Alex Collado</p>
+                <p><strong>Competidores:</strong> Vivagym vs Tegnogym</p>
+              </ion-label>
+              <!-- Botón más pequeño -->
+              <ion-button
+                expand="block"
+                size="small"
+                color="primary"
+                [routerLink]="['/pages/trofeos-gimnasio-mas-detalles']"
+              >
+                Más detalles
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Segunda Card -->
+        <ion-col size="6">
+          <ion-card>
+            <ion-img src="/assets/trofeos/1.jpg"></ion-img>
+            <!-- Imagen del trofeo -->
+            <ion-card-content>
+              <ion-label class="contenido-pequeno">
+                <p><strong>Registro:</strong> 1520/2024</p>
+                <p><strong>Nº Participantes:</strong> 8</p>
+                <p><strong>Admin del Torneo:</strong> María Pérez</p>
+                <p><strong>Competidores:</strong> Fitgym vs Progym</p>
+              </ion-label>
+              <!-- Botón más pequeño -->
+              <ion-button
+                expand="block"
+                size="small"
+                color="primary"
+                [routerLink]="['/pages/trofeos-gimnasio-mas-detalles']"
+              >
+                Más detalles
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+      <ion-row>
+        <!-- Primera Card -->
+        <ion-col size="6">
+          <ion-card>
+            <ion-img src="/assets/trofeos/4.jpg"></ion-img>
+            <!-- Imagen del trofeo -->
+            <ion-card-content>
+              <ion-label class="contenido-pequeno">
+                <p><strong>Registro:</strong> 2310/2024</p>
+                <p><strong>Nº Participantes:</strong> 10</p>
+                <p><strong>Admin del Torneo:</strong> Alex Collado</p>
+                <p><strong>Competidores:</strong> Vivagym vs Tegnogym</p>
+              </ion-label>
+              <!-- Botón más pequeño -->
+              <ion-button
+                expand="block"
+                size="small"
+                color="primary"
+                [routerLink]="['/pages/trofeos-gimnasio-mas-detalles']"
+              >
+                Más detalles
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Segunda Card -->
+        <ion-col size="6">
+          <ion-card>
+            <ion-img src="/assets/trofeos/5.jpg"></ion-img>
+            <!-- Imagen del trofeo -->
+            <ion-card-content>
+              <ion-label class="contenido-pequeno">
+                <p><strong>Registro:</strong> 1520/2024</p>
+                <p><strong>Nº Participantes:</strong> 8</p>
+                <p><strong>Admin del Torneo:</strong> María Pérez</p>
+                <p><strong>Competidores:</strong> Fitgym vs Progym</p>
+              </ion-label>
+              <!-- Botón más pequeño -->
+              <ion-button
+                expand="block"
+                size="small"
+                color="primary"
+                [routerLink]="['/pages/trofeos-gimnasio-mas-detalles']"
+              >
+                Más detalles
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+  </div>
+
+
+
+  <ion-fab
+  vertical="bottom"
+  horizontal="end"
+  slot="fixed"
+  style="z-index: 500; margin-bottom: 45px"
+  >
+  <ion-fab-button (click)="toggleMenu()">
+    <ion-icon name="list-outline"></ion-icon>
+    <!-- Icono de lista desplegable -->
+  </ion-fab-button>
+
+  <!-- Menú desplegable hacia la izquierda (start) con botones rectangulares -->
+  <div class="fab-menu" *ngIf="isMenuOpen">
+
+
+
+    <!-- Calendario LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/trofeos-conseguidos']">
+      <ion-icon slot="start" name="trophy-outline"></ion-icon> Trofeos conseguidos
+    </ion-button>
+
+  </div>
+  </ion-fab>
+
+
+</ion-content>

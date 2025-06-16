@@ -1,0 +1,23 @@
+ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 10px;
+}
+
+ion-icon {
+  color: #3880ff; /* Color azul para los íconos */
+  font-size: 1.4em; /* Aumenta el tamaño de los íconos */
+  margin-right: 10px; /* Espacio entre el ícono y el label */
+}
+
+ion-label {
+  font-weight: bold; /* Hace que el texto del label sea negrita */
+}
+
+ion-button {
+  margin-top: 20px; /* Espacio superior para el botón */
+  --background: #3880ff; /* Color del fondo del botón */
+}
+
+ion-button[disabled] {
+  --background: #ccc; /* Cambia el color del botón cuando está deshabilitado */
+}

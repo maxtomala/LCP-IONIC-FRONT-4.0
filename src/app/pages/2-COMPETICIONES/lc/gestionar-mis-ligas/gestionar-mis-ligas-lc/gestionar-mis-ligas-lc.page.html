@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Gestionar Lc</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+
+<ion-card style="margin-top: 8px; margin-bottom: 8px">
+  <ion-segment (ionChange)="segmentChanged($event)" scrollable [value]="segmentValue">
+    <ion-segment-button value="crear">
+      <ion-label>Crear Liga Corporal</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="editar">
+      <ion-label>Editar</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="eliminar">
+      <ion-label>Eliminar Participantes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-card>
+
+<!-- Aquí mostramos el componente que corresponda -->
+<div [ngSwitch]="segmentValue">
+  <app-crear-lc *ngSwitchCase="'crear'"></app-crear-lc>
+  <app-editar-lc *ngSwitchCase="'editar'"></app-editar-lc>
+  <app-eliminar-participantes-lc *ngSwitchCase="'eliminar'"></app-eliminar-participantes-lc>
+</div>
+
+
+
+
+

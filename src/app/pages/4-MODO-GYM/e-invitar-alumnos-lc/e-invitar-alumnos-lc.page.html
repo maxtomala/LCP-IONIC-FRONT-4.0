@@ -1,0 +1,153 @@
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<ion-content [fullscreen]="true">
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2><strong>Invitar Alumno</strong></h2>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center" style="text-decoration: underline">
+        <strong>Liga Corporal</strong>
+      </h2>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div
+        style="
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px 0;
+        "
+      >
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Familia
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Gym
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          Familia2
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th >#</th>
+              <th>Foto</th>
+              <th>Nombre</th>
+              <th>Objetivo</th>
+              <th>Solicitud</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>
+                <ion-img src="/assets/perfil/d6.png" class="img-avatar"></ion-img>
+              </td>
+              <td>Juan Pérez</td>
+              <td>Subir de peso</td>
+              <td>Enviado</td>
+              <td>Dentro</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>
+                <ion-img src="/assets/perfil/2.jpg" class="img-avatar"></ion-img>
+              </td>
+              <td>Ana López</td>
+              <td>Bajar de peso</td>
+              <td>
+                <ion-button size="small" fill="outline">Enviar</ion-button>
+              </td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>
+                <ion-img src="/assets/perfil/6.jpg" class="img-avatar"></ion-img>
+              </td>
+              <td>Pedro Martínez</td>
+              <td>Subir de peso</td>
+              <td>Enviado</td>
+              <td>Dentro</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>
+                <ion-img src="/assets/perfil/d5.jpg" class="img-avatar"></ion-img>
+              </td>
+              <td>María García</td>
+              <td>Bajar de peso</td>
+              <td>Rechazado</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>
+                <ion-img src="/assets/perfil/7.jpg" class="img-avatar"></ion-img>
+              </td>
+              <td>María García</td>
+              <td>Bajar de peso</td>
+              <td>
+                <ion-button size="small" fill="outline">Enviar</ion-button>
+              </td>
+              <td>No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+
+
+</ion-content>

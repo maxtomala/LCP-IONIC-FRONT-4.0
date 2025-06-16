@@ -1,0 +1,307 @@
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  e-quiniela-ganadores-lcp
+
+  <!-- seleciona la lcp -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline"
+          >Liga Corporal profesional:</strong
+        >
+      </h2>
+      <h3 class="ion-text-center">
+        <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div>
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- titulo de ganadores  -->
+  <ion-card class="custom-card">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row
+          class="ion-justify-content-center ion-align-items-center no-wrap"
+        >
+          <!-- Logo a la izquierda -->
+          <ion-col size="auto" class="ion-text-center">
+            <ion-img
+              src="/assets/quinipeso/logo_quinipeso.png"
+              alt="logo quinipeso"
+              style="width: 30px; height: auto"
+            ></ion-img>
+          </ion-col>
+
+          <!-- Título en el centro -->
+          <ion-col size="auto" class="ion-text-center">
+            <h4 class="title-text">
+              <strong>GANADORES/PENALIZADOS <br />DEl QUINIPESO</strong>
+            </h4>
+          </ion-col>
+
+          <!-- Logo a la derecha -->
+          <ion-col size="auto" class="ion-text-center">
+            <ion-img
+              src="/assets/quinipeso/logo_quinipeso.png"
+              alt="logo quinipeso"
+              style="width: 30px; height: auto"
+            ></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- listado de  ganadores y PENALIZADOS  -->
+  <ion-card *ngIf="ligaSeleccionada" class="custom-card">
+    <ion-card-content class="text-center">
+      <ng-container *ngIf="ligaSeleccionada">
+        <ng-container *ngIf="ganadoresPorJornada">
+          <ng-container *ngFor="let jornada of jornadas">
+            <h1>Jornada {{ jornada }}</h1>
+            <ng-container *ngIf="ganadoresPorJornada[jornada]">
+              <ng-container *ngIf="ganadoresPorJornada[jornada].ganadores && ganadoresPorJornada[jornada].ganadores.length > 0">
+                <h4><strong><b>Ganadores:</b></strong></h4>
+                <ion-list>
+                  <ion-item *ngFor="let ganador of ganadoresPorJornada[jornada].ganadores">
+                    <ion-avatar slot="start">
+                      <ion-img [src]="ganador.img " alt="imagen"></ion-img>
+                    </ion-avatar>
+                    <ion-label>
+                      {{ ganador.nombre }}
+                    </ion-label>
+                  </ion-item>
+                </ion-list>
+                <h4><strong><b>Penalizados:</b></strong></h4>
+                <h5><strong><b>sin registro</b></strong></h5>
+
+
+              </ng-container>
+              <ng-container *ngIf="ganadoresPorJornada[jornada].ganadores.length === 0">
+                <p>No hay ganadores en esta jornada.</p>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="!ganadoresPorJornada[jornada]">
+              <p>No hay información disponible para esta jornada.</p>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!ganadoresPorJornada">
+          <p>No hay información de ganadores disponible.</p>
+        </ng-container>
+      </ng-container>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- titulo de CONSULTA TUS QUINIPESO Y LA DE TUS COMPAÑEROS-->
+  <ion-card class="custom-card">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row
+          class="ion-justify-content-center ion-align-items-center no-wrap"
+        >
+          <!-- Logo a la izquierda -->
+          <ion-col size="auto" class="ion-text-center">
+            <ion-img
+              src="/assets/quinipeso/logo_quinipeso.png"
+              alt="logo quinipeso"
+              style="width: 30px; height: auto"
+            ></ion-img>
+          </ion-col>
+
+          <!-- Título en el centro -->
+          <ion-col size="auto" class="ion-text-center">
+            <h4 class="title-text">
+              <strong
+                >CONSULTA TUS QUINIPESO Y <br />LA DE TUS COMPAÑEROS</strong
+              >
+            </h4>
+          </ion-col>
+
+          <!-- Logo a la derecha -->
+          <ion-col size="auto" class="ion-text-center">
+            <ion-img
+              src="/assets/quinipeso/logo_quinipeso.png"
+              alt="logo quinipeso"
+              style="width: 30px; height: auto"
+            ></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!--  CONSULTA TUS QUINIPESO Y LA DE TUS COMPAÑEROS  -->
+
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label><strong>Seleccionar Participante:</strong></ion-label>
+              <ion-select
+                id="participanteSelect"
+                interface="popover"
+                [(ngModel)]="selectedParticipante"
+                (ionChange)="onParticipanteChange($event)"
+              >
+                <ion-select-option
+                  *ngFor="let participante of participantes"
+                  [value]="participante.id"
+                >
+                  {{ participante.nombre }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-row class="ion-justify-content-center ion-align-items-center">
+              <ion-icon
+                name="arrow-back-circle"
+                class="mx-2"
+                (click)="cambiarJornada(jornadaActual - 1)"
+                [class.disabled]="jornadaActual === 1"
+                style="font-size: 2rem"
+              ></ion-icon>
+
+              <ion-text>
+                <h2><strong>Jornada 1{{ jornadaActual }}</strong></h2>
+              </ion-text>
+
+              <ion-icon
+                name="arrow-forward-circle"
+                class="mx-2"
+                (click)="cambiarJornada(jornadaActual + 1)"
+                style="font-size: 2rem"
+              ></ion-icon>
+            </ion-row>
+
+            <ion-row *ngIf="errorMessage" class="ion-text-center">
+              <ion-col>
+                <ion-alert
+                  color="danger"
+                  [message]="errorMessage"
+                  translucent="true"
+                ></ion-alert>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="resultadosQuiniela">
+              <ion-col>
+
+                <ion-text class="ion-text-center">
+                  <p>
+                    <strong>Fecha de Inicio:</strong> {{
+                    resultadosQuiniela.fechaInicio | date }}
+                  </p>
+                  <p>
+                    <strong>Fecha Final:</strong> {{
+                    resultadosQuiniela.fechaFinal | date }}
+                  </p>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+
+            <ion-row
+              *ngFor="let quiniela of resultadosQuiniela.quinielas"
+              class="enfrentamiento ion-align-items-center"
+            >
+              <ion-col size="4" class="participante ion-text-center">
+                <ion-avatar>
+                  <ion-img
+                    [src]="quiniela.emparejamiento.participantes[0].img"
+                    alt="imagen"
+                  ></ion-img>
+                </ion-avatar>
+                <ion-label
+                  >{{ quiniela.emparejamiento.participantes[0].nombre
+                  }}</ion-label
+                >
+              </ion-col>
+
+              <ion-col size="4" class="opciones ion-text-center " >
+                <ion-item lines="none">
+                  <ion-label>1</ion-label>
+                  <ion-radio-group [(ngModel)]="quiniela.resultado">
+                    <ion-radio value="1"></ion-radio>
+                  </ion-radio-group>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>X</ion-label>
+                  <ion-radio-group [(ngModel)]="quiniela.resultado">
+                    <ion-radio value="x"></ion-radio>
+                  </ion-radio-group>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-label>2</ion-label>
+                  <ion-radio-group [(ngModel)]="quiniela.resultado">
+                    <ion-radio value="2"></ion-radio>
+                  </ion-radio-group>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="4" class="participante ion-text-center">
+                <ion-avatar>
+                  <ion-img
+                    [src]="quiniela.emparejamiento.participantes[1].img "
+                    alt="imagen"
+                  ></ion-img>
+                </ion-avatar>
+                <ion-label
+                  >{{ quiniela.emparejamiento.participantes[1].nombre
+                  }}</ion-label
+                >
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

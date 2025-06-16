@@ -1,0 +1,168 @@
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2 style="text-decoration: underline">
+      <strong>Mis grupos</strong>
+    </h2>
+
+    <div class="ion-margin-top">
+      <!-- <ion-button
+            *ngFor="let liga of ligaCorporal"
+            expand="block"
+            color="primary"
+            class="ion-margin-vertical"
+            (click)="accionBoton(liga.nombre)"
+          >
+            <ion-icon name="fitness" slot="start"></ion-icon>
+            {{ liga.nombre }}
+          </ion-button> -->
+
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia
+      </ion-button>
+
+      <!-- Botón 2: Gym -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Gym')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Gym
+      </ion-button>
+
+      <!-- Botón 3: Familia2 -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia2')"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia2
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <div *ngIf="plantillas && plantillas.length" class="p-3">
+      <div style="text-align: center">
+        <img
+        src="/assets/quinipeso/LA.png"
+        alt="báscula Image"
+        style="width: 100%; max-width: 200px; height: auto; margin-bottom: -30px"
+        />
+      </div>
+
+      <div style="margin-left: 10px;">
+      <div class="mb-3">
+        <p class="mb-1">
+          <strong>Fecha de Inicio:</strong>
+          {{ plantillas[0]?.emparejamiento?.fechaInicio | date }}
+        </p>
+        <p class="mb-1">
+          <strong>Fecha Final:</strong>
+          {{ plantillas[0]?.emparejamiento?.fechaFinal | date }}
+        </p>
+      </div>
+</div>
+    <div class="jornada-nav">
+      <i
+        class="bi bi-arrow-left-circle"
+        (click)="cambiarJornada(jornadaActual - 1)"
+        [class.disabled]="jornadaActual === 1"
+      ></i>
+      <h2>
+        <strong>Jornada {{ jornadaActual }}</strong>
+      </h2>
+      <i
+        class="bi bi-arrow-right-circle"
+        (click)="cambiarJornada(jornadaActual + 1)"
+      ></i>
+    </div>
+
+    <form (ngSubmit)="guardarResultados()">
+      <div *ngFor="let quiniela of plantillas" class="enfrentamiento">
+        <div class="participante">
+          <!-- [src]="quiniela.emparejamiento.participantes[0].img | imagen : 'usuarios'" -->
+          <img
+            src="assets/images/users/1.jpg"
+            alt="imagen"
+            class="avatar cursor"
+          />
+          <br />
+          {{ quiniela.emparejamiento.participantes[0].nombre }}
+        </div>
+        <div class="opciones">
+          <label [class.selected]="quiniela.resultado === '1'">
+            <input
+              type="radio"
+              name="resultado_{{ quiniela.emparejamiento.id }}"
+              [(ngModel)]="quiniela.resultado"
+              [value]="'1'"
+            />
+            1
+          </label>
+          <label [class.selected]="quiniela.resultado === 'x'">
+            <input
+              type="radio"
+              name="resultado_{{ quiniela.emparejamiento.id }}"
+              [(ngModel)]="quiniela.resultado"
+              [value]="'x'"
+            />
+            X
+          </label>
+          <label [class.selected]="quiniela.resultado === '2'">
+            <input
+              type="radio"
+              name="resultado_{{ quiniela.emparejamiento.id }}"
+              [(ngModel)]="quiniela.resultado"
+              [value]="'2'"
+            />
+            2
+          </label>
+        </div>
+        <div class="participante">
+          <!-- [src]="quiniela.emparejamiento.participantes[1].img | imagen : 'usuarios'" -->
+          <img
+            src="assets/images/users/1.jpg"
+            alt="imagen"
+            class="avatar cursor"
+          />
+          <br />
+          {{ quiniela.emparejamiento.participantes[1].nombre }}
+        </div>
+      </div>
+
+      <!-- Botón -->
+      <div class="ion-text-center ion-padding">
+        <ion-button expand="block" type="submit" color="primary">
+          <ion-icon name="save" slot="start"></ion-icon>
+          Enviar resultados
+        </ion-button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="!plantillas || !plantillas.length" class="p-3">
+    <p>
+      No se encontraron plantillas de quinielas para la liga y jornada
+      especificadas.
+    </p>
+  </div>
+</ion-card>
+<br />
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<br />

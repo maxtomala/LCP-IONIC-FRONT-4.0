@@ -1,0 +1,43 @@
+<ion-footer [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start" style="width: 100%; display: flex; justify-content: space-around;">
+
+      <!-- Inicio -->
+      <ion-button [routerLink]="['/pages/home']" fill="clear">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <ion-icon name="home" style="font-size: 24px;"></ion-icon>
+          <ion-label>Inicio</ion-label>
+        </div>
+      </ion-button>
+
+      <!-- Competiciones -->
+      <ion-button [routerLink]="['/pages/menu-competicion']" fill="clear">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <i class="fa-solid fa-ranking-star" style="font-size: 24px;"></i>
+          <ion-label>Competiciones</ion-label>
+        </div>
+      </ion-button>
+
+      <!-- Chat -->
+      <ion-button [routerLink]="['/pages/chat-general']" fill="clear">
+        <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+          <ion-icon name="chatbubbles" style="font-size: 24px;"></ion-icon>
+          <ion-badge color="danger" style="position: absolute; top: -2px; right: -6px; font-size: 10px;">2</ion-badge>
+          <ion-label>Chat</ion-label>
+        </div>
+      </ion-button>
+
+      <!-- Gym -->
+      <ion-button [routerLink]="['/pages/menu-gym']" fill="clear">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <i class="fas fa-dumbbell" style="font-size: 24px; color: gray"></i>
+          <ion-label style="font-size: 0.7em; display: block; color: gray">proximamente</ion-label>
+        </div>
+      </ion-button>
+
+
+
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

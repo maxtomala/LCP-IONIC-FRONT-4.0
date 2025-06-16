@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>ajustes-cuenta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+
+  <ion-card>
+    <ion-toolbar>
+      <ion-title>Ajustes de cuenta</ion-title>
+    </ion-toolbar>
+
+    <form [formGroup]="perfilForm" (ngSubmit)="actualizarPerfil()">
+      <ion-list lines="full">
+        <!-- Nombre -->
+        <ion-item>
+          <ion-label position="stacked">Nombre de usuario</ion-label>
+          <ion-input
+            type="text"
+            formControlName="nombre"
+            placeholder="Tu nombre"
+          ></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="campoNoValido('nombre')">
+          <p class="ion-padding-start">*El nombre es obligatorio</p>
+        </ion-text>
+
+        <!-- Email -->
+        <ion-item lines="none">
+          <ion-label position="stacked">Correo electrónico</ion-label>
+          <ion-input
+            type="email"
+            formControlName="email"
+            placeholder="tucorreo@ejemplo.com"
+          ></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="campoNoValido('email')">
+          <p class="ion-padding-start">*El email es obligatorio y válido</p>
+        </ion-text>
+      </ion-list>
+
+      <!-- Botón -->
+      <div class="ion-text-center">
+        <ion-button
+          type="submit"
+          color="primary"
+          expand="block"
+          [disabled]="perfilForm.invalid"
+        >
+          <ion-icon name="save" slot="start"></ion-icon>
+          Guardar cambios
+        </ion-button>
+      </div>
+    </form>
+  </ion-card>
+
+
+
+
+
+</ion-content>

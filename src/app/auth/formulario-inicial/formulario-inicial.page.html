@@ -1,0 +1,271 @@
+<!--  #content :me hace scroll automaticamente arrriba -->
+<ion-content #content>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="prevStep()"
+        *ngIf="step > 0"
+      >
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title> "Cuéntanos sobre ti" - paso {{ step + 1 }}/3 </ion-title>
+    <ion-buttons slot="end">
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="nextStep()"
+        *ngIf="step < 3"
+      >
+        <!-- [disabled]="step !== 0 && perfilForm.invalid" -->
+        <!-- aydua q complte el form y la validacion s cumpla, importante -->
+        Siguiente
+      </ion-button>
+    </ion-buttons>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button
+        type="submit"
+        size="small"
+        fill="outline"
+        color="success"
+        *ngIf="step === 3"
+        [disabled]="perfilForm.invalid"
+        [routerLink]="['/pages/perfil']"
+      >
+        Finalizar
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+
+  <ion-progress-bar [value]="(step + 1) / 3" color="primary"></ion-progress-bar>
+
+  <!-- PASO 1:  Apellidos y Unidad... -->
+<div *ngIf="step === 0">
+  <br />
+  <div class="form-avatar-wrapper">
+    <ion-img
+      class="form-avatar"
+      src="/assets/formulario-inicial/1.png"
+      alt="Imagen de perfil"
+    ></ion-img>
+  </div>
+
+  <form [formGroup]="perfilPaso0" (ngSubmit)="guardarPaso0()">
+    <!-- Card 1: Datos personales -->
+    <ion-card>
+      <ion-toolbar>
+        <ion-title>1º Apellido</ion-title>
+      </ion-toolbar>
+
+      <ion-list lines="full">
+        <ion-item>
+          <ion-input
+            type="text"
+            placeholder="Apellido 1"
+            formControlName="apellido1"
+            style="text-align: center"
+          ></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="campoNoValido0(perfilPaso0, 'apellido1')">
+          <p class="ion-padding-start">*El Apellido1 es obligatorio</p>
+          <p class="ion-padding-start">*Debe tener entre 2 y 25 caracteres.</p>
+        </ion-text>
+      </ion-list>
+    </ion-card>
+
+    <!-- Card 2: Preferencias -->
+    <ion-card class="card">
+      <ion-toolbar>
+        <ion-title>Preferencia de Unidad</ion-title>
+      </ion-toolbar>
+
+      <ion-card-content>
+        <ion-segment
+          formControlName="unidad"
+          mode="md"
+          color="primary"
+          scrollable
+        >
+          <ion-segment-button value="kg">
+            <ion-label>Kilogramos (kg)</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="Lb">
+            <ion-label>Libras (lb)</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <ion-text color="danger" *ngIf="campoNoValido0(perfilPaso0, 'unidad')">
+          <p class="ion-padding-start">*Selecciona una unidad válida</p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botón de acción -->
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        type="submit"
+        color="primary"
+        *ngIf="step < 3"
+        [disabled]="perfilPaso0.invalid"
+      >
+        <ion-icon name="save" slot="start"></ion-icon>
+        Guardar y continuar
+      </ion-button>
+    </div>
+  </form>
+</div>
+
+  <!-- PASO 2: Peso ideal, Altura (m) -->
+  <div *ngIf="step === 1">
+        <br>
+
+    <div class="form-avatar-wrapper">
+      <ion-img
+        class="form-avatar"
+        src="/assets/formulario-inicial/3.png"
+        alt="Imagen de perfil"
+      ></ion-img>
+    </div>
+    <form [formGroup]="perfilPaso1" (ngSubmit)="guardarPaso1()">
+      <!-- Card 1: Altura -->
+      <ion-card>
+        <ion-toolbar>
+          <ion-title>Tu altura (m)</ion-title>
+        </ion-toolbar>
+
+        <ion-list lines="full">
+          <ion-item>
+            <ion-input
+              type="number"
+              placeholder="Ej. 1.75"
+              formControlName="altura"
+              style="text-align: center"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido1('altura')">
+            <p class="ion-padding-start">*La altura es obligatoria</p>
+            <p class="ion-padding-start">*Debe ser un número válido</p>
+          </ion-text>
+        </ion-list>
+      </ion-card>
+
+      <!-- Card 2: Objetivo personal -->
+      <!-- Card 2: Objetivo personal -->
+      <ion-card class="card">
+        <ion-toolbar>
+          <ion-title>Objetivo personal</ion-title>
+        </ion-toolbar>
+
+        <ion-card-content>
+          <ion-segment
+            formControlName="objetivo"
+            mode="md"
+            color="primary"
+            scrollable
+          >
+            <ion-segment-button value="bajar de peso">
+              <ion-label>Bajar de peso</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="subir de peso">
+              <ion-label>Subir de peso</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+
+          <ion-text color="danger" *ngIf="campoNoValido1('objetivo')">
+            <p class="ion-padding-start">
+              *El objetivo personal es obligatorio
+            </p>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- Botón de acción -->
+      <div class="ion-padding">
+        <ion-button
+          expand="block"
+          type="submit"
+          color="primary"
+          [disabled]="perfilPaso1.invalid"
+        >
+          <ion-icon name="save" slot="start"></ion-icon>
+          Guardar y continuar
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <!-- PASO 2: Extras -->
+  <div *ngIf="step === 2">
+        <br>
+
+    <div class="form-avatar-wrapper">
+      <ion-img
+        class="form-avatar"
+        src="/assets/formulario-inicial/5.png"
+        alt="Imagen de perfil"
+      ></ion-img>
+    </div>
+    <form [formGroup]="perfilPaso2" (ngSubmit)="guardarPaso2()">
+      <!-- Card 1: Peso ideal -->
+      <ion-card>
+        <ion-toolbar>
+          <ion-title>Peso ideal ({{ unidadElegida }})</ion-title>
+        </ion-toolbar>
+
+        <ion-list lines="full">
+          <ion-item>
+            <ion-input
+              type="number"
+              placeholder="Ej. 70 {{ unidadElegida }}"
+              formControlName="pesoIdeal"
+              style="text-align: center"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido2('pesoIdeal')">
+            <p class="ion-padding-start">*El peso ideal es obligatorio</p>
+            <p class="ion-padding-start">*Debe ser entre 15 y 150 kg</p>
+          </ion-text>
+        </ion-list>
+      </ion-card>
+
+      <!-- Card 2: Peso actual -->
+      <ion-card>
+        <ion-toolbar>
+          <ion-title>Peso actual ({{ unidadElegida }})</ion-title>
+        </ion-toolbar>
+
+        <ion-list lines="full">
+          <ion-item>
+            <ion-input
+              type="number"
+              placeholder="'Ej. 70 '{{ unidadElegida }}"
+              formControlName="pesoActual"
+              style="text-align: center"
+            ></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="campoNoValido2('pesoActual')">
+            <p class="ion-padding-start">*El peso actual es obligatorio</p>
+            <p class="ion-padding-start">*Debe ser entre 15 y 150 kg</p>
+          </ion-text>
+        </ion-list>
+      </ion-card>
+
+      <!-- Botón -->
+      <div class="ion-padding">
+        <ion-button
+          expand="block"
+          type="submit"
+          color="primary"
+          [disabled]="perfilPaso2.invalid"
+        >
+          <ion-icon name="save" slot="start"></ion-icon>
+          Guardar y continuar
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+</ion-content>

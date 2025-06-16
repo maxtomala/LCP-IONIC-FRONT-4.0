@@ -1,0 +1,48 @@
+.chat-content {
+  padding: 10px;
+  background: #e5ddd5;
+}
+
+.message {
+  margin: 10px 0;
+  max-width: 80%;
+}
+
+.message-other .bubble {
+  background: white;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: inline-block;
+}
+
+.message-me .bubble {
+  background: #dcf8c6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: inline-block;
+  align-self: flex-end;
+}
+
+.image-message img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.message .time {
+  font-size: 0.75rem;
+  color: gray;
+  margin-top: 2px;
+}
+
+.date-label {
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.bubble.highlight {
+  color: #0a6dfd;
+  font-weight: bold;
+}
+

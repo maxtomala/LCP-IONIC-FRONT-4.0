@@ -1,0 +1,98 @@
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Formulario de Liga Corporal</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <form (ngSubmit)="onSubmit()">
+      <!-- Campo para el nombre de la liga corporal -->
+      <ion-item>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label >Nombre de la lc</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="ligasCorporal.nombre"
+          name="nombre"
+          required
+          minlength="3"
+          maxlength="30"
+        ></ion-input>
+      </ion-item>
+
+      <!-- Selector de objetivo -->
+      <ion-item>
+        <ion-icon name="fitness-outline" slot="start"></ion-icon>
+        <ion-label>Objetivo</ion-label>
+        <ion-select
+          [(ngModel)]="ligasCorporal.objetivo"
+          name="objetivo"
+          placeholder="Selecciona un objetivo"
+          required
+        >
+          <ion-select-option *ngFor="let opcion of opcionesObjetivo" [value]="opcion">
+            {{ opcion }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Selector de día para enviar peso -->
+      <ion-item>
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>Día para enviar peso</ion-label>
+        <ion-select
+          [(ngModel)]="ligasCorporal.dia"
+          name="dia"
+          placeholder="Selecciona un día"
+          required
+        >
+          <ion-select-option *ngFor="let dia of diasSemana" [value]="dia">
+            {{ dia }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Participación: Sí o No -->
+      <ion-item>
+        <ion-icon name="help-outline" slot="start"></ion-icon>
+        <ion-label>El entrenador ¿Desea participar?</ion-label>
+        <ion-select
+          [(ngModel)]="ligasCorporal.participar"
+          name="participar"
+          required
+        >
+          <ion-select-option value="si">Sí</ion-select-option>
+          <ion-select-option value="no">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Botón de enviar -->
+      <ion-button expand="full" type="submit" [disabled]="!formularioValido()">
+        Enviar
+      </ion-button>
+    </form>
+
+    <ion-content>
+      *nota:
+      1ºlos dias de la semana tiene que seguidos, eje:lunes,martes o jueves,viernes..: para dar tiempo al usaurio la subida de peso
+      2ºel entrenador podra visualizar la subida de peso de cada usuario antes de que este se registre en al bd, dando el un vistazo bueno
+      3ºsi un usuario: quiere crear un e-lc, un mensaje de pop-pap debes solicitar a tu entrenador que cree una lc. ¿enviar mensaje?
+      4º aqui no participan otros usuario, es decir solo los alumnos del entrenador. se envia invitaciones solo aquellos q tienen coomo entrenador
+      5º aqui no se ganan medallas para el gym
+
+    </ion-content>
+  </ion-content>
+
+
+
+
+</ion-content>

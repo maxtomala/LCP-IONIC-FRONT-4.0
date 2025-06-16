@@ -1,0 +1,439 @@
+<br />
+<br />
+<br />
+<br />
+
+<ion-content [fullscreen]="true">
+ modo entrenador LCP (no iniciada) E-LCP-3
+
+  <!-- seleccionar liga -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline"
+          >Liga Corporal profesional:</strong
+        >
+      </h2>
+      <h3 class="ion-text-center">
+        <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div>
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- inf card  -->
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+      <ion-card-title>¡Empieza la LCP!</ion-card-title>
+      <br />
+      <ion-card-subtitle>En 3 pasos</ion-card-subtitle>
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- Swiper Container  slider de paso 1/3-->
+  <swiper-container
+    slides-per-view="1"
+    speed="500"
+    loop="true"
+    css-mode="true"
+    pagination="true"
+    navigation="true"
+  >
+    <!-- Paso 1 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>Paso 1</ion-card-title>
+          <br />
+          <p>Haz una invitación a un alumno.</p>
+          <br />
+          <ion-button
+            expand="full"
+            color="primary"
+            [routerLink]="['/pages/e-invitar-alumnos-lcp']"
+            >Invitar alumno</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 2 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>Paso 2</ion-card-title>
+          <br />
+          <p>Registra el peso inicial del alumno.</p>
+          <br />
+          <ion-button
+            expand="full"
+            color="primary"
+            [routerLink]="['/pages/e-registrar-peso-inicial-lcp']"
+            >Registrar peso</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 3 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>Paso 3 (opcional)</ion-card-title>
+          <br />
+          <p>
+            Haz una invitación a otros entrenadores para que lleven a sus
+            alumnos a la competición.
+          </p>
+          <br />
+          <ion-button
+            expand="full"
+            color="primary"
+            [routerLink]="['/pages/e-invitar-entrenador-lcp']"
+            >Invitar entrenador</ion-button
+          >
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+
+    <!-- Paso 4 -->
+    <swiper-slide>
+      <ion-card class="ion-text-center">
+        <ion-card-content>
+          <ion-card-title>Paso 4 </ion-card-title>
+          <br />
+          <p>si estas preparado, inicia la competición</p>
+          <br />
+          <ion-button expand="full" color="primary">Iniciar Lcp</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- tabla de registro de jugadores  -->
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title class="ion-text-center"
+        >Registrar Jugadores</ion-card-title
+      >
+    </ion-card-content>
+
+    <br />
+
+    <!-- Contenido de la tabla -->
+    <ion-card-content>
+      <div class="profile-container">
+        <!-- Imagen del gimnasio (a la izquierda) -->
+        <div class="gym-logo">
+          <img src="/assets/gym/gym-3.png" alt="Logo del gimnasio" />
+        </div>
+
+        <!-- Información del entrenador (a la derecha) -->
+        <div class="profile-info">
+          <ion-card-subtitle>Entrenador</ion-card-subtitle>
+          <div class="coach-info">
+            <img
+              src="/assets/perfil/6.jpg"
+              alt="Hansi Flick"
+              class="trainer-photo"
+            />
+            <ion-card-title>Margarita M.</ion-card-title>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Jugador</th>
+              <th>Peso</th>
+              <th>Verificador</th>
+              <th>Check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Jugador 1 -->
+            <tr>
+              <td>1</td>
+              <td>
+                <img
+                  src="/assets/perfil/2.jpg"
+                  alt="Jugador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td>Alejandro Marck</td>
+              <td>70 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-1.jpg"
+                  alt="Verificador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+            <!-- Jugador 2 -->
+            <tr>
+              <td>2</td>
+              <td>
+                <img
+                  src="/assets/perfil/6.jpg"
+                  alt="Jugador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td>Sofia Lleibu</td>
+              <td>75 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-4.jpg"
+                  alt="Verificador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+            <!-- Jugador 3 -->
+            <tr>
+              <td>3</td>
+              <td>
+                <img
+                  src="/assets/perfil/7.jpg"
+                  alt="Jugador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td>Mateo Lazaro</td>
+              <td>68 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-3.jpg"
+                  alt="Verificador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+
+    <ion-card-content>
+      <div class="profile-container">
+        <!-- Imagen del gimnasio (a la izquierda) -->
+        <div class="gym-logo">
+          <img src="/assets/gym/gym-4.png" alt="Logo del gimnasio" />
+        </div>
+
+        <!-- Información del entrenador (a la derecha) -->
+        <div class="profile-info">
+          <ion-card-subtitle>Entrenador</ion-card-subtitle>
+          <div class="coach-info">
+            <img
+              src="/assets/perfil/2.jpg"
+              alt="Hansi Flick"
+              class="trainer-photo"
+            />
+            <ion-card-title>Hansi Flick</ion-card-title>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Jugador</th>
+              <th>Peso</th>
+              <th>Verificador</th>
+              <th>Check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Jugador 1 -->
+            <tr>
+              <td>1</td>
+              <td>
+                <img
+                  src="/assets/perfil/2.jpg"
+                  alt="Jugador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td>Alejandro Marck</td>
+              <td>70 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-1.jpg"
+                  alt="Verificador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+            <!-- Jugador 2 -->
+            <tr>
+              <td>2</td>
+              <td>
+                <img
+                  src="/assets/perfil/6.jpg"
+                  alt="Jugador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td>Sofia Lleibu</td>
+              <td>75 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-4.jpg"
+                  alt="Verificador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+            <!-- Jugador 3 -->
+            <tr>
+              <td>3</td>
+              <td>
+                <img
+                  src="/assets/perfil/7.jpg"
+                  alt="Jugador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td>Mateo Lazaro</td>
+              <td>68 kg</td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-3.jpg"
+                  alt="Verificador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td><ion-checkbox slot="start"></ion-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <textarea
+      placeholder="comentarios 30"
+      class="observation-input"
+      style="width: 100%; height: 60px"
+    ></textarea>
+  </ion-card>
+
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>
+
+<ion-fab
+  vertical="bottom"
+  horizontal="end"
+  slot="fixed"
+  style="z-index: 500; margin-bottom: 45px"
+>
+  <ion-fab-button (click)="toggleMenu()">
+    <ion-icon name="list-outline"></ion-icon>
+    <!-- Icono de lista desplegable -->
+  </ion-fab-button>
+
+  <!-- Menú desplegable hacia la izquierda (start) con botones rectangulares -->
+  <div class="fab-menu" *ngIf="isMenuOpen">
+    <!-- Crear LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/e-crear-lcp']">
+      <ion-icon slot="start" name="create-outline"></ion-icon> Crear Lcp
+    </ion-button>
+
+    <!-- Aceptar peso LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/e-aceptar-peso-lcp']">
+      <ion-icon slot="start" name="checkmark-done-outline"></ion-icon> Aceptar
+      peso Lcp
+    </ion-button>
+
+    <!-- Calendario LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/e-calendario-lcp']">
+      <ion-icon slot="start" name="calendar-outline"></ion-icon> Calendario Lcp
+    </ion-button>
+
+    <!-- Quiniela LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/e-quiniela-lcp']">
+      <ion-icon slot="start" name="list-outline"></ion-icon> Quiniela Lcp
+    </ion-button>
+
+      <!-- Quiniela-ganadores LCP -->
+  <ion-button expand="full" [routerLink]="['/pages/e-quiniela-ganadores-lcp']">
+    <ion-icon slot="start" name="list-outline"></ion-icon> Quiniela ganadores/penalizados Lcp
+  </ion-button>
+
+    <!-- Participantes LCP -->
+    <ion-button expand="full" [routerLink]="['/pages/e-participantes-lcp']">
+      <ion-icon slot="start" name="people-outline"></ion-icon> Participantes Lcp
+    </ion-button>
+
+    <!-- Estado de la solicitud Alumno -->
+    <ion-button
+      expand="full"
+      [routerLink]="['/pages//e-estado-solicitud-competicion-lcp']"
+    >
+      <ion-icon slot="start" name="person-circle-outline"></ion-icon> Estado de
+      la solicitud
+    </ion-button>
+
+    <!-- buscar una competicion -->
+    <ion-button
+    expand="full"
+    [routerLink]="['/pages//e-buscador-lcp']">
+    <ion-icon slot="start" name="person-circle-outline"></ion-icon> Buscar una competicion
+  </ion-button>
+
+  </div>
+</ion-fab>

@@ -1,0 +1,388 @@
+<br />
+<br />
+<br />
+<br />
+<ion-content [fullscreen]="true">
+  entrando modo usuario e-lcp
+
+<!-- seleciona la lcp -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <h2 class="ion-text-center">
+        <strong style="text-decoration: underline">Liga Corporal profesional:</strong>
+      </h2>
+      <h3 class="ion-text-center">
+        <strong> Activaclub Almería</strong>
+      </h3>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div>
+        <!-- Botón 1: Familia -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO1
+        </ion-button>
+
+        <!-- Botón 2: Gym -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Gym')"
+          style="margin-right: 10px"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO2
+        </ion-button>
+
+        <!-- Botón 3: Familia2 -->
+        <ion-button
+          size="small"
+          color="primary"
+          (click)="accionBoton('Familia2')"
+        >
+          <ion-icon name="barbell-outline" slot="start"></ion-icon>
+          GRUPO3
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- SLIDER  caracteristica de la liga -->
+  <ion-card class="ion-text-center">
+    <ion-card-header>
+      <ion-card-title>ENTRENADOR</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2>Rafa Benítez</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- introducir peso corporal-->
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <!-- Fila de la imagen y el formulario en la misma línea -->
+        <ion-row class="ion-align-items-center">
+          <!-- Columna de la imagen (izquierda) -->
+          <ion-col size="3" class="ion-text-center ion-align-self-center" style="display: flex; justify-content: center">
+            <ion-img src="/assets/imagen/báscula.jpg" style="width: 100%; max-width: 80px; height: auto"></ion-img>
+          </ion-col>
+
+          <!-- Columna del formulario (derecha) -->
+          <ion-col size="9">
+            <ion-item>
+              <ion-label class="ion-text-wrap">
+                <h2 class="ion-text-center">
+                  <strong>Introduce tu peso semanal</strong>&nbsp;
+                  <ion-icon name="information-circle-outline" slot="end" title="*El botón estará activo los Lunes y Martes para guardar el peso semanal."></ion-icon>
+                </h2>
+              </ion-label>
+            </ion-item>
+
+            <!-- Formulario de peso -->
+            <form (ngSubmit)="guardarPeso()" [formGroup]="registroPesoLpForm">
+              <ion-item>
+                <ion-input type="number" placeholder="KG" formControlName="peso" class="ion-text-right peso-input"></ion-input>
+              </ion-item>
+            </form>
+          </ion-col>
+        </ion-row>
+
+        <!-- Botón de aceptar que ocupa todo el ancho -->
+        <div class="submit-container" style="margin-top: 20px">
+          <ion-button expand="block" color="primary">
+            <ion-icon name="send" slot="start"></ion-icon>
+            Enviar a entrenador
+          </ion-button>
+        </div>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- grafica lineal  del peso -->
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title class="ion-text-center">
+        <strong>Evolución del peso  liga corporal profesional</strong>
+      </ion-card-title>
+
+      <h3 style="margin-top: 20px">
+        <strong>Gráfica lineal:</strong> Registro cronológico de peso
+
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <!-- Icono que abre el select -->
+          <ion-icon
+            name="ellipsis-vertical"
+            size="large"
+            style="cursor: pointer"
+            (click)="selectGrafica.open()"
+          ></ion-icon>
+
+          <!-- Menú desplegable oculto por el icono -->
+          <ion-select #selectGrafica interface="popover" style="display: none">
+            <ion-select-option value="diaria"
+              >Gráfica Lineal Diaria</ion-select-option
+            >
+            <ion-select-option value="semanal"
+              >Gráfica Lineal Semanal</ion-select-option
+            >
+            <ion-select-option value="mensual"
+              >Gráfica Lineal Mensual</ion-select-option
+            >
+            <ion-select-option value="anual"
+              >Gráfica Lineal Anual</ion-select-option
+            >
+          </ion-select>
+        </div>
+      </h3>
+
+      <!-- Espacio para la imagen -->
+      <!-- Contenedor del gráfico -->
+      <div id="lineChart" style="height: 250px;"></div>
+
+    </ion-card-content>
+  </ion-card>
+
+
+  <!-- podio  -->
+
+  <ion-card class="podio">
+    <ion-card-content>
+      <ion-card-title class="ion-text-center">
+        <strong>Podio Semanal</strong>
+      </ion-card-title>
+      <br />
+
+      <div class="podio-container">
+        <div class="podio-lugar primer-lugar">
+          <ion-img src="/assets/perfil/2.jpg" class="img-avatar"></ion-img>
+          <div class="tarima oro"></div>
+          <div class="posicion">1</div>
+          <p>Posición actual</p>
+        </div>
+
+        <div class="podio-lugar segundo-lugar">
+          <ion-img src="/assets/perfil/6.jpg" class="img-avatar"></ion-img>
+          <div class="tarima plata"></div>
+          <div class="posicion">2</div>
+          <p>Posición actual</p>
+        </div>
+
+        <div class="podio-lugar tercer-lugar">
+          <ion-img
+            src="/assets/perfil/7.jpg"
+            class="img-avatar"
+            style="border-radius: 50%"
+          ></ion-img>
+          <div class="tarima bronce"></div>
+          <div class="posicion">3</div>
+          <p>Posición actual</p>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- tabla clasificatoria  -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <!-- Título de la Tabla -->
+      <h1>
+        <strong>
+          <i class="bi bi-trophy-fill"></i> CLASIFICACIÓN DE LA LIGA CORPORAL PROFESIONAL
+          <i class="bi bi-trophy-fill"></i>
+        </strong>
+      </h1>
+      <!-- Subtítulo de la Tabla -->
+      <h2>Temporada 2024 Invierno</h2>
+
+      <!-- Contenedor con scroll horizontal -->
+      <div
+        style="
+          display: flex;
+          overflow-x: auto;
+          white-space: nowrap;
+          padding: 10px 0;
+        "
+      >
+        <table style="width: 100%; border-collapse: collapse">
+          <thead>
+            <tr>
+              <th style="padding: 10px; text-align: left">#</th>
+              <th style="padding: 10px; text-align: left">Foto</th>
+              <!-- Nueva columna de imagen -->
+              <th style="padding: 10px; text-align: left">Nombre</th>
+              <th style="padding: 10px; text-align: left">País</th>
+              <th style="padding: 10px; text-align: left">Peso Actual (kg)</th>
+              <th style="padding: 10px; text-align: left">Peso Ideal (kg)</th>
+              <th style="padding: 10px; text-align: left">Logro Semanal</th>
+              <th style="padding: 10px; text-align: left">Verificador</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px">1</td>
+              <td style="padding: 10px">
+                <ion-img
+                  src="/assets/perfil/2.jpg"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td style="padding: 10px">Juan Pérez</td>
+              <td style="padding: 10px">México</td>
+              <td style="padding: 10px">75</td>
+              <td style="padding: 10px">70</td>
+              <td style="padding: 10px">Bajar 2 kg</td>
+              <td style="padding: 10px">
+                <img
+                  src="/assets/verificador/veri-8.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px">2</td>
+              <td style="padding: 10px">
+                <ion-img
+                  src="/assets/perfil/6.jpg"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td style="padding: 10px">Ana Gómez</td>
+              <td style="padding: 10px">España</td>
+              <td style="padding: 10px">60</td>
+              <td style="padding: 10px">58</td>
+              <td style="padding: 10px">Subir 1 kg</td>
+              <td style="padding: 10px">
+                <img
+                  src="/assets/verificador/veri-7.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px">3</td>
+              <td style="padding: 10px">
+                <ion-img
+                  src="/assets/perfil/7.jpg"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td style="padding: 10px">Carlos López</td>
+              <td style="padding: 10px">Argentina</td>
+              <td style="padding: 10px">85</td>
+              <td style="padding: 10px">80</td>
+              <td style="padding: 10px">Bajar 1 kg</td>
+              <td style="padding: 10px">
+                <img
+                  src="/assets/verificador/veri-6.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px">4</td>
+              <td style="padding: 10px">
+                <ion-img
+                  src="/assets/perfil/2.jpg"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td style="padding: 10px">María Torres</td>
+              <td style="padding: 10px">Colombia</td>
+              <td style="padding: 10px">70</td>
+              <td style="padding: 10px">65</td>
+              <td style="padding: 10px">Mantener peso</td>
+              <td style="padding: 10px">
+                <img
+                  src="/assets/verificador/veri-4.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px">5</td>
+              <td style="padding: 10px">
+                <ion-img
+                  src="/assets/perfil/d6.png"
+                  class="img-avatar"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                ></ion-img>
+              </td>
+              <td style="padding: 10px">Luis Martínez</td>
+              <td style="padding: 10px">Chile</td>
+              <td style="padding: 10px">90</td>
+              <td style="padding: 10px">85</td>
+              <td style="padding: 10px">Bajar 3 kg</td>
+              <td style="padding: 10px">
+                <img
+                  src="/assets/verificador/veri-3.jpg"
+                  style="width: 40px; height: 40px; border-radius: 50%"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+<ion-fab
+vertical="bottom"
+horizontal="end"
+slot="fixed"
+style="z-index: 500; margin-bottom: 45px"
+>
+<ion-fab-button (click)="toggleMenu()">
+  <ion-icon name="list-outline"></ion-icon>
+  <!-- Icono de lista desplegable -->
+</ion-fab-button>
+
+<!-- Menú desplegable hacia la izquierda (start) con botones rectangulares -->
+<div class="fab-menu" *ngIf="isMenuOpen">
+
+
+  <!-- Participantes LCP -->
+  <ion-button expand="full" [routerLink]="['/pages/e-participantes-lcp']">
+    <ion-icon slot="start" name="people-outline"></ion-icon> Participantes Lcp
+  </ion-button>
+  <!-- Calendario LCP -->
+  <ion-button expand="full" [routerLink]="['/pages/e-calendario-lcp']">
+    <ion-icon slot="start" name="calendar-outline"></ion-icon> Calendario Lcp
+  </ion-button>
+  <!-- Quiniela LCP -->
+  <ion-button expand="full" [routerLink]="['/pages/e-quiniela-lcp']">
+    <ion-icon slot="start" name="list-outline"></ion-icon> Quiniela Lcp
+  </ion-button>
+  <!-- Quiniela-ganadores LCP -->
+  <ion-button expand="full" [routerLink]="['/pages/e-quiniela-ganadores-lcp']">
+    <ion-icon slot="start" name="list-outline"></ion-icon> Quiniela ganadores/penalizados Lcp
+  </ion-button>
+
+<!-- solicitar una competicion -->
+  <ion-button
+    expand="full"
+    [routerLink]="['/pages/e-solicitar-competicion-lcp']"
+  >
+    <ion-icon slot="start" name="person-circle-outline"></ion-icon> Solicitar
+    una competicion
+  </ion-button>
+
+</div>
+</ion-fab>

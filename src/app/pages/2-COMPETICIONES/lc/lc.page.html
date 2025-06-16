@@ -1,0 +1,130 @@
+<!-- lc.page.html  -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+        <ion-icon name="arrow-back-outline" slot="start"></ion-icon>
+        Volver
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      <strong>Liga Corporal</strong>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+<app-mis-grupos-lc (ligaSeleccionadaChange)="ligaSeleccionada = $event"></app-mis-grupos-lc>
+<app-carrusel-caracteristicas-lc [liga]="ligaSeleccionada"></app-carrusel-caracteristicas-lc>
+<app-guardar-peso-lc [liga]="ligaSeleccionada"></app-guardar-peso-lc>
+<app-verificador-semanal-lc [liga]="ligaSeleccionada"></app-verificador-semanal-lc>
+<app-podio-lc [liga]="ligaSeleccionada"></app-podio-lc>
+<app-tabla-clasificatoria-lc [liga]="ligaSeleccionada"></app-tabla-clasificatoria-lc>
+
+  <!-- Gráfica lineal -->
+  <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title>
+        <strong>Evolución del peso corporal</strong>
+      </ion-card-title>
+      <br />
+
+      <h2>Gráfica lineal: Registro cronológico de peso</h2>
+      <br />
+
+      <!-- Selector -->
+      <ion-segment [(ngModel)]="tipoGrafica" scrollable>
+        <ion-segment-button value="diario">
+          <ion-label>Diario</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="semanal">
+          <ion-label>Semanal</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mensual">
+          <ion-label>Mensual</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="anual">
+          <ion-label>Anual</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Mostrar componente según selección -->
+      <div [ngSwitch]="tipoGrafica" class="ion-padding-top">
+        <app-grafico-diario-lc *ngSwitchCase="'diario'" [liga]="ligaSeleccionada"></app-grafico-diario-lc>
+        <app-grafico-semanal-lc *ngSwitchCase="'semanal'" [liga]="ligaSeleccionada"></app-grafico-semanal-lc>
+        <app-grafico-mensual-lc *ngSwitchCase="'mensual'" [liga]="ligaSeleccionada"></app-grafico-mensual-lc>
+        <app-grafico-anual-lc *ngSwitchCase="'anual'" [liga]="ligaSeleccionada"></app-grafico-anual-lc>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+
+
+
+  <!-- btn flotante  -->
+  <!-- btn flotante  -->
+  <ion-fab
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+    style="margin-bottom: 100px"
+  >
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+
+    <ion-fab-list side="top">
+      <!-- Participantes -->
+      <div class="fab-item" (click)="router.navigate(['/pages/participantes-lc'])">
+        <div class="fab-label">Participantes</div>
+        <ion-fab-button>
+          <ion-icon name="people-outline"></ion-icon>
+        </ion-fab-button>
+      </div>
+      <!-- editar lc -->
+            <div
+        class="fab-item"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lc'], { queryParams: { seccion: 'editar' } })"
+      >
+        <div class="fab-label">Editar Lc</div>
+        <ion-fab-button>
+          <ion-icon name="color-palette"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <!-- Crear una LC -->
+      <div
+        class="fab-item"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lc'], { queryParams: { seccion: 'crear' } })"
+      >
+        <div class="fab-label">Crear una LC</div>
+        <ion-fab-button>
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-fab-button>
+      </div>
+
+      <!-- Invitar a un amigo -->
+      <div
+        class="fab-item"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lc'], { queryParams: { seccion: 'editar' } })"
+      >
+
+        <div class="fab-label">Invitar a un amigo</div>
+        <ion-fab-button>
+          <ion-icon name="person-add-outline"></ion-icon>
+        </ion-fab-button>
+      </div>
+    </ion-fab-list>
+  </ion-fab>
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</ion-content>

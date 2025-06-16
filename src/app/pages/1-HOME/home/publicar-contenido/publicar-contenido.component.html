@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-row class="ion-align-items-start">
+        <ion-col size="2">
+          <ion-avatar>
+            <img src="assets/images/users/1.jpg" alt="avatar" />
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="10">
+          <ion-textarea
+            [(ngModel)]="texto"
+            placeholder="¿Qué está pasando?"
+            autoGrow="true"
+          ></ion-textarea>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-align-items-center ion-justify-content-between" style="margin-top: 16px;">
+        <ion-col size="6">
+          <ion-button fill="clear" size="small" (click)="abrirGaleria()">
+            <ion-icon slot="start" name="images-outline"></ion-icon>
+            Galería
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" class="ion-text-right">
+          <ion-button expand="block" size="small" color="primary" (click)="publicar()">
+            Publicar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>

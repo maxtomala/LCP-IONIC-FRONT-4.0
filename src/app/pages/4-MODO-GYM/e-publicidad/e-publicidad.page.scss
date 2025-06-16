@@ -1,0 +1,19 @@
+/* Estilos generales para centrar el contenido */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+}
+
+/* Estilos para cada pregunta */
+.question-container {
+  text-align: center;
+  margin: 20px 0; /* Espaciado entre preguntas */
+}
+
+/* Estilo para los botones de búsqueda */
+.search-button {
+  margin-top: 10px; /* Espaciado superior para los botones */
+}

@@ -1,0 +1,14 @@
+<!-- pages/pages.component.html  -->
+
+<!-- Menú laterales izq y drch  -->
+<app-sidebar-left></app-sidebar-left>
+<!-- <app-sidebar-right></app-sidebar-right> de momento no me hace falta -->
+<!-- menu de cabezera  -->
+<app-header></app-header>
+
+<!-- contenido de la app -->
+<ion-content [fullscreen]="true" id="main-content">
+  <ion-router-outlet id="content"></ion-router-outlet>
+</ion-content>
+<!-- menu de pie  -->
+<app-footer></app-footer>

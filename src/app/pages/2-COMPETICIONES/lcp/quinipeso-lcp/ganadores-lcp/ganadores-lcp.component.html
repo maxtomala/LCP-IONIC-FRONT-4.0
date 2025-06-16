@@ -1,0 +1,96 @@
+
+<ion-card>
+  <ion-card-content class="ion-text-center">
+    <h2 style="text-decoration: underline">
+      <strong>Mis grupos</strong>
+    </h2>
+
+    <div class="ion-margin-top">
+      <!-- <ion-button
+            *ngFor="let liga of ligaCorporal"
+            expand="block"
+            color="primary"
+            class="ion-margin-vertical"
+            (click)="accionBoton(liga.nombre)"
+          >
+            <ion-icon name="fitness" slot="start"></ion-icon>
+            {{ liga.nombre }}
+          </ion-button> -->
+
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia
+      </ion-button>
+
+      <!-- Botón 2: Gym -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Gym')"
+        style="margin-right: 10px"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Gym
+      </ion-button>
+
+      <!-- Botón 3: Familia2 -->
+      <ion-button
+        size="small"
+        color="primary"
+        (click)="accionBoton('Familia2')"
+      >
+        <ion-icon name="barbell-outline" slot="start"></ion-icon>
+        Familia2
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="ligaSeleccionada">
+  <ion-card-content class="ion-text-center">
+
+    <ng-container *ngIf="ganadoresPorJornada; else sinGanadores">
+      <ng-container *ngFor="let jornada of jornadas">
+        <h1>Jornada {{ jornada }}</h1>
+
+        <ng-container *ngIf="ganadoresPorJornada[jornada]; else sinInfoJornada">
+          <ng-container *ngIf="ganadoresPorJornada[jornada].ganadores?.length > 0; else sinGanadoresJornada">
+            <h4><strong><b>Ganadores:</b></strong></h4>
+
+            <ion-list>
+              <ion-item *ngFor="let ganador of ganadoresPorJornada[jornada].ganadores">
+                <ion-avatar slot="start">
+                  <!-- [src]="ganador.img | imagen : 'usuarios'" alt="imagen" -->
+                  <img src="assets/images/users/1.jpg"
+
+                    />
+                </ion-avatar>
+                <ion-label>
+                  {{ ganador.nombre }}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ng-container>
+
+          <ng-template #sinGanadoresJornada>
+            <p>No hay ganadores en esta jornada.</p>
+          </ng-template>
+        </ng-container>
+
+        <ng-template #sinInfoJornada>
+          <p>No hay información disponible para esta jornada.</p>
+        </ng-template>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #sinGanadores>
+      <p>No hay información de ganadores disponible.</p>
+    </ng-template>
+
+  </ion-card-content>
+</ion-card>

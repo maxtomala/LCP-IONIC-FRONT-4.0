@@ -1,0 +1,142 @@
+<br />
+<br />
+<br />
+<br />
+
+
+<ion-content [fullscreen]="true">
+  e-registrar-peso-inicial-lcp (no iniciada)
+
+  <!-- Tabla de registro de jugadores -->
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title class="ion-text-center">Registrar Jugadores</ion-card-title>
+    </ion-card-content>
+
+    <br />
+
+    <ion-card-content>
+      <div class="profile-container">
+        <!-- Imagen del gimnasio (a la izquierda) -->
+        <div class="gym-logo">
+          <img src="/assets/gym/gym-4.png" alt="Logo del gimnasio" />
+        </div>
+
+        <!-- Información del entrenador (a la derecha) -->
+        <div class="profile-info">
+          <ion-card-subtitle>Entrenador</ion-card-subtitle>
+          <div class="coach-info">
+            <img
+              src="/assets/perfil/2.jpg"
+              alt="Hansi Flick"
+              class="trainer-photo"
+            />
+            <ion-card-title>Hansi Flick</ion-card-title>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Foto</th>
+              <th>Jugador</th>
+              <th>Peso</th>
+              <th>Verificador</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Jugador 1 -->
+            <tr>
+              <td>1</td>
+              <td>
+                <img
+                  src="/assets/perfil/2.jpg"
+                  alt="Jugador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td>Alejandro Marck</td>
+              <td>
+                <!-- Campo editable para el peso -->
+                <ion-input [(ngModel)]="jugador3Peso" placeholder="70 kg" type="text"></ion-input>
+              </td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-1.jpg"
+                  alt="Verificador 1"
+                  class="player-photo"
+                />
+              </td>
+              <td>
+                <!-- Botón Enviar para actualizar el peso -->
+                <ion-button color="primary" size="small" (click)="enviarPeso(1, jugador3Peso)">
+                  Enviar
+                </ion-button>
+              </td>
+            </tr>
+
+            <!-- Jugador 2 -->
+            <tr>
+              <td>2</td>
+              <td>
+                <img
+                  src="/assets/perfil/6.jpg"
+                  alt="Jugador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td>Sofia Lleibu</td>
+              <td>
+                <ion-input [(ngModel)]="jugador2Peso" placeholder="75 kg" type="text"></ion-input>
+              </td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-4.jpg"
+                  alt="Verificador 2"
+                  class="player-photo"
+                />
+              </td>
+              <td>
+                <ion-button color="primary" size="small" (click)="enviarPeso(2, jugador2Peso)">
+                  Enviar
+                </ion-button>
+              </td>
+            </tr>
+
+            <!-- Jugador 3 -->
+            <tr>
+              <td>3</td>
+              <td>
+                <img
+                  src="/assets/perfil/7.jpg"
+                  alt="Jugador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td>Mateo Lazaro</td>
+              <td>
+                <ion-input [(ngModel)]="jugador3Peso" placeholder="68 kg" type="text"></ion-input>
+              </td>
+              <td>
+                <img
+                  src="/assets/verificador/veri-3.jpg"
+                  alt="Verificador 3"
+                  class="player-photo"
+                />
+              </td>
+              <td>
+                <ion-button color="primary" size="small" (click)="enviarPeso(3, jugador3Peso)">
+                  Enviar
+                </ion-button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
