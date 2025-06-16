@@ -10,11 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class SidebarLeftComponent implements OnInit{
   // carga los datos del user
-<<<<<<< HEAD
-  public usuario: Usuario;
-=======
 public usuario!: Usuario;
->>>>>>> a2f79f3 (se soluciona error version)
 
   submenuVisible = false;
 
@@ -25,11 +21,7 @@ public usuario!: Usuario;
 
 
   ngOnInit() {
-<<<<<<< HEAD
-      // carga los datos del user 
-=======
       // carga los datos del user
->>>>>>> a2f79f3 (se soluciona error version)
     this.usuario = this.usuarioService.usuario;
   }
 

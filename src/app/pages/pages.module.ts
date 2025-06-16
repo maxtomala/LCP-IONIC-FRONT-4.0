@@ -18,7 +18,7 @@ import { RouterModule } from '@angular/router';
     IonicModule,
     PagesPageRoutingModule,
     SharedModule,
-    // RouterModule, 
+    // RouterModule,
     //xk usas <router-outlet>, [routerLink]
 
 

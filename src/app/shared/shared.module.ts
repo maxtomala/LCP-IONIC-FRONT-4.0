@@ -18,15 +18,9 @@ import { PipesModule } from "../pipes/pipes.module";
   imports: [
     CommonModule,
     IonicModule,
-<<<<<<< HEAD
 RouterModule.forChild([]),
     PipesModule,
   ],
-=======
-    RouterModule,
-    PipesModule
-],
->>>>>>> a2f79f3 (se soluciona error version)
   exports: [
     HeaderComponent,
     FooterComponent,

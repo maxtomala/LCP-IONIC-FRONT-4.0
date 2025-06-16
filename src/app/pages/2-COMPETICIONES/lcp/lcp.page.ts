@@ -21,11 +21,7 @@ export class LcpPage implements OnInit {
 
 
 
-<<<<<<< HEAD
 registroPesoLpForm: FormGroup;
-=======
-registroPesoLpForm: FormGroup | undefined;
->>>>>>> a2f79f3 (se soluciona error version)
   botonHabilitado: boolean = true;
 
   ligaIniciada: boolean = true;

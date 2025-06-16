@@ -6,12 +6,8 @@ import { RegistroPesoLp } from 'src/app/models/lp/registro-peso-lp.model'; // aj
 
 @Component({
   selector: 'app-perfil-salud',
-<<<<<<< HEAD
-  templateUrl: './perfil-salud.component.html',
-=======
   templateUrl:
   './perfil-salud.component.html',
->>>>>>> a2f79f3 (se soluciona error version)
   styleUrls: ['./perfil-salud.component.scss'],
 })
 export class PerfilSaludComponent implements OnInit {

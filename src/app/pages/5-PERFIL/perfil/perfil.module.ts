@@ -9,7 +9,7 @@ import { PerfilPageRoutingModule } from './perfil-routing.module';
 import { PerfilPage } from './perfil.page';
 import { BiografiaHomeComponent } from '../biografia-home/biografia-home.component';
 import { TarjetaSocioComponent } from '../tarjeta-socio/tarjeta-socio.component';
-import { PipesModule } from "../../../pipes/pipes.module";
+import { PipesModule } from '../../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -18,11 +18,8 @@ import { PipesModule } from "../../../pipes/pipes.module";
     IonicModule,
     PerfilPageRoutingModule,
     ReactiveFormsModule,
-    PipesModule
-],
-  declarations: [
-    PerfilPage,
-  BiografiaHomeComponent,
-TarjetaSocioComponent]
+    PipesModule,
+  ],
+  declarations: [PerfilPage, BiografiaHomeComponent, TarjetaSocioComponent],
 })
 export class PerfilPageModule {}

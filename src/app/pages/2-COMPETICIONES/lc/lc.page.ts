@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import {  FormGroup } from '@angular/forms';
-=======
->>>>>>> a2f79f3 (se soluciona error version)
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { IonSegmentCustomEvent, SegmentChangeEventDetail } from '@ionic/core';
