@@ -6,6 +6,7 @@ import { Imagen4Pipe } from './imagen4.pipe';
 import { ImagenPerfilPipe } from './imagen-perfil.pipe';
 import { ImagenGrupalLcPipe } from './imagen-grupal-lc.pipe';
 import { ImagenGrupalLcpPipe } from './imagen-grupal-lcp.pipe';
+import { ImagenPodioLcPipe } from './imagen-podio-lc.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ImagenGrupalLcpPipe } from './imagen-grupal-lcp.pipe';
     ImagenPerfilPipe,
     ImagenGrupalLcPipe,
     ImagenGrupalLcpPipe,
+    ImagenPodioLcPipe
   ],
   exports: [
     ImagenPipe,
@@ -25,6 +27,7 @@ import { ImagenGrupalLcpPipe } from './imagen-grupal-lcp.pipe';
     ImagenPerfilPipe,
     ImagenGrupalLcPipe,
     ImagenGrupalLcpPipe,
+    ImagenPodioLcPipe
   ],
 })
 export class PipesModule {}

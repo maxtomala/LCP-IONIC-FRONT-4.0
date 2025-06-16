@@ -1,54 +1,94 @@
 <ion-card>
   <ion-card-content class="ion-text-center">
-
     <ion-row class="ion-align-items-center">
       <ion-col size="4" class="ion-text-center">
         <img src="/assets/perfil/2.jpg" alt="Foto" class="img-clasificacion" />
       </ion-col>
       <ion-col size="8" class="ion-text-center">
-        <h1 style="margin: 0;">
-          <strong style="color: black;">CLASIFICACIÓN DE LA LIGA CORPORAL</strong>
+        <h1 style="margin: 0">
+          <strong style="color: black"
+            >CLASIFICACIÓN DE LA LIGA CORPORAL</strong
+          >
         </h1>
-        <h2 style="margin-top: 8px;">
-          Semana {{ semanaActual }}, Año {{ anoActual }}
+        <h2 style="margin-top: 8px">
+          Año
+          {{ anoActual || moment().year() }}
           <i class="bi bi-trophy-fill"></i>
         </h2>
       </ion-col>
     </ion-row>
 
-    <!-- Paginación arriba -->
-    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-      <button (click)="paginaAnterior()" [disabled]="paginaActual === 1" class="btn-pag">
-        &laquo; Anterior
-      </button>
-      <span>Página {{ paginaActual }}</span>
-      <button (click)="paginaSiguiente()" class="btn-pag">
-        Siguiente &raquo;
-      </button>
-    </div>
+
+
+
+<ion-row class="ion-align-items-center ion-justify-content-center">
+  <ion-col size="auto">
+    <ion-button
+      size="small"
+      fill="outline"
+      (click)="paginaAnterior()"
+      [disabled]="paginaActual === 1 && semanaActual === semanaMinima && anoActual === anoMinimo"
+    >
+      &laquo; Anterior
+    </ion-button>
+  </ion-col>
+
+  <ion-col size="auto" class="ion-text-center">
+<p> Semana {{ semanaActual || moment().isoWeek() }}</p>
+  </ion-col>
+
+  <ion-col size="auto">
+    <ion-button
+      size="small"
+      fill="outline"
+      (click)="paginaSiguiente()"
+      [disabled]="paginaActual === totalPaginas && semanaActual === semanaMaxima && anoActual === anoMaximo"
+    >
+      Siguiente &raquo;
+    </ion-button>
+  </ion-col>
+</ion-row>
+
 
     <!-- Mensaje cuando no hay datos -->
-    <div *ngIf="mensaje" style="color: gray; font-style: italic; margin-bottom: 10px;">
+    <div
+      *ngIf="mensaje"
+      style="color: gray; font-style: italic; margin-bottom: 10px"
+    >
       {{ mensaje }}
     </div>
 
     <!-- Contenedor con scroll horizontal -->
-    <div style="display: flex; overflow-x: auto; white-space: nowrap; padding: 10px 0;">
+    <div
+      style="
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px 0;
+      "
+    >
       <table style="width: 100%; border-collapse: collapse">
         <thead>
           <tr>
             <th style="padding: 10px; text-align: left">#</th>
             <th style="padding: 10px; text-align: left">Foto</th>
             <th style="padding: 10px; text-align: left">Nombre</th>
-            <th style="padding: 10px; text-align: left">Peso Actual ({{ clasificacion[0]?.unidad || 'kg' }})</th>
-            <th style="padding: 10px; text-align: left">Peso Ideal ({{ clasificacion[0]?.unidad || 'kg' }})</th>
-            <th style="padding: 10px; text-align: left">Logro Semanal</th>
+            <th style="padding: 10px; text-align: left">
+              Peso ({{ unidadElegida }}) <BR />Anterior
+            </th>
+            <th style="padding: 10px; text-align: left">
+              Peso ({{ unidadElegida }}) <BR />Actual
+            </th>
+            <th style="padding: 10px; text-align: left">
+              % Cambio<BR />Semanal
+            </th>
+            <th style="padding: 10px; text-align: left">Logro<BR /> Semanal</th>
             <th style="padding: 10px; text-align: left">Verificador</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let participante of clasificacion; let i = index">
-            <td style="padding: 10px">{{ participante.posicion || (i + 1) }}</td>
+            <td style="padding: 10px">{{ participante.posicion || i + 1 }}</td>
             <td style="padding: 10px">
               <ion-img
                 [src]="
@@ -58,34 +98,52 @@
                 style="width: 40px; height: 40px; border-radius: 50%"
               ></ion-img>
             </td>
-            <td style="padding: 10px">{{ participante.participante?.nombre || 'Sin nombre' }}</td>
-            <td style="padding: 10px">{{ participante.pesoActual || 0 }}</td>
-            <td style="padding: 10px">{{ participante.participante?.pesoIdeal || 0 }}</td>
             <td style="padding: 10px">
- {{
-    participante.diferencia !== null
-      ? (participante.diferencia > 0
-        ? 'Bajar ' + participante.diferencia.toFixed(2) + ' ' + (participante.unidad || 'kg')
-        : participante.diferencia < 0
-          ? 'Subir ' + abs(participante.diferencia).toFixed(2) + ' ' + (participante.unidad || 'kg')
-          : 'Mantener peso')
-      : 'Sin datos'
-  }}
+              {{ participante.participante?.nombre || "Sin nombre" }}
+            </td>
+            <td style="padding: 10px">
+              {{ participante.pesoAnterior || "-" }}
+            </td>
+            <td style="padding: 10px">
+              {{ participante.pesoActual || "-" }}
+            </td>
+            <td style="padding: 10px">
+              {{
+                participante.porcentajeCambio != null
+                  ? participante.porcentajeCambio.toFixed(2) + "%"
+                  : "-"
+              }}
+            </td>
+            <td style="padding: 10px">
+              {{
+                participante.diferencia !== null
+                  ? participante.diferencia > 0
+                    ? "Bajar " +
+                      participante.diferencia.toFixed(2) +
+                      " " +
+                      (participante.unidad || "kg")
+                    : participante.diferencia < 0
+                    ? "Subir " +
+                      abs(participante.diferencia).toFixed(2) +
+                      " " +
+                      (participante.unidad || "kg")
+                    : "Mantener peso"
+                  : "Sin datos"
+              }}
             </td>
             <td style="padding: 10px">
               <img
                 [src]="
-                  participante.participante?.imgVerificadorLc | imagen2 : 'usuarios'"                style="width: 40px; height: 40px; border-radius: 50%"
+                  participante.participante?.imgVerificadorLc
+                    | imagen2 : 'usuarios'
+                "
+                style="width: 40px; height: 40px; border-radius: 50%"
                 alt="Verificador"
-                imagen2
               />
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
-
-
   </ion-card-content>
 </ion-card>

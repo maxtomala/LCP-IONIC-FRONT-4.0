@@ -1,4 +1,4 @@
-
+<!--
   <!-- podio semanal  -->
   <ion-card class="podio">
     <ion-card-content>
@@ -40,4 +40,78 @@
       </div>
     </ion-card-content>
   </ion-card>
+ -->
+<!-- Podio semanal con paginación -->
+
+<img src="http://localhost:4200/assets/podio-lc/no-img.jpg">
+
+
+
+<ion-card class="podio">
+  <ion-card-content>
+    <ion-card-title class="ion-text-center">
+      <strong>Podio Semanal</strong>
+    </ion-card-title>
+    <br />
+
+    <div *ngIf="semanasConPodio.length === 0" class="ion-text-center">
+      {{ mensaje || 'No hay datos para mostrar' }}
+    </div>
+
+    <div *ngFor="let semana of semanasConPodio" style="margin-bottom: 2rem;">
+      <h3 class="ion-text-center">Semana {{ semana.semana }} - {{ semana.anio }}</h3>
+
+      <div class="podio-container">
+        <div class="podio-lugar primer-lugar" *ngIf="semana.podio.length >= 1">
+          <ion-img
+            [src]="semana.podio[0].participante.img | imagenPerfil : 'usuarios'"
+            class="img-avatar"
+            style="margin-left: 15px"
+          ></ion-img>
+          <div class="tarima oro" style="margin-left: 10px"></div>
+          <div class="posicion">&nbsp;&nbsp;&nbsp;1</div>
+          <p>&nbsp;&nbsp;&nbsp;{{ semana.podio[0].participante.nombre }}</p>
+        </div>
+
+        <div class="podio-lugar segundo-lugar" *ngIf="semana.podio.length >= 2">
+          <ion-img
+            [src]="(semana.podio[1].participante.img || 'default') | imagenPerfil : 'usuarios'"
+            class="img-avatar"
+            style="margin-left: 5px"
+          ></ion-img>
+          <div class="tarima plata"></div>
+          <div class="posicion">2</div>
+          <p> {{ semana.podio[1].participante.nombre }}</p>
+        </div>
+
+        <div class="podio-lugar tercer-lugar" style="margin-left: 30px" *ngIf="semana.podio.length >= 3">
+          <ion-img
+[src]="semana.podio[2]?.participante?.img | imagenPodio : 'lc/podio-lc'"
+            class="img-avatar"
+          ></ion-img>
+          <div class="tarima bronce"></div>
+          <div class="posicion">3</div>
+          <p>{{ semana.podio[2].participante.nombre }}</p>
+        </div>
+      </div>
+    </div>
+
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="margin-top: 1rem;">
+      <ion-button (click)="paginaAnterior()" [disabled]="paginaActual <= 1" fill="outline">Anterior</ion-button>
+      <ion-text style="margin: 0 1rem;">
+        Página {{ paginaActual }} de {{ totalPaginas }}
+      </ion-text>
+      <ion-button (click)="paginaSiguiente()" [disabled]="paginaActual >= totalPaginas" fill="outline">Siguiente</ion-button>
+    </ion-row>
+  </ion-card-content>
+</ion-card>
+
+
+
+
+
+
+
+
+
 
