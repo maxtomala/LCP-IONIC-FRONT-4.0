@@ -24,7 +24,6 @@ export class ELCPPage implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('hola mundo');
   }
 
   ngAfterViewInit() {

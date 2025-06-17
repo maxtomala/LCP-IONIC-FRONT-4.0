@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { IonSegmentCustomEvent, SegmentChangeEventDetail } from '@ionic/core';
-
-import 'raphael';
 import { LigaCorporal } from 'src/app/models/lc/liga-corporal.model';
 
 @Component({
@@ -44,5 +41,4 @@ export class LcPage implements OnInit {
     // this.tipoGrafica = String(event.detail.value);
     this.tipoGrafica = event.detail.value as string;
   }
-
 }

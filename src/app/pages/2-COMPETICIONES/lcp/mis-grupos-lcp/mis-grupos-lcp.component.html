@@ -1,3 +1,37 @@
-<p>
-  mis-grupos-lcp works!
-</p>
+ <ion-card>
+    <ion-card-content class="ion-text-center">
+      <ion-card-title class="ion-text-center">
+        <strong>Mis grupos</strong>
+      </ion-card-title>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col
+            size="6"
+            *ngFor="let liga of ligaCorporalProfesional; let i = index"
+            [hidden]="i >= 2"
+          >
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(liga.nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ liga.nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="6" *ngIf="ligaCorporalProfesional.length > 2">
+            <ion-button
+              expand="block"
+              color="primary"
+              (click)="accionBoton(ligaCorporalProfesional[2].nombre)"
+            >
+              <ion-icon name="fitness" slot="start"></ion-icon>
+              {{ ligaCorporalProfesional[2].nombre }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>

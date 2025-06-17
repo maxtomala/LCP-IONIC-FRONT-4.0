@@ -9,7 +9,6 @@ const base_url = environment.base_url;
 export class ImagenPerfilPipe implements PipeTransform {
 
   transform( img: string, tipo: 'usuarios'): string {
-// return 'hola mundo' + img + '' + tipo;
     if ( !img ) {
       return `${ base_url }/img-perfil-usuario/obtener/${tipo}/no-img`;
   } else if ( img.includes('https') ) {

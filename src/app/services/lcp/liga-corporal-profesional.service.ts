@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
 
-import { environment } from '../../../environments/environment';
 import { LigaCorporalProfesional } from '../../models/lcp/liga-corporal-profesional.model';
 import { UsuarioService } from '../usuario.service';
-import { RegistroPesoLcp } from '../../models/registro-peso-lcp.model';
+import { RegistroPesoLcp } from 'src/app/models/lcp/registro-peso-lcp.model';
+import { environment } from 'src/environments/environment';
 
 const base_url = environment.base_url;
 

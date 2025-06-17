@@ -16,7 +16,6 @@ export class GraficoDiarioLcpComponent implements AfterViewInit, AfterViewChecke
 
   ngAfterViewChecked(): void {
       // Aquí puedes poner lógica para renderizar el gráfico solo si no está ya creado
-  console.log('Hola mundo');
 
   }
  @ViewChild('lineChart', { static: false }) chartRef!: ElementRef;

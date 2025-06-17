@@ -1,0 +1,106 @@
+<ion-card class="podio ion-text-start">
+  <ion-card-content>
+    <ion-row class="ion-align-items-center">
+      <ion-col size="3" class="ion-text-start">
+        <ion-button
+          (click)="paginaAnterior()"
+          [disabled]="paginaActual <= 1"
+          fill="outline"
+        >
+          <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="6" class="ion-text-center">
+        <ion-card-title>
+          <strong>Podio Semanal</strong>
+        </ion-card-title>
+      </ion-col>
+
+      <ion-col size="3" class="ion-text-end">
+        <ion-button
+          (click)="paginaSiguiente()"
+          [disabled]="paginaActual >= totalPaginas"
+          fill="outline"
+        >
+          <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Fila inferior con el texto de la página -->
+    <ion-row class="ion-justify-content-center">
+      <ion-text> Página {{ paginaActual }} de {{ totalPaginas }} </ion-text>
+    </ion-row>
+
+    <br />
+
+    <div *ngIf="semanasConPodio.length === 0" class="ion-text-center">
+      {{ mensaje || "No hay datos para mostrar" }}
+    </div>
+
+    <div *ngFor="let semana of semanasConPodio">
+      <h2
+        class="ion-text-center"
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          margin-bottom: 2rem;
+        "
+      >
+        <ion-icon name="trophy-sharp" style="color: gold"></ion-icon>
+        Semana {{ semana.semana }} - {{ semana.anio }}
+        <ion-icon name="trophy-sharp" style="color: gold"></ion-icon>
+      </h2>
+
+      <div class="podio-container">
+        <div class="podio-lugar primer-lugar" *ngIf="semana.podio.length >= 1">
+          <ion-img
+            [src]="
+              semana.podio[0].participante.img
+                | imagenPodio : obtenerTipo(semana.podio[0].participante.img)
+            "
+            class="img-avatar"
+            style="margin-left: 15px"
+          ></ion-img>
+          <div class="tarima oro" style="margin-left: 10px"></div>
+          <div class="posicion">&nbsp;&nbsp;&nbsp;1</div>
+          <p>&nbsp;&nbsp;&nbsp;{{ semana.podio[0].participante.nombre }}</p>
+        </div>
+
+        <div class="podio-lugar segundo-lugar" *ngIf="semana.podio.length >= 2">
+          <ion-img
+            [src]="
+              semana.podio[1].participante.img
+                | imagenPodio : obtenerTipo(semana.podio[1].participante.img)
+            "
+            class="img-avatar"
+            style="margin-left: 5px"
+          ></ion-img>
+          <div class="tarima plata"></div>
+          <div class="posicion">2</div>
+          <p>{{ semana.podio[1].participante.nombre }}</p>
+        </div>
+
+        <div
+          class="podio-lugar tercer-lugar"
+          style="margin-left: 30px"
+          *ngIf="semana.podio.length >= 3"
+        >
+          <ion-img
+            [src]="
+              semana.podio[2]?.participante?.img
+                | imagenPodio : obtenerTipo(semana.podio[2].participante.img)
+            "
+            class="img-avatar"
+          ></ion-img>
+          <div class="tarima bronce"></div>
+          <div class="posicion">3</div>
+          <p>{{ semana.podio[2].participante.nombre }}</p>
+        </div>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-card>

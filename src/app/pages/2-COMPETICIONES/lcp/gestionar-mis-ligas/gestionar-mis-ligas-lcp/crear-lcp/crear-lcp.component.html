@@ -40,7 +40,7 @@
         <ion-col size="6">
           <ion-label class="input-label">🌍 País</ion-label>
           <ion-select interface="popover" class="liga-input" placeholder="Selecciona país">
-            <ion-select-option *ngFor="let pais of paises" [value]="pais">
+            <ion-select-option *ngFor="let pais of paisesUnionEuropeaEEUU" [value]="pais">
               {{ pais }}
             </ion-select-option>
           </ion-select>
@@ -83,7 +83,7 @@
           <ion-button
             class="mi-boton-personalizado"
             expand="block"
-            (click)="crearLigaCorporal()"
+            (click)="crearLiga()"
             size="large"
             color="light"
           >

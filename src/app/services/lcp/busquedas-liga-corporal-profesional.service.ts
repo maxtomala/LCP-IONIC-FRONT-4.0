@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { catchError, delay, map, switchMap } from 'rxjs/operators';
 
-import { Usuario } from '../models/usuario.model';
 import { Observable, of, throwError } from 'rxjs';
-import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
+import { environment } from 'src/environments/environment';
+import { CargarUsuario } from 'src/app/interfaces/cargar-usuarios.interface';
+import { Usuario } from 'src/app/models/usuario.model';
 
 const base_url = environment.base_url;
 
@@ -54,22 +54,22 @@ export class BusquedasLigaCorporalProfesionalService {
 
 
 
-  cargarUsuarios( desde: number = 0 ) {
+  // cargarUsuarios( desde: number = 0 ) {
 
-    const url = `${ base_url }/usuarios?desde=${ desde }`;
-    return this.http.get<CargarUsuario>( url, this.headers )
-            .pipe(
-              map( resp => {
-                const usuarios = resp.usuarios.map(
-                  user => new Usuario(user.nombre, user.email, '', user.img, user.google as any, user.role, user.uid as any, user.imgVerificadorLc as any,user.imgVerificadorLp, user.pais as any,user.fechaNacimiento as any, user.fraseCelebre)
-                );
-                return {
-                  total: resp.total,
-                  usuarios
-                };
-              })
-            )
-  }
+  //   const url = `${ base_url }/usuarios?desde=${ desde }`;
+  //   return this.http.get<CargarUsuario>( url, this.headers )
+  //           .pipe(
+  //             map( resp => {
+  //               const usuarios = resp.usuarios.map(
+  //                 user => new Usuario(user.nombre, user.email, '', user.img, user.google as any, user.role, user.uid as any, user.imgVerificadorLc as any,user.imgVerificadorLp, user.pais as any,user.fechaNacimiento as any, user.fraseCelebre)
+  //               );
+  //               return {
+  //                 total: resp.total,
+  //                 usuarios
+  //               };
+  //             })
+  //           )
+  // }
 
     // para la busquedas liga corporal profesional:la colecion de participantes
     buscar2(tipo: 'liga-corporal-profesional', termino: string, _id: string) {

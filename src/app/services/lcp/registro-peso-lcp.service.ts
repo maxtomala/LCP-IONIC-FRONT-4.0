@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { LigaCorporalProfesional } from '../models/liga-corporal-profesional.model';
-import { RegistroPesoLcp } from '../models/registro-peso-lcp.model';
+import { LigaCorporalProfesional } from 'src/app/models/lcp/liga-corporal-profesional.model';
+import { RegistroPesoLcp } from 'src/app/models/lcp/registro-peso-lcp.model';
+import { environment } from 'src/environments/environment';
 
 const base_url = environment.base_url;
 

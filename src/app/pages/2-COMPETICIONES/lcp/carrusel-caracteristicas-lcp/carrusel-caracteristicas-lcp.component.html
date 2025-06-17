@@ -1,0 +1,66 @@
+carrusel
+
+<swiper-container
+  *ngIf="liga"
+  [pagination]="true"
+  [navigation]="true"
+  [spaceBetween]="10"
+  class="swiper-container"
+>
+  <swiper-slide>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-card-title class="ion-text-center">
+          <strong>Participantes</strong>
+        </ion-card-title>
+        <br />
+
+        <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+          {{ liga.participantes?.length || 0 }}
+        </ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </swiper-slide>
+
+  <swiper-slide>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-card-title class="ion-text-center">
+          <strong>Liga creada</strong>
+        </ion-card-title>
+        <br />
+        <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+          {{ liga.fechaCreacion | date: 'dd/MM/yyyy' }}
+        </ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </swiper-slide>
+
+  <swiper-slide>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-card-title class="ion-text-center">
+          <strong>Objetivo</strong>
+        </ion-card-title>
+        <br />
+        <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+          {{ liga.objetivo }}
+        </ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </swiper-slide>
+
+  <swiper-slide>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-card-title class="ion-text-center">
+          <strong>Admin de la liga</strong>
+        </ion-card-title>
+        <br />
+        <ion-card-subtitle class="ion-text-center" style="font-size: 1.5rem">
+          {{ liga.admin?.nombre }}
+        </ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </swiper-slide>
+</swiper-container>
