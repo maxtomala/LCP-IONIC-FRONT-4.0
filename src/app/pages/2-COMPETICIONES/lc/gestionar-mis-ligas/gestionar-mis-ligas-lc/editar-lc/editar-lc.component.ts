@@ -26,6 +26,8 @@ export class EditarLcComponent implements OnInit {
     private ligaCorporalService: LigaCorporalService,
     private toastCtrl: ToastController,
     private alertCtrl: AlertController,
+    private toastController: ToastController
+
   ) {}
 
   ngOnInit() {
@@ -121,11 +123,32 @@ export class EditarLcComponent implements OnInit {
       });
   }
 
-  async copyTextToClipboard(ionInput: IonInput) {
-    const input = await ionInput.getInputElement();
-    input.select();
-    document.execCommand('copy');
+
+async copyTextToClipboard(ionInput: IonInput) {
+  const input = await ionInput.getInputElement();
+  const value = input.value ?? '';
+
+  try {
+    await navigator.clipboard.writeText(value);
+    console.log('Texto copiado al portapapeles:', value);
+    const toast = await this.toastController.create({
+      message: 'Texto copiado al portapapeles.',
+      duration: 2000,
+      color: 'success',
+      position: 'bottom'
+    });
+    await toast.present();
+  } catch (err) {
+    console.error('Error al copiar texto:', err);
+    const toast = await this.toastController.create({
+      message: 'Error al copiar texto.',
+      duration: 2000,
+      color: 'danger',
+      position: 'bottom'
+    });
+    await toast.present();
   }
+}
 
   selectText(event: Event): void {
     const input = event.target as HTMLInputElement;

@@ -62,13 +62,46 @@ export class LigaCorporalProfesionalService {
     }));
   }
 
+  // funciona
+crearLigaCorporalProfesional(data: {
+  nombre: string;
+  objetivo: string;
+  pais: string;
+  genero: string;
+  quinipeso: string;
+  tipoEnfrentamiento: string;
+  grupo?: string;
+  imgGrupalLcp?: string;
+  enlaceInvitacion?: string;
+  duracionSemanas?: number;
+  edadMediaParticipantes?: number;
+  numeroDeParticipantes?: number;
+}, usuarioId: string): Observable<any> {
+  const url = `${base_url}/ligaCorporalProfesional/crearlcp/${usuarioId}`;
 
+  console.log('Datos recibidos para crear liga:', data);
+  console.log('URL para crear liga:', url);
 
+  return this.http.post(url, data, { headers: this.headers })
+    .pipe(
+      tap((resp: any) => {
+        console.log('Respuesta completa recibida del servidor:', resp);
+      }),
+      map((resp: { ok: boolean; liga: any }) => {
+        console.log('Liga creada exitosamente:', resp.liga);
+        return resp.liga;
+      }),
+      catchError(error => {
+        console.error('Error al crear la liga:', error);
+        return throwError(() => error);
+      })
+    );
+}
 
 //  funciona
 obtenerTodasLasLigasPorIdUsuario(_id: string) {
   // Construir la URL completa para la solicitud
-  const url = `${base_url}/ligaCorporalProfesional/todaslasligasCP/${_id}`;
+  const url = `${base_url}/ligaCorporalProfesional/obtenerTodasLasLigasPorIdUsuario/${_id}`;
   console.log('URL construida para la solicitud:', url); // Mostrar la URL que será utilizada para la solicitud
 
   return this.http.get(url, { headers: this.headers })
@@ -95,102 +128,17 @@ obtenerTodasLasLigasPorIdUsuario(_id: string) {
     );
 
 }
-
 //  funciona
-
-// crearLigaCorporalProfesional(data: {
-//   _id: string;
-//   nombre: string;
-//   objetivo: string;
-//   pais: string;
-//   genero: string;
-//   quiniela: string;
-//   tipoEnfrentamiento: string;
-// }): Observable<any> {
-//   const { _id, nombre, objetivo, pais, genero, quiniela, tipoEnfrentamiento } = data;
-//   const url = `${base_url}/ligaCorporalProfesional/ligaCorporalProfesional/${_id}`;
-
-//   console.log('Datos recibidos para crear liga:', data);
-//   console.log('ID de la liga:', _id);
-//   console.log('Nombre de la liga:', nombre);
-//   console.log('Objetivo de la liga:', objetivo);
-//   console.log('País de la liga:', pais);
-//   console.log('Género de la liga:', genero);
-//   console.log('Quiniela de la liga:', quiniela);
-//   console.log('Tipo de enfrentamiento:', tipoEnfrentamiento);
-//   console.log('URL para crear liga:', url);
-
-//   return this.http
-//     .post(url, { nombre, objetivo, pais, genero, quiniela, tipoEnfrentamiento }, { headers: this.headers })
-//     .pipe(
-//       map((resp: { ok: boolean; liga: LigaCorporalProfesional }) => {
-//         console.log('Respuesta del servidor:', resp);
-//         return resp.liga;
-//       })
-//     );
-// }
-
-crearLigaCorporalProfesional(data: {
-  _id: string;
-  nombre: string;
-  objetivo: string;
-  pais: string;
-  genero: string;
-  quiniela: string;
-  tipoEnfrentamiento: string;
-  grupo: string;
-}): Observable<any> {
-  const url = `${base_url}/ligaCorporalProfesional/ligaCorporalProfesional/${data._id}`;
-
-  console.log('Datos recibidos para crear liga:', data);
-  console.log('URL para crear liga:', url);
-
-  return this.http.post(url, data, { headers: this.headers })
-    .pipe(
-      tap((resp: any) => {
-        console.log('Respuesta completa recibida del servidor:', resp);
-      }),
-      map((resp: { ok: boolean; liga: any }) => {
-        console.log('Liga creada exitosamente:', resp.liga);
-        return resp.liga;
-      }),
-      catchError(error => {
-        console.error('Error al crear la liga:', error);
-        return throwError(() => error);
-      })
-    );
+actualizarLiga(id: string, datos: Partial<LigaCorporalProfesional>): Observable<any> {
+  const url = `${base_url}/ligaCorporalProfesional/actualizar/${id}`;
+  return this.http.put(url, datos, { headers: this.headers });
 }
-
-
-
-
-//  funciona
-
-actualizarLigaCorporalProfesional(
-  _id: string,
-  nombre: string,
-  objetivo: string,
-  pais: string,
-  genero: string,
-  quiniela: string,
-  tipoEnfrentamiento: string,
-  grupo: string,
-
-) {
-  const url = `${base_url}/ligaCorporalProfesional/${_id}`;
-  return this.http.put(
-    url,
-    { nombre, objetivo, pais, genero, quiniela, tipoEnfrentamiento,grupo},
-    { headers: this.headers }
-  );
-}
-
-
-
+// funciona
 eliminarLigaCorporalProfesional(_id: string) {
-  const url = `${base_url}/ligaCorporalProfesional/${_id}`;
+  const url = `${base_url}/ligaCorporalProfesional/eliminar/${_id}`;
   return this.http.delete(url, { headers: this.headers });
 }
+
 
 eliminarParticipanteProfesional(_ligaId: string, participanteId: string) {
   const url = `${base_url}/ligaCorporalProfesional/${_ligaId}/participante/${participanteId}`;
@@ -198,8 +146,11 @@ eliminarParticipanteProfesional(_ligaId: string, participanteId: string) {
 }
 
 
-// funciona
 
+
+
+
+// funciona
 
 obtenerParticipantesPorLiga(_id: string, desde: number) {
   // Modificar la URL para incluir el parámetro 'desde'

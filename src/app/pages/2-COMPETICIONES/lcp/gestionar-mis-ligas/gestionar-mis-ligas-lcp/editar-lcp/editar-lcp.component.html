@@ -1,4 +1,4 @@
-<ion-card class="liga-card-elegante" *ngFor="let ligasCorporal of ligaCorporal">
+<ion-card class="liga-card-elegante" *ngFor="let ligaCorporalProfesional of ligaCorporalProfesional">
   <ion-card-header>
     <ion-card-title class="ion-text-center" style="color: white;">
       <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -16,14 +16,14 @@
         <ion-col size="7" size-md="4">
           <ion-label class="input-label">🏷️ Nombre</ion-label>
           <ion-input
-            [(ngModel)]="ligasCorporal.nombre"
+            [(ngModel)]="ligaCorporalProfesional.nombre"
             placeholder="Escribe el nombre de la liga"
             class="liga-input"
           ></ion-input>
 
           <ion-label class="input-label">🎯 Objetivo</ion-label>
           <ion-select
-            [(ngModel)]="ligasCorporal.objetivo"
+            [(ngModel)]="ligaCorporalProfesional.objetivo"
             interface="popover"
             class="liga-input"
           >
@@ -38,7 +38,7 @@
           <img src="assets/images/users/1.jpg" class="liga-avatar-large" alt="avatar" />
           <div class="liga-fecha ion-margin-top">
             <ion-icon name="calendar-outline"></ion-icon>
-            {{ ligasCorporal.fechaCreacion | date: 'dd/MM/yyyy' }}
+            {{ ligaCorporalProfesional.fechaCreacion  }}
           </div>
         </ion-col>
       </ion-row>
@@ -47,8 +47,8 @@
       <ion-row>
         <ion-col size="6">
           <ion-label class="input-label">🌍 País</ion-label>
-          <ion-select [(ngModel)]="ligasCorporal.pais" interface="popover" class="liga-input" placeholder="Selecciona país">
-            <ion-select-option *ngFor="let pais of paises" [value]="pais">
+          <ion-select [(ngModel)]="ligaCorporalProfesional.pais" interface="popover" class="liga-input" placeholder="Selecciona país">
+            <ion-select-option *ngFor="let pais of paisesUnionEuropeaEEUU" [value]="pais">
               {{ pais }}
             </ion-select-option>
           </ion-select>
@@ -56,10 +56,10 @@
 
         <ion-col size="6">
           <ion-label class="input-label">⚧️ Género</ion-label>
-          <ion-select [(ngModel)]="ligasCorporal.genero" interface="popover" class="liga-input" placeholder="Selecciona género">
-            <ion-select-option value="femenino">Femenino</ion-select-option>
-            <ion-select-option value="masculino">Masculino</ion-select-option>
-            <ion-select-option value="mixto">Mixto</ion-select-option>
+          <ion-select [(ngModel)]="ligaCorporalProfesional.genero" interface="popover" class="liga-input" placeholder="Selecciona género">
+            <ion-select-option *ngFor="let genero of opcionesGenero" [value]="genero">
+              {{ genero | titlecase }}
+            </ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>
@@ -68,19 +68,19 @@
       <ion-row>
         <ion-col size="6">
           <ion-label class="input-label">🎮 Tipo de Liga</ion-label>
-          <ion-select [(ngModel)]="ligasCorporal.tipoLiga" interface="popover" class="liga-input">
-            <ion-select-option value="quiniela">Quiniela</ion-select-option>
-            <ion-select-option value="enfrentamiento">Enfrentamiento</ion-select-option>
+          <ion-select [(ngModel)]="ligaCorporalProfesional.tipoEnfrentamiento" interface="popover" class="liga-input">
+            <ion-select-option *ngFor="let tipo of OpcoinestipoEnfrentamiento" [value]="tipo">
+              {{ tipo | titlecase }}
+            </ion-select-option>
           </ion-select>
         </ion-col>
 
         <ion-col size="6">
           <ion-label class="input-label">⚙️ Modalidad</ion-label>
-          <ion-select [(ngModel)]="ligasCorporal.modalidad" interface="popover" class="liga-input">
-            <ion-select-option value="activar">Activar</ion-select-option>
-            <ion-select-option value="desactivar">Desactivar</ion-select-option>
-            <ion-select-option value="ida_vuelta">Ida y Vuelta</ion-select-option>
-            <ion-select-option value="ida">Ida</ion-select-option>
+          <ion-select [(ngModel)]="ligaCorporalProfesional.quinipeso" interface="popover" class="liga-input">
+            <ion-select-option *ngFor="let opcion of opcionQuinpeso" [value]="opcion">
+              {{ opcion | titlecase }}
+            </ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>
@@ -89,9 +89,10 @@
       <ion-row>
         <ion-col size="12">
           <ion-label class="input-label">🔒 Grupo</ion-label>
-          <ion-select [(ngModel)]="ligasCorporal.grupo" interface="popover" class="liga-input">
-            <ion-select-option value="abierto">Abierto</ion-select-option>
-            <ion-select-option value="cerrado">Cerrado</ion-select-option>
+          <ion-select [(ngModel)]="ligaCorporalProfesional.grupo" interface="popover" class="liga-input">
+            <ion-select-option *ngFor="let grupo of opcionesGrupo" [value]="grupo">
+              {{ grupo | titlecase }}
+            </ion-select-option>
           </ion-select>
         </ion-col>
       </ion-row>
@@ -100,7 +101,7 @@
       <ion-label class="input-label ion-margin-top">🔗 Enlace de Invitación</ion-label>
       <ion-input
         readonly
-        [value]="ligasCorporal.enlaceInvitacion"
+        [value]="ligaCorporalProfesional.enlaceInvitacion"
         (click)="selectText($event)"
         #inputElement
         class="liga-input"
@@ -109,9 +110,12 @@
       <!-- Botones -->
       <ion-row class="ion-justify-content-around ion-padding-top">
         <ion-col size="2" class="ion-text-center">
-          <ion-button (click)="generarEnlace(ligasCorporal)" fill="clear" size="small">
-            <ion-icon name="link-outline" size="large"></ion-icon>
-          </ion-button>
+<ion-button
+  (click)="generarEnlaceInvitacion(ligaCorporalProfesional._id)"
+  fill="clear"
+  size="small">
+  <ion-icon name="link-outline" size="large"></ion-icon>
+</ion-button>
         </ion-col>
         <ion-col size="2" class="ion-text-center">
           <ion-button (click)="copyTextToClipboard(inputElement)" fill="clear" size="small">
@@ -119,24 +123,24 @@
           </ion-button>
         </ion-col>
         <ion-col size="2" class="ion-text-center">
-          <ion-button fill="clear" size="small" id="share-button-{{ligasCorporal.id}}">
+          <ion-button fill="clear" size="small" id="share-button-{{ligaCorporalProfesional._id}}">
             <ion-icon name="share-social-outline" size="large"></ion-icon>
           </ion-button>
         </ion-col>
         <ion-col size="2" class="ion-text-center">
-          <ion-button (click)="actualizarLiga(ligasCorporal)" fill="clear" size="small">
+          <ion-button (click)="actualizarLiga(ligaCorporalProfesional)" fill="clear" size="small">
             <ion-icon name="save-outline" size="large"></ion-icon>
           </ion-button>
         </ion-col>
         <ion-col size="2" class="ion-text-center">
-          <ion-button (click)="eliminarLiga(ligasCorporal)" fill="clear" color="danger" size="small">
-            <ion-icon name="trash-outline" size="large"></ion-icon>
-          </ion-button>
+<ion-button (click)="eliminarLiga(ligaCorporalProfesional._id)" fill="clear" color="danger" size="small">
+  <ion-icon name="trash-outline" size="large"></ion-icon>
+</ion-button>
         </ion-col>
       </ion-row>
 
       <!-- Popover Compartir -->
-      <ion-popover trigger="share-button-{{ligasCorporal.id}}" triggerAction="click" side="bottom">
+      <ion-popover trigger="share-button-{{ligaCorporalProfesional._id}}" triggerAction="click" side="bottom">
         <ng-template>
           <ion-list>
             <ion-item button href="https://twitter.com">

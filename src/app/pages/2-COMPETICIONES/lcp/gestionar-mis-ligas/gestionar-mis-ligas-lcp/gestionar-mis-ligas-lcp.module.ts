@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -16,13 +16,14 @@ import { EliminarParticipantesLcpComponent } from './eliminar-participantes-lcp/
     CommonModule,
     FormsModule,
     IonicModule,
-    GestionarMisLigasLcpPageRoutingModule
+    GestionarMisLigasLcpPageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     GestionarMisLigasLcpPage,
     CrearLcpComponent,
     EditarLcpComponent,
     EliminarParticipantesLcpComponent,
-  ]
+  ],
 })
 export class GestionarMisLigasLcpPageModule {}

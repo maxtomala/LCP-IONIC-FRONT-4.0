@@ -3,22 +3,21 @@ import { Usuario } from '../usuario.model';
 export class LigaCorporalProfesional {
   constructor(
     public nombre: string,
-    public objetivo: string,
+    public objetivo: 'bajar de peso' | 'subir de peso',
     public pais: string,
-    public genero: string,
-    public tipoEnfrentamiento: string,
-    public estadoLcp: string,
-    public quiniela: string,
-    public grupo: string,
-    public duracion?: string, //   días restantes…
+    public genero: 'masculino' | 'femenino' | 'mixto',
+    public tipoEnfrentamiento: 'solo de ida' | 'ida y vuelta',
+    public estadoLcp: 'iniciada' | 'no iniciada',
+    public quinipeso: 'activar' | 'desactivar',
+    public grupo: 'abierto' | 'cerrado',
+    public duracionSemanas?: number,
     public admin?: Usuario,
     public fechaCreacion?: Date,
     public participantes: Usuario[] = [],
-    public edadMedia?: Number,
-    public numeroDeParticipantes?: Number,
+    public edadMediaParticipantes?: number, 
+    public numeroDeParticipantes?: number,
     public imgGrupalLcp?: string,
     public enlaceInvitacion?: string,
     public _id?: string
   ) {}
 }
-

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario.model';
 import { LigaCorporalProfesionalService } from 'src/app/services/lcp/liga-corporal-profesional.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -15,7 +16,7 @@ export class CrearLcpComponent implements OnInit {
   public ligaForm!: FormGroup;
   public opcionesObjetivo = ['bajar de peso', 'subir de peso'];
   public opcionesGenero = ['masculino', 'femenino', 'mixto'];
-  public opcionQuiniela = ['activar', 'desactivar'];
+  public opcionQuinpeso = ['activar', 'desactivar'];
   public tipoEnfrentamiento = ['solo de ida', 'ida y vuelta'];
   public paisesUnionEuropeaEEUU = [
     'Afganistán',
@@ -213,11 +214,16 @@ export class CrearLcpComponent implements OnInit {
     'Zambia',
     'Zimbabue',
   ];
+  public cargando = false;
+  public errorMensaje = '';
+  public exitoMensaje = '';
 
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private ligaCorporalProfesionalService: LigaCorporalProfesionalService
+    private ligaCorporalProfesionalService: LigaCorporalProfesionalService,
+        private toastController: ToastController,
+
   ) {}
 
   ngOnInit() {
@@ -228,37 +234,64 @@ export class CrearLcpComponent implements OnInit {
       objetivo: ['', Validators.required],
       pais: ['', Validators.required],
       genero: ['', Validators.required],
-      quiniela: ['', Validators.required],
+      quinipeso: ['', Validators.required],  // nombre corregido de quiniela a quinipeso
       tipoEnfrentamiento: ['', Validators.required],
+      grupo: ['cerrado', Validators.required], // asumo que quieres el grupo
+      duracionSemanas: [null, [Validators.min(1)]], // opcional, mínimo 1 semana
+      enlaceInvitacion: [''], // opcional
+      imgGrupalLcp: [''], // opcional
     });
 
   }
 
-  campoNoValido0(form: FormGroup, campo: string): boolean {
-    const control = form.get(campo);
-    return (control?.invalid && control?.touched) || false;
+campoNoValido0(campo: string): boolean {
+  const control = this.ligaForm.get(campo);
+  return (control?.invalid && control?.touched) || false;
+}
+
+
+crearLiga(): void {
+  if (this.ligaForm.invalid) {
+    this.ligaForm.markAllAsTouched();
+    return;
   }
 
-  crearLiga(): void {
-    if (this.ligaForm.invalid) {
-      this.ligaForm.markAllAsTouched();
-      return;
-    }
+  this.cargando = true;
+  this.errorMensaje = '';
+  this.exitoMensaje = '';
 
-    const formValues = this.ligaForm.value;
+  const data = {
+    ...this.ligaForm.value,
+    participantes: [this.usuario.uid], // solo participantes en el body
+  };
 
-    const { uid } = this.usuarioService.usuario;
+  console.log('Datos que se enviarán:', data);
 
-    this.ligaCorporalProfesionalService
-      .crearLigaCorporalProfesional({ _id: uid, ...formValues })
+   this.ligaCorporalProfesionalService
+      .crearLigaCorporalProfesional(data, this.usuario.uid)
       .subscribe({
-        next: (resp) => {
-          console.log('Liga creada:', resp);
-          // Aquí podrías redirigir o mostrar un mensaje de éxito
+        next: async (liga) => {
+          await this.presentToast('Liga creada con éxito ✅');
+          this.cargando = false;
+          this.ligaForm.reset({
+            grupo: 'cerrado',
+          });
         },
-        error: (err) => {
-          console.error('Error al crear la liga:', err);
+        error: async (err) => {
+          await this.presentToast(
+            err.error?.mensaje || 'Error al crear la liga ❌. Intente más tarde.'
+          );
+          this.cargando = false;
         },
       });
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color: 'primary',
+    });
+    toast.present();
   }
 }
