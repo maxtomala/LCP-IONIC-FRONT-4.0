@@ -17,11 +17,6 @@
 
 
 <app-mis-grupos-lc (ligaSeleccionadaChange)="ligaSeleccionada = $event"></app-mis-grupos-lc>
-<app-podio-lc [liga]="ligaSeleccionada"></app-podio-lc>
-<app-tabla-clasificatoria-lc [liga]="ligaSeleccionada"></app-tabla-clasificatoria-lc>
-<app-carrusel-caracteristicas-lc [liga]="ligaSeleccionada"></app-carrusel-caracteristicas-lc>
-<app-guardar-peso-lc [liga]="ligaSeleccionada"></app-guardar-peso-lc>
-<app-verificador-semanal-lc [liga]="ligaSeleccionada"></app-verificador-semanal-lc>
 
   <!-- Gráfica lineal -->
   <ion-card>
@@ -61,6 +56,11 @@
   </ion-card>
 
 
+<app-podio-lc [liga]="ligaSeleccionada"></app-podio-lc>
+<app-tabla-clasificatoria-lc [liga]="ligaSeleccionada"></app-tabla-clasificatoria-lc>
+<app-carrusel-caracteristicas-lc [liga]="ligaSeleccionada"></app-carrusel-caracteristicas-lc>
+<app-guardar-peso-lc [liga]="ligaSeleccionada"></app-guardar-peso-lc>
+<app-verificador-semanal-lc [liga]="ligaSeleccionada"></app-verificador-semanal-lc>
 
 
 
@@ -72,8 +72,8 @@
     slot="fixed"
     vertical="bottom"
     horizontal="end"
-    style="margin-bottom: 100px"
-  >
+    >
+    <!-- style="margin-bottom: 100px" -->
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

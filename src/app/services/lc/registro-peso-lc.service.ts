@@ -52,6 +52,7 @@ export class RegistroPesoLcService {
     return this.http.post(url, body);
   }
 
+  // pesos para tabla clasificatoria
   obtenerPesosParticipante(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolc/${idLiga}`;
     // console.log("Datos de peso a enviar:", url);
@@ -60,6 +61,13 @@ export class RegistroPesoLcService {
 
     return this.http.get(url, this.headers);
   }
+
+  // Obtener todos los pesos de los participantes para la gráfica
+  obtenerPesosParticipantesGrafica(idLiga: string): Observable<any> {
+    const url = `${base_url}/registropesolc/pesos-grafica/${idLiga}`;
+    return this.http.get(url, this.headers);
+  }
+
 
   obtenerPesosPorLigaBotonBloqueo(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolc/boton/${idLiga}`;

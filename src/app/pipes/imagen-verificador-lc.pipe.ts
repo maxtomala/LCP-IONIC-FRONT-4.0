@@ -11,16 +11,16 @@ export class ImagenVerificadorLcPipe implements PipeTransform {
   transform(imgVerificadorLc: string, tipo: 'usuarios'): string {
     let imgUrl: string;
 
-    console.log('Transforming image URL');
-    console.log('Image Verifier:', imgVerificadorLc);
-    console.log('Type:', tipo);
+    // console.log('Transforming image URL');
+    // console.log('Image Verifier:', imgVerificadorLc);
+    // console.log('Type:', tipo);
 
     if (!imgVerificadorLc) {
       imgUrl = `${base_url}/verificador-lc/obtener/${tipo}/no-img`;
-      console.log('No image verifier provided, using default URL:', imgUrl);
+      // console.log('No image verifier provided, using default URL:', imgUrl);
     } else {
       imgUrl = `${base_url}/verificador-lc/obtener/${tipo}/${imgVerificadorLc}`;
-      console.log('Image verifier provided, using URL:', imgUrl);
+      // console.log('Image verifier provided, using URL:', imgUrl);
     }
 
     return imgUrl;

@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import {Component,ElementRef,OnInit,ViewChild} from '@angular/core';
 import Chart from 'chart.js/auto';
 import { Usuario } from 'src/app/models/usuario.model';
 import { RegistroPesoLpService } from 'src/app/services/lp/registro-peso-lp.service';

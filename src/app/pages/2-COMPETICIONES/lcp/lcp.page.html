@@ -398,8 +398,8 @@
   slot="fixed"
   vertical="bottom"
   horizontal="end"
-  style="margin-bottom: 100px"
->
+  >
+  <!-- style="margin-bottom: 100px" -->
   <ion-fab-button>
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
@@ -423,7 +423,7 @@
     </div>
 
     <!-- Configurar LCP -->
-    <div class="fab-item" (click)="router.navigate(['/pages/configuracion-lcp'], { queryParams: { seccion: 'editar' } })">
+    <div class="fab-item" (click)="router.navigate(['/pages/gestionar-mis-ligas-lcp'], { queryParams: { seccion: 'editar' } })">
       <div class="fab-label">Editar Lcp</div>
       <ion-fab-button>
         <ion-icon name="settings-outline"></ion-icon>
@@ -431,7 +431,7 @@
     </div>
 
     <!-- Crear una LCP -->
-    <div class="fab-item" (click)="router.navigate(['/pages/configuracion-lcp'], { queryParams: { seccion: 'crear' } })">
+    <div class="fab-item" (click)="router.navigate(['/pages/gestionar-mis-ligas-lcp'], { queryParams: { seccion: 'crear' } })">
       <div class="fab-label">Crear una LCP</div>
       <ion-fab-button>
         <ion-icon name="create-outline"></ion-icon>
@@ -439,7 +439,7 @@
     </div>
 
     <!-- Unirme a LCP -->
-    <div class="fab-item" (click)="router.navigate(['/pages/unirme-lcp'])">
+    <div class="fab-item" (click)="router.navigate(['/pages/gestionar-mis-ligas-lcp'], { queryParams: { seccion: 'editar' } })">
       <div class="fab-label">Unirme a LCP</div>
       <ion-fab-button>
         <ion-icon name="log-in-outline"></ion-icon>
