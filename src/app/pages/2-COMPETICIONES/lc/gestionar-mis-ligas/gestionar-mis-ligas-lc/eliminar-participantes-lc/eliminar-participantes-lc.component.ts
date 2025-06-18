@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { LigaCorporal } from 'src/app/models/lc/liga-corporal.model';
 import { RegistroPesoLc } from 'src/app/models/lc/registro-peso-lc.model';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -14,7 +14,6 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class EliminarParticipantesLcComponent implements OnInit {
 
-
   public usuario: Usuario;
   public participantes: RegistroPesoLc[] = [];
   public totalUsuarios: number = 0;
@@ -25,52 +24,54 @@ export class EliminarParticipantesLcComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private ligaCorporalService: LigaCorporalService,
-      private route: ActivatedRoute
+    private toastController: ToastController,
 
   ) {}
 
   ngOnInit() {
-    this.usuario = this.usuarioService.usuario;
-    this.idLiga = this.route.snapshot.paramMap.get('id') || ''; // Ajusta el nombre 'id' al que tengas
-  if(this.idLiga) {
-    // this.cargarParticipantes();
-  } else {
-    console.error('No se recibió idLiga para cargar participantes');
-  }
-this.obtenerTodasLasLigas()
-    // this.cargarParticipantes();
+
+    this.obtenerTodasLasLigasPorIdUsuario();
   }
 
-
-
-  obtenerTodasLasLigas(): void {
+  obtenerTodasLasLigasPorIdUsuario(): void {
     const { uid } = this.usuarioService.usuario;
     this.ligaCorporalService.obtenerTodasLasLigasPorIdUsuario(uid).subscribe({
       next: (ligas) => {
         this.ligaCorporal = ligas;
-              console.log('Participantes:', this.ligaCorporal);
-
-
-
       },
       error: (err) => {
-        console.error('Error al cargar ligas:', err);
       },
     });
   }
 
-
+ // Método para eliminar participante con toast en éxito/error
   eliminarParticipante(_ligaId: string, participanteId: string): void {
     this.ligaCorporalService.eliminarParticipante(_ligaId, participanteId).subscribe({
-      next: () => {
-        console.log('Participante eliminado con éxito');
-        this.obtenerTodasLasLigas(); // Refrescar lista
+      next: async () => {
+        // Refrescar lista
+        this.obtenerTodasLasLigasPorIdUsuario();
+        // Mostrar toast de éxito
+        await this.presentToast('Participante eliminado con éxito.', 'success');
       },
-      error: (err) => {
-        console.error('Error al eliminar participante:', err);
-      }
+      error: async (err) => {
+        // Mostrar toast de error
+        await this.presentToast('Error al eliminar participante. Intente de nuevo.', 'danger');
+      },
     });
   }
 
+  // Método auxiliar para mostrar toast
+  private async presentToast(
+    message: string,
+    color: 'success' | 'danger' = 'success'
+  ) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color,
+      position: 'bottom',
+      cssClass: 'toast-mensaje-centro' // si quieres centrar texto en el toast
+    });
+    await toast.present();
+  }
 }
-

@@ -228,6 +228,10 @@ export class EditarLcpComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.usuario = this.usuarioService.usuario;
+    if (!this.usuario || !this.usuario.uid) {
+      console.error('Usuario no está definido en EditarLcpComponent');
+    }
     this.obtenerTodasLasLigasPorIdUsuario();
   }
 
@@ -261,34 +265,38 @@ export class EditarLcpComponent implements OnInit {
       });
   }
 
-async eliminarLiga(_id: string) {
-  this.ligaCorporalProfesionalService.eliminarLigaCorporalProfesional(_id).subscribe({
-    next: async (res) => {
-      // Mostrar toast de éxito
-      const toast = await this.toastController.create({
-        message: 'Liga eliminada correctamente',
-        duration: 2000,
-        color: 'success',
-        position: 'bottom'
-      });
-      await toast.present();
+  async eliminarLiga(_id: string) {
+    this.ligaCorporalProfesionalService
+      .eliminarLigaCorporalProfesional(_id)
+      .subscribe({
+        next: async (res) => {
+          // Mostrar toast de éxito
+          const toast = await this.toastController.create({
+            message: 'Liga eliminada correctamente',
+            duration: 2000,
+            color: 'success',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
 
-      // Actualizar la lista después de eliminar
-      this.obtenerTodasLasLigasPorIdUsuario();
-    },
-    error: async (err) => {
-      // Mostrar toast de error
-      const toast = await this.toastController.create({
-        message: 'Error al eliminar la liga',
-        duration: 2000,
-        color: 'danger',
-        position: 'bottom'
+          // Actualizar la lista después de eliminar
+          this.obtenerTodasLasLigasPorIdUsuario();
+        },
+        error: async (err) => {
+          // Mostrar toast de error
+          const toast = await this.toastController.create({
+            message: 'Error al eliminar la liga',
+            duration: 2000,
+            color: 'danger',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
+          console.error('Error al eliminar la liga', err);
+        },
       });
-      await toast.present();
-      console.error('Error al eliminar la liga', err);
-    }
-  });
-}
+  }
 
   actualizarLiga(liga: LigaCorporalProfesional): void {
     this.ligaCorporalProfesionalService
@@ -305,7 +313,7 @@ async eliminarLiga(_id: string) {
         next: async (resp) => {
           console.log('Liga actualizada con éxito:', resp);
           await this.presentarToast('Liga actualizada con éxito', 'success');
-            this.obtenerTodasLasLigasPorIdUsuario();
+          this.obtenerTodasLasLigasPorIdUsuario();
         },
         error: async (err) => {
           console.error('Error actualizando la liga:', err);
@@ -323,71 +331,116 @@ async eliminarLiga(_id: string) {
       duration: 2000,
       color,
       position: 'bottom',
+      cssClass: 'toast-mensaje-centro',
     });
     toast.present();
   }
 
+  generarEnlaceInvitacion(idLiga: string) {
+    const idUsuarioInvitado = this.usuarioService.usuario.uid;
 
-generarEnlaceInvitacion(idLiga: string) {
-      const idUsuarioInvitado = this.usuarioService.usuario.uid;
+    this.ligaCorporalProfesionalService
+      .generarEnlaceInvitacion(idLiga, idUsuarioInvitado)
+      .subscribe({
+        next: async (res) => {
+          console.log('Enlace de invitación generado:', res);
 
-  this.ligaCorporalProfesionalService.generarEnlaceInvitacion(idLiga, idUsuarioInvitado).subscribe({
-    next: async (res) => {
-      console.log('Enlace de invitación generado:', res);
+          const toast = await this.toastController.create({
+            message: 'Enlace de invitación generado correctamente.',
+            duration: 2000,
+            color: 'success',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
+          this.obtenerTodasLasLigasPorIdUsuario();
+        },
+        error: async (err) => {
+          console.error('Error al generar el enlace de invitación', err);
 
+          const toast = await this.toastController.create({
+            message: 'Error al generar el enlace de invitación.',
+            duration: 2000,
+            color: 'danger',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
+        },
+      });
+  }
+  //  copia el texo del imput
+  async copyTextToClipboard(ionInput: IonInput) {
+    const input = await ionInput.getInputElement();
+    const value = input.value ?? '';
+
+    try {
+      await navigator.clipboard.writeText(value);
+      console.log('Texto copiado al portapapeles:', value);
       const toast = await this.toastController.create({
-        message: 'Enlace de invitación generado correctamente.',
+        message: 'Texto copiado al portapapeles.',
         duration: 2000,
         color: 'success',
         position: 'bottom',
       });
       await toast.present();
-      this.obtenerTodasLasLigasPorIdUsuario();
-
-    },
-    error: async (err) => {
-      console.error('Error al generar el enlace de invitación', err);
-
+    } catch (err) {
+      console.error('Error al copiar texto:', err);
       const toast = await this.toastController.create({
-        message: 'Error al generar el enlace de invitación.',
+        message: 'Error al copiar texto.',
         duration: 2000,
         color: 'danger',
         position: 'bottom',
+        cssClass: 'toast-mensaje-centro',
       });
       await toast.present();
-    },
-  });
-}
-//  copia el texo del imput 
-async copyTextToClipboard(ionInput: IonInput) {
-  const input = await ionInput.getInputElement();
-  const value = input.value ?? '';
-
-  try {
-    await navigator.clipboard.writeText(value);
-    console.log('Texto copiado al portapapeles:', value);
-    const toast = await this.toastController.create({
-      message: 'Texto copiado al portapapeles.',
-      duration: 2000,
-      color: 'success',
-      position: 'bottom'
-    });
-    await toast.present();
-  } catch (err) {
-    console.error('Error al copiar texto:', err);
-    const toast = await this.toastController.create({
-      message: 'Error al copiar texto.',
-      duration: 2000,
-      color: 'danger',
-      position: 'bottom'
-    });
-    await toast.present();
+    }
   }
-}
 
-//  selecciona todo el texto para que el usuario pueda copia
+  //  selecciona todo el texto para que el usuario pueda copia
   selectText(event: Event): void {
     const input = event.target as HTMLInputElement;
     input.select();
+  }
+
+  // Subir imagen grupal
+  onFileSelected(event: any, liga: LigaCorporalProfesional): void {
+    const file: File = event.target.files[0];
+    if (!file) {
+      return;
+    }
+
+    this.ligaCorporalProfesionalService
+      .actualizarImagenGrupal(liga._id!, this.usuario.uid, file)
+      .subscribe({
+        next: async (resp: any) => {
+          console.log('Imagen actualizada correctamente', resp);
+          // Actualizamos la propiedad para forzar recarga de la imagen
+          liga.imgGrupalLcp =
+            resp.path.split('/').pop() + '?t=' + new Date().getTime();
+
+          // Mostrar Toast de éxito
+          const toast = await this.toastController.create({
+            message: 'Imagen actualizada correctamente ✅',
+            duration: 2000,
+            color: 'success',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
+        },
+        error: async (err) => {
+          console.error('Error al actualizar imagen:', err);
+          // Mostrar Toast de error
+          const toast = await this.toastController.create({
+            message: 'Error al actualizar la imagen ❌',
+            duration: 2000,
+            color: 'danger',
+            position: 'bottom',
+            cssClass: 'toast-mensaje-centro',
+          });
+          await toast.present();
+        },
+      });
   }
 }

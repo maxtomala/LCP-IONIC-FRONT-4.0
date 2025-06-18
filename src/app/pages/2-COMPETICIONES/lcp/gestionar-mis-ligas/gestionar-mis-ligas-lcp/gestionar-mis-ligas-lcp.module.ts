@@ -10,6 +10,7 @@ import { GestionarMisLigasLcpPage } from './gestionar-mis-ligas-lcp.page';
 import { CrearLcpComponent } from './crear-lcp/crear-lcp.component';
 import { EditarLcpComponent } from './editar-lcp/editar-lcp.component';
 import { EliminarParticipantesLcpComponent } from './eliminar-participantes-lcp/eliminar-participantes-lcp.component';
+import { PipesModule } from "../../../../../pipes/pipes.module";
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { EliminarParticipantesLcpComponent } from './eliminar-participantes-lcp/
     IonicModule,
     GestionarMisLigasLcpPageRoutingModule,
     ReactiveFormsModule,
-  ],
+    PipesModule
+],
   declarations: [
     GestionarMisLigasLcpPage,
     CrearLcpComponent,

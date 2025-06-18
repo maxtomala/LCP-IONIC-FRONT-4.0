@@ -49,23 +49,22 @@
         <!-- Columna Derecha -->
         <ion-col size="5" size-md="8" class="ion-text-center">
           <input
-  type="file"
-  accept="image/*"
-  hidden
-  #fileInput
-  (change)="onFileSelected($event, ligasCorporal)"
-/>
+            type="file"
+            accept="image/*"
+            hidden
+            #fileInput
+            (change)="onFileSelected($event, ligasCorporal)"
+          />
           <img
             [src]="
               ligasCorporal.imgGrupalLc | imagenGrupalLc : ligasCorporal._id
             "
             class="liga-avatar-large"
             alt="imagen grupal"
-              style="cursor: pointer;"
-  (click)="fileInput.click()"
+            style="cursor: pointer"
+            (click)="fileInput.click()"
           />
 
-          
           <div class="liga-fecha ion-margin-top">
             <ion-icon name="calendar-outline"></ion-icon>
             {{ ligasCorporal.fechaCreacion | date : "dd/MM/yyyy" }}

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import {  ToastController } from '@ionic/angular';
+import { LigaCorporalProfesional } from 'src/app/models/lcp/liga-corporal-profesional.model';
+import { LigaCorporalProfesionalService } from 'src/app/services/lcp/liga-corporal-profesional.service';
+
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -8,96 +12,77 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./eliminar-participantes-lcp.component.scss'],
 })
 export class EliminarParticipantesLcpComponent  implements OnInit {
+  public ligaCorporalProfesional: LigaCorporalProfesional[] = []; // ✅ Aquí va la lista que usas con *ngFor
 
+  constructor(
+    private usuarioService: UsuarioService,
+    private ligaCorporalProfesionalService: LigaCorporalProfesionalService,
+    private toastController: ToastController,
+  ) {}
 
-   ligaCorporal = [
-    {
-     img: '/assets/perfil/2.jpg',
-      nombre: 'Juan',
-      apellidos: 'Pérez García',
-    },
-    {
-      img: '/assets/perfil/2.jpg',
-      nombre: 'Ana',
-      apellidos: 'López Martínez',
-    },
-    {
-     img: '/assets/perfil/2.jpg',
-      nombre: 'Carlos',
-      apellidos: 'Fernández Ruiz',
-    },
-    {
-      img: '/assets/perfil/2.jpg',
-      nombre: 'María',
-      apellidos: 'Torres Sánchez',
-    },
-    {
-      img: '/assets/perfil/2.jpg',
-      nombre: 'Luis',
-      apellidos: 'Martínez Ortega',
-    },
-  ];
+  public cargando = false;
+  public errorMensaje = '';
+  public exitoMensaje = '';
 
-ngOnInit() {
-
+  ngOnInit() {
+    this.obtenerTodasLasLigasPorIdUsuario();
   }
 
- participantes = [
-    {
-      id: 1,
-      nombre: 'Liga Fitness',
-      fechaCreacion: new Date('2024-01-15'),
-      objetivo: 'Mejorar condición física',
-      enlaceInvitacion: 'https://miapp.com/invitar/1',
-      participantes: [
-        {
-          id: 101,
-          nombre: 'Ana',
-          apellido1: 'García',
-          apellido2: 'López',
-          img: 'ana.jpg',
-        },
-        {
-          id: 102,
-          nombre: 'Carlos',
-          apellido1: 'Martínez',
-          apellido2: 'Pérez',
-          img: 'carlos.jpg',
-        },
-      ],
-    },
-    {
-      id: 2,
-      nombre: 'Liga Yoga',
-      fechaCreacion: new Date('2024-03-20'),
-      objetivo: 'Relajación y flexibilidad',
-      enlaceInvitacion: 'https://miapp.com/invitar/2',
-      participantes: [
-        {
-          id: 103,
-          nombre: 'Laura',
-          apellido1: 'Sánchez',
-          apellido2: 'Fernández',
-          img: 'laura.jpg',
-        },
-      ],
-    },
-  ];
+  obtenerTodasLasLigasPorIdUsuario(): void {
+    const { uid } = this.usuarioService.usuario;
 
-  constructor(private navCtrl: NavController) {}
+    this.cargando = true;
+    this.errorMensaje = '';
+    this.exitoMensaje = '';
 
+    this.ligaCorporalProfesionalService
+      .obtenerTodasLasLigasPorIdUsuario(uid)
+      .subscribe({
+        next: (ligas) => {
+          this.ligaCorporalProfesional = ligas;
+          this.cargando = false;
 
-  volver() {
-    this.navCtrl.back();
+          if (ligas.length === 0) {
+            this.errorMensaje = 'No se encontraron ligas.';
+          } else {
+            this.exitoMensaje = `Se cargaron ${ligas.length} ligas correctamente.`;
+          }
+        },
+        error: (err) => {
+          this.errorMensaje = 'Error al cargar ligas. Intente de nuevo.';
+          this.cargando = false;
+        },
+      });
   }
 
+async eliminarParticipanteDeLiga(liga: any, participante: any) {
+  this.ligaCorporalProfesionalService.eliminarParticipanteProfesional(liga._id, participante.uid)
+    .subscribe({
+      next: async (res: any) => {
+        this.obtenerTodasLasLigasPorIdUsuario();
+
+        const toast = await this.toastController.create({
+          message: res.mensaje ,
+          duration: 2000,
+          color: 'success',
+          position: 'bottom',
+          cssClass: 'toast-mensaje-centro'
+        });
+        await toast.present();
+      },
+      error: async (err) => {
+
+        const toast = await this.toastController.create({
+          message: 'Error eliminando participante. Intente de nuevo.',
+          duration: 2000,
+          color: 'danger',
+          position: 'bottom'
+        });
+        await toast.present();
+      }
+    });
+}
 
 
-    eliminarParticipanteDeLiga(liga: any, participante: any) {
-    const index = liga.participantes.findIndex((p: any) => p.id === participante.id);
-    if (index > -1) {
-      liga.participantes.splice(index, 1);
-    }
 
-  }
 }

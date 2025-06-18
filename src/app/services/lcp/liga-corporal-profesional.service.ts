@@ -138,11 +138,26 @@ eliminarLigaCorporalProfesional(_id: string) {
   const url = `${base_url}/ligaCorporalProfesional/eliminar/${_id}`;
   return this.http.delete(url, { headers: this.headers });
 }
-
-
+// funciona
 eliminarParticipanteProfesional(_ligaId: string, participanteId: string) {
-  const url = `${base_url}/ligaCorporalProfesional/${_ligaId}/participante/${participanteId}`;
+  const url = `${base_url}/ligaCorporalProfesional/${_ligaId}/participante/eliminar/${participanteId}`;
   return this.http.delete(url, { headers: this.headers });
+}
+
+// Método para actualizar la imagen grupal de la liga
+actualizarImagenGrupal(idLiga: string, idUsuario: string, imagen: File): Observable<any> {
+  const url = `${base_url}/imgGrupalLcp/img-grupal-lcp/${idLiga}/${idUsuario}`;
+  const formData = new FormData();
+  formData.append('imagen', imagen);
+
+  console.log('Enviando solicitud PUT a:', url);
+  console.log('Datos enviados:', formData);
+
+  return this.http.put(url, formData, { headers: this.headers }).pipe(
+    tap(response => {
+      console.log('Respuesta recibida:', response);
+    })
+  );
 }
 
 
@@ -150,8 +165,9 @@ eliminarParticipanteProfesional(_ligaId: string, participanteId: string) {
 
 
 
-// funciona
 
+
+// funciona
 obtenerParticipantesPorLiga(_id: string, desde: number) {
   // Modificar la URL para incluir el parámetro 'desde'
   const url = `${base_url}/ligaCorporalProfesional/ligaCorporalProfesional/${_id}/${_id}?desde=${desde}`;
@@ -246,21 +262,6 @@ todaslasLCP(desde: number = 0, limite: number = 10) {
 
 
 
-// Método para actualizar la imagen grupal de la liga
-actualizarImagenGrupal(idLiga: string, idUsuario: string, imagen: File): Observable<any> {
-  const url = `${base_url}/imgGrupalLcp/img-grupal-lcp/${idLiga}/${idUsuario}`;
-  const formData = new FormData();
-  formData.append('imagen', imagen);
-
-  console.log('Enviando solicitud PUT a:', url);
-  console.log('Datos enviados:', formData);
-
-  return this.http.put(url, formData, { headers: this.headers }).pipe(
-    tap(response => {
-      console.log('Respuesta recibida:', response);
-    })
-  );
-}
 
 // Método para obtener la imagen grupal de la liga
 obtenerImagenGrupal(idLiga: string, foto: string): Observable<Blob> {

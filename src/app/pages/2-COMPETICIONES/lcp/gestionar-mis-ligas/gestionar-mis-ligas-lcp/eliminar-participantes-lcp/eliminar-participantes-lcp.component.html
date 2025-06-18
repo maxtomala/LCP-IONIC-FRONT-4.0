@@ -1,85 +1,54 @@
-
-  <!-- tabla eliminar participantes  -->
-  <!-- tabla eliminar participantes  -->
-
-
-<!-- *ngFor="let ligaCorporal of ligaCorporal" class="row" -->
-
-<ion-card  class="liga-card-elegante" *ngFor="let ligasCorporal of ligaCorporal">
+<!-- Mostrar todas las ligas -->
+<ion-card class="liga-card-elegante" *ngFor="let liga of ligaCorporalProfesional">
   <ion-card-header>
-  <ion-card-title class="ion-text-center" style="color: white;">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-      <ion-icon name="people-outline" style="font-size: 35px; color: white;"></ion-icon>
-      <span>Grupo 1</span>
-    </div>
-  </ion-card-title>
-</ion-card-header>
+    <ion-card-title class="ion-text-center" style="color: white;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <ion-icon name="people-outline" style="font-size: 35px; color: white;"></ion-icon>
+        <span>{{ liga.nombre }}</span> <!-- muestra nombre de la liga -->
+      </div>
+    </ion-card-title>
+  </ion-card-header>
 
   <ion-card-content class="ion-text-center">
-<ion-card-subtitle class="ion-text-center" style="color: #3f51b5; font-weight: 500; margin-top: 4px; position: relative; display: inline-block;">
+    <ion-card-subtitle class="ion-text-center" style="color: #3f51b5; font-weight: 500; margin-top: 4px; position: relative; display: inline-block;">
+      <ion-icon name="person-outline" style="font-size: 20px; vertical-align: middle; color: #3f51b5;"></ion-icon>
+      <ion-icon
+        name="close-circle"
+        style="font-size: 14px; color: red; position: absolute; top: 0; left: 14px;"
+      ></ion-icon>
+      <span style="margin-left: 24px; vertical-align: middle;">Eliminar participante</span>
+    </ion-card-subtitle>
 
-  <ion-icon name="person-outline" style="font-size: 20px; vertical-align: middle;  color: #3f51b5;" ></ion-icon>
-
-  <ion-icon
-    name="close-circle"
-    style="
-      font-size: 14px;
-      color: red;
-      position: absolute;
-      top: 0;
-      left: 14px;
-    "
-  ></ion-icon>
-
-  <span style="margin-left: 24px; vertical-align: middle;">Eliminar participante</span>
-</ion-card-subtitle>
-
-
-
-
-    <div style="overflow-x: auto; white-space: nowrap; padding: 10px 0">
-      <table style="width: 100%; border-collapse: collapse">
+    <!-- Tabla de participantes -->
+    <div style="overflow-x: auto; white-space: nowrap; padding: 10px 0;">
+      <table style="width: 100%; border-collapse: collapse;">
         <thead>
           <tr>
-            <th style="padding: 10px; text-align: left">#</th>
-            <th style="padding: 10px; text-align: left">Foto</th>
-            <th style="padding: 10px; text-align: left">Nombre</th>
-            <th style="padding: 10px; text-align: left">Apellidos</th>
-            <th style="padding: 10px; text-align: left">Accion</th>
+            <th style="padding: 10px; text-align: left;">#</th>
+            <th style="padding: 10px; text-align: left;">Foto</th>
+            <th style="padding: 10px; text-align: left;">Nombre</th>
+            <th style="padding: 10px; text-align: left;">Apellidos</th>
+            <th style="padding: 10px; text-align: left;">Acción</th>
           </tr>
         </thead>
         <tbody>
-          <tr
-            *ngFor="let participante of ligaCorporal; let i = index"
-            class="ion-align-items-center ion-text-center"
-          >
-            <td style="padding: 10px">{{ i + 1 }}</td>
-            <td style="padding: 10px">
+          <tr *ngFor="let participante of liga.participantes; let i = index" class="ion-align-items-center ion-text-center">
+            <td style="padding: 10px;">{{ i + 1 }}</td>
+            <td style="padding: 10px;">
               <img
-                [src]="participante.img"
+                [src]="participante.img | imagenPerfil : 'usuarios'"
                 alt="foto"
-                style="width: 40px; height: 40px; border-radius: 50%"
+                style="width: 40px; height: 40px; border-radius: 50%;"
               />
             </td>
-            <td style="padding: 10px">{{ participante.nombre }}</td>
-            <td style="padding: 10px">{{ participante.apellidos }}</td>
-            <td style="padding: 10px"><ion-icon name="close-outline"></ion-icon>
-</td>
+            <td style="padding: 10px;">{{ participante.nombre }}</td>
+            <td style="padding: 10px;">{{ participante.apellido1 }}</td>
+            <td style="padding: 10px;">
+                <ion-icon name="close-outline" (click)="eliminarParticipanteDeLiga(liga, participante)"></ion-icon>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </ion-card-content>
 </ion-card>
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-

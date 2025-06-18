@@ -35,7 +35,31 @@
 
         <!-- Columna Derecha -->
         <ion-col size="5" size-md="8" class="ion-text-center">
-          <img src="assets/images/users/1.jpg" class="liga-avatar-large" alt="avatar" />
+
+  <input
+    type="file"
+    accept="image/*"
+    hidden
+    #fileInput
+    (change)="onFileSelected($event, ligaCorporalProfesional)"
+  />
+  <!-- Un botón o la imagen clicable para disparar selección: -->
+  <img
+    [src]="ligaCorporalProfesional.imgGrupalLcp | imagenGrupalLcp : ligaCorporalProfesional._id"
+    class="liga-avatar-large"
+    alt="Imagen grupal"
+    style="cursor: pointer;"
+    (click)="fileInput.click()"
+  />
+
+
+
+
+
+
+
+
+
           <div class="liga-fecha ion-margin-top">
             <ion-icon name="calendar-outline"></ion-icon>
             {{ ligaCorporalProfesional.fechaCreacion  }}

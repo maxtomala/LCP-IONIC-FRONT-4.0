@@ -216,6 +216,8 @@ export class LigaCorporalService {
     );
   }
 
+
+  
   // Método para obtener la imagen grupal de la liga
   obtenerImagenGrupal(idLiga: string, foto: string): Observable<Blob> {
     const url = `${base_url}/imgGrupalLc/img-grupal-lc/${idLiga}/${foto}`;
