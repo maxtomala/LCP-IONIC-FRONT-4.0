@@ -6,9 +6,12 @@ const base_url = environment.base_url;
 @Pipe({
   name: 'imgVerificadorLcp'
 })
-export class Imagen3Pipe implements PipeTransform {
+export class ImagenVerificadorLcpPipe  implements PipeTransform {
   transform(imgVerificadorLcp: string, tipo: 'usuarios'): string {
     let imgUrl: string;
+    // console.log('Transforming image URL');
+    // console.log('Image Verifier:', imgVerificadorLcp);
+    // console.log('Type:', tipo);
 
     if (!imgVerificadorLcp) {
       imgUrl = `${base_url}/verificador-lcp/obtener/${tipo}/no-img`;

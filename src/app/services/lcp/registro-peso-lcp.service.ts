@@ -58,6 +58,7 @@ export class RegistroPesoLcpService {
     return this.http.get<any>(url, { headers: this.headers });
   }
 
+  // solucionar lod e la jornada
   registrarPesoSecundario(
     lcpId: string,
     participanteId: string,
@@ -74,29 +75,15 @@ export class RegistroPesoLcpService {
     );
   }
 
-  registrarPesoJornada(
-    idLiga: string,
-    idParticipante: string,
-    peso: number,
-    fecha: Date,
-    jornada: number
-  ): Observable<any> {
-    const url = `${base_url}/registropesolcp/registrarPesoJornada/${idLiga}/${idParticipante}`;
-    const datoDePeso = { peso: peso, fecha: fecha, jornada: jornada };
-    // console.log("Datos de peso a enviar:", url);
+  obtenerPesosTodasLasJornadasGrafica(idLiga: string): Observable<any> {
+    const url = `${base_url}/registropesolcp/todosPesosJuntos/${idLiga}`;
 
-    console.log('Datos de peso a enviar:', datoDePeso);
-    return this.http.post(url, datoDePeso, { headers: this.headers });
-  }
-
-  obtenerPesosTodasLasJornadas(idLiga: string): Observable<any> {
-    const url = `${base_url}/registropesolcp/${idLiga}`;
-    // console.log("Datos de peso a enviar:", url);
-
-    console.log('Datos de peso a enviar:', RegistroPesoLcp);
+    console.log('Obteniendo todos los pesos de todas las jornadas. URL:', url);
 
     return this.http.get<any>(url, this.headers);
   }
+
+  
 
   obtenerPesosPorLigaBotonBloqueo(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolcp/boton/${idLiga}`;

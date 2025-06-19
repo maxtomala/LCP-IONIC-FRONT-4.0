@@ -18,8 +18,7 @@
   <!-- <app-tabla-registro-inicial-lcp [liga]="ligaSeleccionada"   #tablaRegistros ></app-tabla-registro-inicial-lcp>
   <app-guardar-peso-inicial-lcp [liga]="ligaSeleccionada"   (pesoGuardado)="actualizarTabla()"></app-guardar-peso-inicial-lcp> -->
 
-  <app-guardar-peso-lcp [liga]="ligaSeleccionada"></app-guardar-peso-lcp>
-  <app-guardar-peso-secundario-lcp [liga]="ligaSeleccionada" (pesoGuardadoSecundario)="actualizarTablalclasificarialcp()"></app-guardar-peso-secundario-lcp>
+  <!-- <app-guardar-peso-secundario-lcp [liga]="ligaSeleccionada" (pesoGuardadoSecundario)="actualizarTablalclasificarialcp()"></app-guardar-peso-secundario-lcp> -->
   <app-tabla-clasificatoria-lcp [liga]="ligaSeleccionada" #tablaClasificatorialcp></app-tabla-clasificatoria-lcp>
 
 
@@ -52,22 +51,10 @@
 
       <!-- Mostrar componente según selección -->
       <div [ngSwitch]="tipoGrafica" class="ion-padding-top">
-        <app-grafico-diario-lc
-          *ngSwitchCase="'diario'"
-          [liga]="ligaSeleccionada"
-        ></app-grafico-diario-lc>
-        <app-grafico-semanal-lc
-          *ngSwitchCase="'semanal'"
-          [liga]="ligaSeleccionada"
-        ></app-grafico-semanal-lc>
-        <app-grafico-mensual-lc
-          *ngSwitchCase="'mensual'"
-          [liga]="ligaSeleccionada"
-        ></app-grafico-mensual-lc>
-        <app-grafico-anual-lc
-          *ngSwitchCase="'anual'"
-          [liga]="ligaSeleccionada"
-        ></app-grafico-anual-lc>
+        <app-grafico-diario-lcp *ngSwitchCase="'diario'" [liga]="ligaSeleccionada"></app-grafico-diario-lcp>
+        <app-grafico-semanal-lcp *ngSwitchCase="'semanal'" [liga]="ligaSeleccionada"></app-grafico-semanal-lcp>
+        <app-grafico-mensual-lcp *ngSwitchCase="'mensual'" [liga]="ligaSeleccionada"></app-grafico-mensual-lcp>
+        <app-grafico-anual-lcp *ngSwitchCase="'anual'" [liga]="ligaSeleccionada"></app-grafico-anual-lcp>
       </div>
     </ion-card-content>
   </ion-card>
@@ -76,7 +63,7 @@
   <app-carrusel-caracteristicas-lcp [liga]="ligaSeleccionada"></app-carrusel-caracteristicas-lcp>
 
 
-  <app-verificador-semanal-lcp [liga]="ligaSeleccionada"></app-verificador-semanal-lcp>
+  <!-- <app-verificador-semanal-lcp [liga]="ligaSeleccionada"></app-verificador-semanal-lcp> -->
 
 
   <!-- btn flotante  -->

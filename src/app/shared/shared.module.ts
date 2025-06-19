@@ -26,7 +26,7 @@ RouterModule.forChild([]),
     FooterComponent,
     SidebarLeftComponent,
     SidebarRightComponent,
-
+    PipesModule,
   ],
 })
 export class SharedModule {}
