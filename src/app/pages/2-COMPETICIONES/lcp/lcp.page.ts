@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { IonSegmentCustomEvent, SegmentChangeEventDetail } from '@ionic/core';
+import { LigaCorporal } from 'src/app/models/lc/liga-corporal.model';
 import { LigaCorporalProfesional } from 'src/app/models/lcp/liga-corporal-profesional.model';
+import { TablaRegistroInicialLcpComponent } from './tabla-registro-inicial-lcp/tabla-registro-inicial-lcp.component';
+import { TablaClasificatoriaLcpComponent } from './tabla-clasificatoria-lcp/tabla-clasificatoria-lcp.component';
 
 @Component({
   selector: 'app-lcp',
@@ -12,10 +15,12 @@ import { LigaCorporalProfesional } from 'src/app/models/lcp/liga-corporal-profes
 export class LcpPage implements OnInit {
   public ligaSeleccionada: LigaCorporalProfesional | null = null;
 
-  constructor(
-    public navCtrl: NavController,
-     public router: Router
-    ) {}
+  @ViewChild('tablaRegistros')
+  tablaRegistros!: TablaRegistroInicialLcpComponent; // evento hijo guardarpeso
+  tablaClasificatorialcp!: TablaClasificatoriaLcpComponent; // evento hijo guardarpeso
+
+
+  constructor(public navCtrl: NavController, public router: Router) {}
 
   ngOnInit(): void {
     // grafica
@@ -40,5 +45,15 @@ export class LcpPage implements OnInit {
   segmentChanged(event: IonSegmentCustomEvent<SegmentChangeEventDetail>) {
     // this.tipoGrafica = String(event.detail.value);
     this.tipoGrafica = event.detail.value as string;
+  }
+
+  // evento hijo guardarpeso
+  actualizarTabla() {
+    this.tablaRegistros.obtenerPesoInicial();
+  }
+    // evento hijo guardarpeso
+  actualizarTablalclasificarialcp() {
+    // this.tablaClasificatorialcp.obtenerTablaclasificalcp();
+    // editarlo cuando termine la tabla con el metodo adeacuado 
   }
 }

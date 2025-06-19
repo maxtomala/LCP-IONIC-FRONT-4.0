@@ -1,0 +1,96 @@
+<ion-card class="ion-text-center">
+  <ion-card-content>
+    <h1 style="color: black;">1. Invitar a Jugadores.</h1>
+    <p>Debes invitar a al menos 3 jugadores más a unirse a la liga.</p>
+
+    <ion-row class="ion-align-items-center ion-text-center">
+      <ion-col size="3"> </ion-col>
+
+      <ion-col size="6">
+        <ion-button
+          color="primary"
+          fill="solid"
+          expand="block"
+        (click)="router.navigate(['/pages/gestionar-mis-ligas-lcp'], { queryParams: { seccion: 'editar' } })"
+        >
+          <ion-icon slot="start" name="person"></ion-icon> Invitar a amigos
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="3"> </ion-col>
+    </ion-row>
+
+    <h1 style="color: black;">2. Registrar el Peso Inicial.</h1>
+    <p>
+      Cada jugador debe registrar su peso actual como el peso inicial en la
+      liga.
+    </p>
+
+
+
+    <ion-row class="ion-align-items-center ion-text-center">
+      <ion-col size="3"> </ion-col>
+
+      <ion-col size="6">
+       <form [formGroup]="registroPesoLcpForm" (ngSubmit)="guardarPeso()">
+      <ion-item lines="none" class="ion-justify-content-center">
+        <ion-input
+          type="number"
+          placeholder="{{unidadElegida}}"
+          formControlName="peso"
+          style="max-width: 150px; text-align: right; font-size: 1.5rem"
+        ></ion-input>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+          expand="block"
+        color="primary"
+        [disabled]="!botonHabilitado"
+        class="ion-margin-top"
+      >
+        <ion-icon slot="start" name="send"></ion-icon>Enviar
+      </ion-button>
+    </form>
+      </ion-col>
+
+      <ion-col size="3"> </ion-col>
+    </ion-row>
+
+
+
+
+
+
+
+
+
+    <h1 style="color: black;">3. Iniciar la Liga.</h1>
+    <p>
+      Pídele al administrador que inicie la liga, en breve se obtendrán los
+      enfrentamientos y el calendario.
+    </p>
+
+
+
+
+
+      <ion-row class="ion-align-items-center ion-text-center">
+      <ion-col size="3"> </ion-col>
+
+      <ion-col size="6">
+    <ion-button color="primary" expand="block" (click)="iniciarLiga()">
+      <ion-icon slot="start" name="play-circle"></ion-icon> Iniciar LCP
+    </ion-button>
+      </ion-col>
+
+      <ion-col size="3"> </ion-col>
+    </ion-row>
+
+
+
+
+
+
+  </ion-card-content>
+</ion-card>

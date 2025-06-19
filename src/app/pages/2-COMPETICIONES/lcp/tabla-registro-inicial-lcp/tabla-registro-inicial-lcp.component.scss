@@ -1,0 +1,27 @@
+.table-responsive {
+  overflow-x: auto;              /* Permite scroll horizontal si el contenido es más ancho que el contenedor */
+  -webkit-overflow-scrolling: touch;  /* Habilita un scroll suave (smooth) en dispositivos iOS */
+  width: 100%;                   /* El contenedor ocupa todo el ancho disponible */
+}
+
+table {
+  width: 100%;                   /* La tabla ocupa todo el ancho del contenedor */
+  border-collapse: collapse;     /* Une los bordes de las celdas para que no haya doble borde */
+  min-width: 700px;              /* Ancho mínimo para la tabla: si la pantalla es más pequeña, aparecerá scroll horizontal */
+}
+
+th, td {
+  padding: 4px 6px;        /* Menos padding para que las celdas sean más estrechas */
+  border: 1px solid #ccc;
+  text-align: center;
+  white-space: nowrap;     /* Evita que el texto se divida en varias líneas */
+  font-size: 12px;         /* Texto un poco más pequeño ayuda a reducir ancho */
+  max-width: 100px;        /* Máximo ancho para las columnas, ajusta según necesidad */
+  overflow: hidden;        /* Esconde contenido extra que no quepa */
+  text-overflow: ellipsis; /* Muestra “...” si el texto es muy largo */
+}
+
+/* Estilo especial para la primera columna (Nº) */
+th:first-child, td:first-child {
+  width: 40px;  /* Más estrecho para la columna Nº */
+}

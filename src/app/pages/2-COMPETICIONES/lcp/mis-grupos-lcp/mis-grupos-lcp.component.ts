@@ -62,8 +62,7 @@ export class MisGruposLcpComponent implements  OnInit {
       this.accionBoton(this.ligaCorporalProfesional[0].nombre);
       console.log(this.idLigaSeleccionadaActual);
 
-      // graficas lineal
-      // Llama a obtenerPesosParticipante después de seleccionar la liga
+
     }
   }
 

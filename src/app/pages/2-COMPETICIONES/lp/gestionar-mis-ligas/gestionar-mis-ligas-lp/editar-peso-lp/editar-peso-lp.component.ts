@@ -29,11 +29,7 @@ export class EditarPesoLpComponent  implements OnInit {
 
     this.cargarUltimosPesos();
   }
-  getTendenciaFlecha(tendencia: string): string {
-    if (tendencia === 'Subió') return '⬆️';
-    if (tendencia === 'Bajó') return '🔻';
-    return '';
-  }
+
 cargarUltimosPesos() {
   this.loading = true;
   const uid = this.usuarioService.uid;

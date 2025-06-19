@@ -8,14 +8,13 @@ import { environment } from 'src/environments/environment';
 const base_url = environment.base_url;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegistroPesoLcpService {
-
   constructor(private http: HttpClient) {}
 
   public ligaCorporalProfesional: LigaCorporalProfesional;
-  public registroPesoLcp:RegistroPesoLcp;
+  public registroPesoLcp: RegistroPesoLcp;
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -27,53 +26,84 @@ export class RegistroPesoLcpService {
     };
   }
 
+  // funciona
+  registrarPesoInicial(
+    idLiga: string,
+    idParticipante: string,
+    peso: number,
+    unidad: 'kg' | 'lb',
+    fecha?: Date,
+    anio?: number
+  ): Observable<any> {
+    const url = `${base_url}/registropesolcp/registrarPesoSecundario/${idLiga}/${idParticipante}`;
 
-  registrarPesoInicial(idLiga: string, idParticipante: string,peso: number, fecha: Date): Observable<any> {
-    const url = `${base_url}/registropesolcp/registrarPesoInicial/${idLiga}/${idParticipante}`;
-    const datoDePeso = {  peso: peso, fecha: fecha};
-    // console.log("Datos de peso a enviar:", url);
+    const datoDePeso = {
+      peso,
+      unidad,
+      fecha,
+      anio,
+    };
 
-    console.log("Datos de peso a enviar:", datoDePeso);
-    return this.http.post(url, datoDePeso,  { headers: this.headers });
+    console.log('Datos de peso a enviar:', datoDePeso);
+
+    return this.http.post(url, datoDePeso, { headers: this.headers });
   }
-
+  // funciona
 
   obtenerRegistrarPesosIniciales(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolcp/obtenerRegistrarPesosIniciales/${idLiga}`;
-    // console.log("Datos de peso a enviar:", url);
 
-    console.log("Datos de peso a enviar:", RegistroPesoLcp);
+    console.log('Solicitando registros de peso inicial para liga:', idLiga);
 
-    return this.http.get<any>(url, this.headers);
+    return this.http.get<any>(url, { headers: this.headers });
   }
 
-  registrarPesoJornada (idLiga: string, idParticipante: string,peso: number, fecha: Date, jornada:number): Observable<any> {
+  registrarPesoSecundario(
+    lcpId: string,
+    participanteId: string,
+    data: {
+      peso: number;
+      unidad: string;
+      jornada: number;
+      fechaCreacion?: Date;
+    }
+  ) {
+    return this.http.post<any>(
+      `${base_url}/registropesolcp/registrarPesoSecundario/${lcpId}/${participanteId}`,
+      data
+    );
+  }
+
+  registrarPesoJornada(
+    idLiga: string,
+    idParticipante: string,
+    peso: number,
+    fecha: Date,
+    jornada: number
+  ): Observable<any> {
     const url = `${base_url}/registropesolcp/registrarPesoJornada/${idLiga}/${idParticipante}`;
-    const datoDePeso = {  peso: peso, fecha: fecha, jornada:jornada};
+    const datoDePeso = { peso: peso, fecha: fecha, jornada: jornada };
     // console.log("Datos de peso a enviar:", url);
 
-    console.log("Datos de peso a enviar:", datoDePeso);
-    return this.http.post(url, datoDePeso,  { headers: this.headers });
+    console.log('Datos de peso a enviar:', datoDePeso);
+    return this.http.post(url, datoDePeso, { headers: this.headers });
   }
 
   obtenerPesosTodasLasJornadas(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolcp/${idLiga}`;
     // console.log("Datos de peso a enviar:", url);
 
-    console.log("Datos de peso a enviar:", RegistroPesoLcp);
+    console.log('Datos de peso a enviar:', RegistroPesoLcp);
 
     return this.http.get<any>(url, this.headers);
   }
 
   obtenerPesosPorLigaBotonBloqueo(idLiga: string): Observable<any> {
     const url = `${base_url}/registropesolcp/boton/${idLiga}`;
-    console.log("Datos de peso a enviar:", url);
+    console.log('Datos de peso a enviar:', url);
 
-    console.log("Datos de peso a enviar:", RegistroPesoLcp);
+    console.log('Datos de peso a enviar:', RegistroPesoLcp);
 
     return this.http.get(url, this.headers);
   }
-
-
-
 }

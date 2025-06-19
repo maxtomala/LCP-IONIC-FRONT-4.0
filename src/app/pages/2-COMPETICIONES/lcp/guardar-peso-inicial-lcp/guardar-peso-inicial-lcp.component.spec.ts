@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { GuardarPesoLcpComponent } from './guardar-peso-lcp.component';
+import { GuardarPesoInicialLcpComponent } from './guardar-peso-inicial-lcp.component';
 
-describe('GuardarPesoLcpComponent', () => {
-  let component: GuardarPesoLcpComponent;
-  let fixture: ComponentFixture<GuardarPesoLcpComponent>;
+describe('GuardarPesoInicialLcpComponent', () => {
+  let component: GuardarPesoInicialLcpComponent;
+  let fixture: ComponentFixture<GuardarPesoInicialLcpComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ GuardarPesoLcpComponent ],
+      declarations: [ GuardarPesoInicialLcpComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GuardarPesoLcpComponent);
+    fixture = TestBed.createComponent(GuardarPesoInicialLcpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

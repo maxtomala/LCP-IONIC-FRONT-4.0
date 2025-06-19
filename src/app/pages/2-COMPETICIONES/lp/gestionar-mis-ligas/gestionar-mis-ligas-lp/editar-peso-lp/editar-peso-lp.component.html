@@ -17,8 +17,8 @@
           <tr>
             <th>#</th>
             <th>Fecha</th>
-            <th>Peso {{(unidadElegida)}}</th>
-            <th>Dif {{(unidadElegida)}}</th>
+            <th>Peso </th>
+            <th>Dif </th>
             <th>Acción</th>
           </tr>
         </thead>
@@ -39,23 +39,13 @@
                 ></ion-input>
               </ng-container>
               <ng-template #mostrarPeso>
-                {{ item.pesoKg }}
+                {{ item.pesoKg }} {{ unidadElegida }}
               </ng-template>
             </td>
 
             <td>
-              {{ item.difKg !== null ? item.difKg : "-" }}
-              <span
-                [style.color]="
-                  item.tendencia === 'Subió'
-                    ? 'green'
-                    : item.tendencia === 'Bajó'
-                    ? 'red'
-                    : 'gray'
-                "
-              >
-                {{ getTendenciaFlecha(item.tendencia) }}
-              </span>
+              {{ item.difKg !== null ? item.difKg : "-" }} {{ unidadElegida }}
+
             </td>
 
             <td>

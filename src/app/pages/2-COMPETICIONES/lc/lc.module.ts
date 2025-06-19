@@ -18,6 +18,7 @@ import { PodioLcComponent } from './podio-lc/podio-lc.component';
 import { VerificadorSemanalLcComponent } from './verificador-semanal-lc/verificador-semanal-lc.component';
 import { CarruselCaracteristicasLcComponent } from './carrusel-caracteristicas-lc/carrusel-caracteristicas-lc.component';
 import { PipesModule } from "../../../pipes/pipes.module";
+import { TablaRegistroInicialLcpComponent } from '../lcp/tabla-registro-inicial-lcp/tabla-registro-inicial-lcp.component';
 
 @NgModule({
   imports: [

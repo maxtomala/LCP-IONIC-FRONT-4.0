@@ -1,0 +1,78 @@
+<ion-card *ngIf="liga">
+  <ion-card-header>
+    <ion-card-title class="ion-text-center">
+      <strong>Registros de jugadores: </strong><br />
+      <strong>{{ liga.nombre }}</strong>
+    </ion-card-title>
+    <ion-card-subtitle>
+      Total de jugadores: {{ liga.participantes.length }}
+    </ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Peso {{ unidadElegida }}</th>
+            <th>Verificador</th>
+            <th>Check</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let participante of participanteLcp; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <ion-avatar>
+                <img
+                  [src]="
+                    participante.participante.img ||
+                      participante.participante.imgVerificadorLcp
+                      | imagenPerfil : 'usuarios'
+                  "
+                  alt="imagen"
+                />
+              </ion-avatar>
+            </td>
+            <td>
+              {{ participante.participante.nombre }}
+              {{ participante.participante.apellido1 }}
+            </td>
+            <td>
+              {{
+                unidadElegida === "kg"
+                  ? participante.pesoKg !== null
+                    ? participante.pesoKg.toFixed(2)
+                    : "—"
+                  : participante.pesoLb !== null
+                  ? participante.pesoLb.toFixed(2)
+                  : "—"
+              }}
+            </td>
+            <td>
+              <ion-avatar>
+                <img
+                  [src]="
+                    participante.participante.imgVerificadorLcp
+                      | imgVerificadorLc : 'usuarios'
+                  "
+                  alt="Verificador LCP"
+                />
+              </ion-avatar>
+            </td>
+            <td>
+              <ion-icon
+                *ngIf="participante.pesoKg !== null"
+                name="checkmark"
+                color="success"
+              ></ion-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-card-content>
+</ion-card>

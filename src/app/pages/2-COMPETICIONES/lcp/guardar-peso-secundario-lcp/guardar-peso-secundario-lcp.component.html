@@ -1,0 +1,59 @@
+<!-- Formulario para enviar peso -->
+<form [formGroup]="registroPesoLcpForm" (ngSubmit)="guardarPeso()">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title class="ion-text-center">
+        <strong>Introduce tu peso <br />semanal</strong>
+      </ion-card-title>
+
+      <ion-grid>
+        <ion-row class="ion-align-items-center">
+          <!-- Imagen -->
+          <ion-col size="4" class="ion-text-center">
+            <ion-img
+              src="/assets/imagen/báscula.jpg"
+              style="width: 80px; height: 80px"
+            ></ion-img>
+          </ion-col>
+
+          <!-- Campo de peso -->
+          <ion-col size="8">
+            <ion-item>
+              <ion-label position="floating">Peso ({{ unidadElegida }})</ion-label>
+              <ion-input
+                type="number"
+                formControlName="peso"
+                inputmode="decimal"
+                min="0"
+                style="text-align: right; font-size: 1.5rem"
+              ></ion-input>
+            </ion-item>
+
+            <!-- Mensaje de error -->
+            <ion-text color="danger" *ngIf="
+              registroPesoLcpForm.get('peso')?.invalid &&
+              registroPesoLcpForm.get('peso')?.touched
+            ">
+              <p>❌ Ingresa un peso válido</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Botón de enviar -->
+        <ion-row>
+          <ion-col>
+            <ion-button
+              type="submit"
+              expand="block"
+              [disabled]="!botonHabilitado "
+            >
+              <ion-icon name="send" slot="start"></ion-icon>
+              Enviar
+            </ion-button>
+            solucionar lo de jornada en backend
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</form>
